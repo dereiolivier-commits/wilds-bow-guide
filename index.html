@@ -1206,15 +1206,18 @@ side.innerHTML = Object.entries(groups).map(([g,ids])=>`
 const main = document.getElementById("main");
 let navDepth = 0;
 const menuBtn = document.getElementById("menuBtn");
+const clipObs = new IntersectionObserver(es => es.forEach(e => { const v = e.target; if(e.isIntersecting){ v.muted = true; v.play().catch(()=>{}); } else if(!v.paused) v.pause(); }), { rootMargin:"300px 0px" });
 function render(){
   let [id, anchor] = location.hash.replace("#","").split("/");
   if(!VIEWS[id]) id = "home";
-  main.innerHTML = `<div class="view">${id==="home"?"":`<button class="iconbtn backbtn" type="button"><span aria-hidden="true">←</span> Back</button>`}${VIEWS[id].html()}</div>`;
+  main.innerHTML = `<div class="view">${id==="home"?"":`<button class="iconbtn backbtn" type="button"><span aria-hidden="true">←</span> Back</button>`}${VIEWS[id].html().replace(/<video([^>]*?) autoplay/g,'<video$1 data-lazy preload="none"')}</div>`;
   navDepth++;
   document.title = id==="home" ? "Wilds Bow Guide" : `${VIEWS[id].title} · Wilds Bow Guide`;
   side.querySelectorAll("a").forEach(a=>{ if(a.dataset.id===id) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
   side.classList.remove("open"); menuBtn.setAttribute("aria-expanded","false"); document.body.classList.remove("navlock");
-  main.querySelectorAll("video[autoplay]").forEach(v=>{ v.muted = true; v.play().catch(()=>{}); });
+  // Clips load and play only when scrolled near the screen, and pause when off screen (keeps mobile data fast)
+  clipObs.disconnect();
+  main.querySelectorAll("video[data-lazy]").forEach(v=>clipObs.observe(v));
   const t = anchor && document.getElementById(anchor);
   if(t){ if(t.tagName==="DETAILS") t.open = true; const sec = t.closest("details.sec"); if(sec) sec.open = true; t.scrollIntoView(); t.classList.add("flash"); } else window.scrollTo(0,0);
 }
