@@ -54,6 +54,10 @@ h1,h2,h3{color:var(--cream);line-height:1.2;margin:0;text-wrap:balance;font-weig
 .brand{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--cream);font-weight:800;font-size:1.1rem;letter-spacing:.01em;white-space:nowrap}
 .brand .logo{width:34px;height:34px;border-radius:50%;display:block}
 .top .spacer{flex:1}
+@media (max-width:560px){span.ph{white-space:normal;-webkit-box-decoration-break:clone;box-decoration-break:clone}}
+.brand{min-width:0}.brand-t{overflow:hidden;text-overflow:ellipsis}
+#searchBtn{display:inline-flex;align-items:center;gap:.4rem}.sico{width:16px;height:16px;flex:none}
+@media (max-width:440px){.slbl{display:none}#searchBtn{padding:.35rem .55rem}.sico{width:20px;height:20px}.top{gap:.5rem}.brand{font-size:1rem;gap:.4rem}.brand .logo{width:30px;height:30px}.top .iconbtn{padding:.35rem .6rem;font-size:.85rem}}
 .iconbtn{background:var(--card);border:2px solid var(--edge);color:var(--cream);border-radius:10px;padding:.4rem .75rem;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
 .iconbtn:hover{background:#383838}
 .kbd{color:var(--muted);font-weight:500;margin-left:.3rem}
@@ -194,6 +198,10 @@ main{padding-block:2rem 4rem;padding-left:max(16px,env(safe-area-inset-left,0px)
 .page-lede{color:var(--muted);font-size:1.05rem;margin:.6rem 0 1.6rem;max-width:62ch}
 .hi{color:var(--amber);font-weight:700}
 .skip{margin-top:1rem;color:var(--amber);border-color:var(--edge)}
+/* Endgame "Skip to builds": bigger, bright gold edge, sticks under the top bar while scrolling (Olivier) */
+.skip{position:sticky;top:calc(env(safe-area-inset-top,0px) + 68px);z-index:4;align-self:flex-start;font-size:1rem;font-weight:700;padding:.6rem 1.15rem;border:2px solid #f0c46a;background:#2a2620;color:#f6d488;box-shadow:0 0 0 1px rgba(240,196,106,.35),0 0 14px rgba(240,196,106,.35),0 4px 10px rgba(0,0,0,.55)}
+.skip:hover{background:#36302a;border-color:#ffd98a}
+#meta-builds{scroll-margin-top:130px}
 .backbtn{display:inline-flex;align-items:center;gap:.4rem;margin-bottom:1rem;width:fit-content;justify-self:start;align-self:start}
 .backbtn:hover{border-color:var(--amber)}
 .c-pierce{color:#7fb2f2;font-weight:700}.c-close{color:#fff;font-weight:700}.c-power{color:#ee6f69;font-weight:700}
@@ -542,10 +550,10 @@ details.skill>.lvg{margin-top:.9rem}
   <button class="iconbtn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="side">Menu</button>
   <a class="brand" href="#home">
     <img class="logo" src="img/tidus_logo.webp" alt="">
-    Wilds Bow Guide
+    <span class="brand-t">Wilds Bow Guide</span>
   </a>
   <span class="spacer"></span>
-  <button class="iconbtn" id="searchBtn">Search<span class="kbd">⌘K</span></button>
+  <button class="iconbtn" id="searchBtn" aria-label="Search"><svg class="sico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span class="slbl">Search</span><span class="kbd">⌘K</span></button>
 </header>
 
 <div class="shell">
@@ -1005,7 +1013,7 @@ const VIEWS = {
       <video class="clip" src="vid/tracer_gogmazios.mp4" poster="vid/tracer_gogmazios_poster.jpg" autoplay muted loop playsinline aria-label="Tracer Arrow on Pierce against Gogmazios's wings"></video>
 
       <h2 id="dragon-piercer">Dragon Piercer</h2>
-      <p>A <strong class="hi">slow, stationary move</strong> that fires one arrow <strong class="hi">piercing through the monster</strong>. Used right after a dash or an attack, it becomes the <strong class="hi">Instant Dragon Piercer</strong>: about <strong class="hi">20% faster</strong>, for about 20% less damage.</p>
+      <p>A <strong class="hi">slow, stationary move</strong> that fires one arrow <strong class="hi">piercing through the monster</strong>. Used right after a dash or an attack, it becomes the <strong class="hi">Instant Dragon Piercer</strong>: about <strong class="hi">30% faster</strong>, for about 30% less damage.</p>
       <video class="clip wide" src="vid/dragon_piercer_compare.mp4" poster="vid/dragon_piercer_compare_poster.jpg" autoplay muted loop playsinline aria-label="Side-by-side: regular Dragon Piercer (DP) versus Instant Dragon Piercer (iDP) animation speed"></video>
       <p>In Wilds, it uses <strong class="hi">sever hitzones</strong> instead of shot hitzones, and takes on your coating: <strong class="c-close">Close Range</strong> and <strong class="c-power">Power</strong> raise its raw damage, <strong class="c-pierce">Pierce</strong> raises its tick rate.</p>
       <p>It was briefly relevant at launch, but got nerfed and is now <strong class="hi">never used</strong>.</p>
