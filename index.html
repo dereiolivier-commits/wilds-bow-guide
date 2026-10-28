@@ -1,0 +1,1266 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>
+<title>Wilds Bow Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+<style>
+/* Layout: sticky top bar, sidebar of tinted nav cards, content column of dark in-game style cards
+   (same look as the channel's build and skill infographics). One committed dark look. */
+:root{
+  --ground:#1b1d19;      /* page, slight olive bias like the preview backdrop */
+  --card:#2e2e2e;        /* default card */
+  --card-deep:#242424;   /* header band / inset */
+  --edge:#121212;        /* thick near-black card border */
+  --shadow:#0b0b0a;
+  --line:#3a3a38;
+  --cream:#f1e6cc;       /* titles */
+  --ink:#ddd7c8;         /* body text */
+  --muted:#a29d90;
+  --amber:#e0a83a; --blue:#5b87b8; --teal:#4fa08a; --red:#c4555a;
+  --pip:#b37a0a; --pip-empty:#1f1f1f; --pip-empty-edge:#5a5a5a; --pip-set:#33cc33;
+  /* icon tints */
+  --t-red:#463839; --t-blue:#363c4d; --t-tan:#443d31; --t-purple:#3f3747; --t-teal:#33433f; --t-grey:#393b40;
+  --ph:#e0c47a; --ph-bg:#2d2918;
+  --font:"Montserrat","Segoe UI",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font);font-size:1rem;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--card-deep)}
+a{color:var(--amber);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:4px}
+h1,h2,h3{color:var(--cream);line-height:1.2;margin:0;text-wrap:balance;font-weight:700}
+
+/* shared card look */
+.card{background:var(--card);border:3px solid var(--edge);border-radius:16px;box-shadow:0 5px 0 var(--shadow);overflow:hidden}
+.card>.band{background:var(--card-deep);padding:.65rem 1rem;color:var(--cream);font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:.7rem;border-bottom:2px solid var(--edge)}
+.ico{width:38px;height:38px;flex:none;display:block}
+.t-red{--card:var(--t-red);--card-deep:#382c2d}
+.t-blue{--card:var(--t-blue);--card-deep:#2b303e}
+.t-tan{--card:var(--t-tan);--card-deep:#373127}
+.t-purple{--card:var(--t-purple);--card-deep:#322b39}
+.t-teal{--card:var(--t-teal);--card-deep:#283632}
+.t-grey{--card:var(--t-grey);--card-deep:#2e3034}
+
+/* pips, same as the build cards */
+.pips{display:flex;gap:5px}
+.pips i{display:block;width:16px;height:16px;border-radius:4px;background:var(--pip);border:2px solid var(--edge)}
+.pips i.e{background:var(--pip-empty);border-color:var(--pip-empty-edge)}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card-deep);border-bottom:3px solid var(--edge);display:flex;align-items:center;gap:.75rem;padding-block:.6rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--cream);font-weight:800;font-size:1.1rem;letter-spacing:.01em;white-space:nowrap}
+.brand .logo{width:34px;height:34px;border-radius:50%;display:block}
+.top .spacer{flex:1}
+.iconbtn{background:var(--card);border:2px solid var(--edge);color:var(--cream);border-radius:10px;padding:.4rem .75rem;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+.iconbtn:hover{background:#383838}
+.kbd{color:var(--muted);font-weight:500;margin-left:.3rem}
+.menu-btn{display:none}
+
+/* Advanced Combos table (from Olivier's Power and CRC Combos chart) */
+.cb-legend{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;margin:.4rem 0 1.2rem;font-size:.9rem;color:var(--ink)}
+.cb-legend span{display:inline-flex;align-items:center;gap:.45rem}
+.cbk{display:inline-block;font-weight:800;font-size:.85rem;line-height:1;padding:.42em .55em;border-radius:7px;background:#1f1f1f;border:2px solid #121212;color:var(--cream);box-shadow:inset 0 0 0 1px #3c3c3c}
+.cbk.dash{background:transparent;font-weight:600;color:var(--muted);box-shadow:inset 0 0 0 1px #4a463c;border-color:transparent}
+.cbk.td{background:#b5832a;color:#fff6e0;box-shadow:inset 0 0 0 1px #d4a24b}
+.cbk.dd{background:#b5832a;color:#fff6e0;font-style:italic;border-radius:999px;box-shadow:inset 0 0 0 1px #d4a24b}
+.cb-card{margin-bottom:1.4rem}
+.cb-card>.band .sub{display:inline;margin:0 0 0 .4rem}
+.cb-head,.cb-row{display:grid;grid-template-columns:60px minmax(0,1fr) 124px 104px 54px 40px;align-items:center;column-gap:12px;padding:0 1rem}
+.cb-head{font-size:.75rem;font-weight:700;color:var(--muted);padding-top:.5rem;padding-bottom:.4rem;border-bottom:2px solid #161616}
+.cb-head>:nth-child(n+5),.cb-row>.n{text-align:right}
+.cb-row{padding-top:.7rem;padding-bottom:.7rem;border-top:1px solid rgba(0,0,0,.45)}
+.cb-t{font-size:1.45rem;font-weight:800;color:var(--cream)}.cb-t small{font-size:.75rem;font-weight:700;margin-left:2px;color:var(--muted)}
+.cb-seq{display:flex;flex-wrap:wrap;align-items:center;gap:5px}.cb-seq .cbk{font-size:.8rem;padding:.38em .5em}.cbk.dd{white-space:nowrap}
+.cb-seq i{font-style:normal;color:var(--muted);font-size:.8rem}
+.cb-m{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;font-weight:800;color:var(--cream);font-size:1.02rem}
+.cb-bar{height:8px;border-radius:99px;background:#1c1c1c;overflow:hidden}.cb-bar b{display:block;height:100%;border-radius:99px}
+.cb-row>.n{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.cb-m span{font-variant-numeric:tabular-nums;min-width:2.4em;text-align:right}
+.cb-item{border-top:1px solid rgba(0,0,0,.45)}
+.cb-item .cb-row{border-top:0;cursor:pointer;list-style:none}
+.cb-item .cb-row::-webkit-details-marker{display:none}
+.cb-item .cb-row:hover{background:rgba(255,255,255,.03)}
+.cb-item.hl>.cb-row{background:#463b29}
+.cb-item[open]>.cb-row{background:rgba(0,0,0,.18)}.cb-item.hl[open]>.cb-row{background:#3d3324}
+.cb-head+.cb-item{border-top:0}
+.cb-t{position:relative}.cb-t::before{content:"";position:absolute;left:-12px;top:50%;width:6px;height:6px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:translateY(-70%) rotate(-45deg);transition:transform .15s}
+.cb-item[open] .cb-t::before{transform:translateY(-70%) rotate(45deg)}
+.cb-head,.cb-row{padding-left:1.6rem}
+.cb-more{padding:.4rem 1rem 1rem 1.6rem;background:rgba(0,0,0,.18)}
+.cb-more .clip{margin:.4rem 0 .6rem;max-width:480px}
+.cb-more p{margin:0;font-size:.95rem}
+.cb-clipph{max-width:480px;aspect-ratio:16/9;margin:.4rem 0 .6rem;border:2px dashed #4a463c;border-radius:10px;display:grid;place-items:center;color:var(--muted);font-size:.85rem;font-style:italic;background:#1c1c1c}
+.guide .cb-card .cb-cnote{margin:0;padding:.65rem 1rem .7rem 1.6rem;font-size:.92rem;color:var(--ink);max-width:none;background:var(--card-deep);border-bottom:2px solid #161616}
+.guide .cb-tap{display:flex;align-items:center;gap:.5rem;color:var(--ink);font-size:.92rem;margin:.2rem 0 1.2rem}.cb-tap img{width:26px;height:26px;flex:none}
+.cb-wrap .v-pi{display:none}.cb-wrap.pierce .v-pi{display:revert}.cb-wrap.pierce .v-cr{display:none}
+.cb-bar b.v-pi{display:none}.cb-wrap.pierce .cb-bar b.v-pi{display:block}
+.vswitch.cb-mode{padding:0;margin:0 0 .6rem}
+.guide .cb-modenote{font-size:.9rem;color:var(--ink);margin:0 0 .9rem;padding:.6rem .9rem;border-left:3px solid #4a463c;background:rgba(0,0,0,.18);border-radius:0 8px 8px 0}
+.cb-mode button{display:inline-flex;align-items:center;gap:.4rem}.cb-mode img{width:20px;height:20px}
+.cb-mode button.pi[aria-selected="true"]{background:#26344a;border-color:#7fb2f2;color:#e3eefc}
+.cb-tapin{display:flex;align-items:center;gap:.4rem;margin-top:.45rem;font-size:.8rem;font-weight:700;color:var(--amber)}.cb-tapin img{width:18px;height:18px;flex:none}
+.cb-empty{padding:1rem;color:var(--muted);font-style:italic}
+.cb-note{font-size:.85rem;color:var(--muted);margin:-.6rem 0 1.2rem}
+.cb-row .lbl{display:none}
+@media (max-width:820px){
+  .cb-head{display:none}
+  .cb-row{grid-template-columns:58px minmax(0,1fr);grid-template-areas:"t seq" "a a" "b b" "c d";row-gap:.55rem;padding:.8rem 14px .8rem 1.6rem}
+  .cb-t{grid-area:t;font-size:1.25rem}.cb-seq{grid-area:seq}
+  .cb-row>.cb-m:nth-of-type(3){grid-area:a}.cb-row>.cb-m:nth-of-type(4){grid-area:b}
+  .cb-row>.n:nth-of-type(5){grid-area:c;text-align:left}.cb-row>.n:nth-of-type(6){grid-area:d;text-align:right}
+  .cb-row .lbl{display:inline;font-style:normal;font-size:.72rem;font-weight:700;color:var(--muted);margin-right:.35rem}
+  .cb-m{grid-template-columns:52px minmax(0,1fr) auto}
+}
+/* shell */
+.shell{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1200px;margin:0 auto}
+nav.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 58px);align-self:start;height:calc(100vh - 58px);overflow:auto;padding:1.5rem 1rem 2rem}
+.navgroup{margin-bottom:1.4rem}
+.navgroup h4{margin:0 0 .45rem .6rem;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.navgroup a{display:flex;align-items:center;gap:.55rem;padding:.4rem .6rem;border-radius:10px;color:var(--ink);text-decoration:none;font-size:.93rem;font-weight:500;border:2px solid transparent}
+.navgroup a img{width:31px;height:31px}
+.navgroup a:hover{background:var(--card)}
+.navgroup a[aria-current="page"]{background:var(--card);border-color:var(--edge);color:var(--cream);font-weight:700}
+.navgroup a.navbuild{background:color-mix(in srgb,var(--card) 55%,transparent);border-left:4px solid var(--star);margin-bottom:.3rem}
+.navgroup a.navbuild:hover{background:var(--card)}
+.navgroup a.navbuild[aria-current="page"]{background:var(--card);border-color:var(--edge);border-left-color:var(--star)}
+.navstar{width:26px;height:26px;flex:none;filter:drop-shadow(0 1px 0 #000)}
+main{padding-block:2rem 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));min-width:0}
+.view{max-width:800px;display:flex;flex-direction:column;gap:0}
+
+/* hero: dark-to-gold header with faint ornaments (Olivier's reference: the game's weapon intro screen) */
+.hero{position:relative;overflow:hidden;border:3px solid var(--edge);border-radius:16px;box-shadow:0 5px 0 var(--shadow);margin:0 0 1.5rem;min-height:250px;display:flex;align-items:center;min-height:300px;
+  background:radial-gradient(120% 140% at 95% 10%,#8a6d2c 0%,#5a4519 28%,#2e2511 55%,#16130c 80%),#16130c;color:#e7c873}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 0% 100%,rgba(0,0,0,.55),transparent 70%),repeating-radial-gradient(circle at 30% 40%,rgba(255,230,160,.025) 0 1px,transparent 1px 3px);pointer-events:none}
+.hero-art{position:absolute;left:0;top:0;height:100%;object-position:52% center;-webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);z-index:0;width:calc(100% - 470px);object-fit:cover}
+@media (max-width:560px){.hero-art{max-width:none;width:100%;opacity:.28;-webkit-mask-image:none;mask-image:none}}
+.hero .orn{position:absolute;inset:0;width:100%;height:100%;color:#d8b860}.hero::after{z-index:0}
+.hero-in{position:relative;z-index:1;padding:2rem clamp(1.2rem,4vw,2.6rem);max-width:480px;margin-left:auto}
+.hero .kicker{margin:0;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#d8bd7a}
+.hero h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(3.2rem,9vw,5rem);line-height:1;letter-spacing:.01em;color:#f6ead0;display:flex;align-items:center;gap:.9rem;margin:.3rem 0 .2rem;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.hero h1 img{height:.82em;width:auto;filter:drop-shadow(0 2px 4px rgba(0,0,0,.6))}
+.hero .rule{display:flex;align-items:center;margin:.6rem 0 1rem}.hero .rule b{flex:1;height:1px;background:linear-gradient(90deg,rgba(241,230,204,.7),rgba(241,230,204,.35))}
+.hero .rule i{width:9px;height:9px;border:1.5px solid rgba(241,230,204,.8);transform:rotate(45deg);flex:none}
+.hero p{max-width:46ch;color:#e3d7bb;font-size:1rem;margin:0}
+@media (max-width:560px){.hero-in{margin-left:0}.hero{min-height:220px}}
+
+/* progression path */
+.path{list-style:none;margin:0 0 .5rem;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.path a{display:flex;flex-direction:column;gap:.4rem;padding:1rem 1.1rem 1.1rem;text-decoration:none;color:var(--ink);height:100%}
+.path li{position:relative}
+.path .wip{position:absolute;top:1.15rem;right:1rem;display:inline-flex;align-items:center;gap:.3rem;padding:.12rem .45rem .12rem .3rem;border-radius:999px;background:rgba(240,196,106,.1);border:1px solid rgba(240,196,106,.4);color:#f0c46a;font-size:.62rem;font-weight:700;font-style:normal;letter-spacing:.04em;text-transform:uppercase;line-height:1.3;pointer-events:none}
+.wip.inl{position:static;align-self:center;margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:.3rem;padding:.12rem .45rem .12rem .3rem;border-radius:999px;background:rgba(240,196,106,.1);border:1px solid rgba(240,196,106,.4);color:#f0c46a;font-size:.62rem;font-weight:700;font-style:normal;letter-spacing:.04em;text-transform:uppercase;line-height:1.3;white-space:nowrap}.wip.inl svg{width:11px;height:11px;flex:none}
+.txt .wip.inl{margin-left:auto;font-size:.62rem;color:#f0c46a}@media (max-width:560px){.txt .wip.inl{align-self:flex-start;margin:.15rem 0 0}}
+.wip svg{width:11px;height:11px;flex:none}
+@media (min-width:821px){.path .wip{position:static;align-self:flex-end;margin-top:auto}}
+.path a:hover{filter:brightness(1.12)}
+.path strong{color:var(--cream);font-size:1.15rem}
+.s-blue{--card:#2f4150}
+.s-orange{--card:#4e3a2b}
+.s-red{--card:#4c2f2c}
+/* quest rank plate, recreated from the in-game quest list */
+.path .hr,.mu-ranks .hr{align-self:flex-start;display:inline-flex;align-items:center;gap:.4rem;padding:.22rem .7rem .22rem .45rem;border-radius:6px;background:linear-gradient(180deg,#a86c3e 0%,#935a30 50%,#74401c 100%);border:2px solid #3e220c;box-shadow:inset 0 0 0 1px rgba(255,214,170,.28),inset 0 -3px 4px rgba(40,18,4,.35);color:#fff;font-weight:800;font-size:.92rem;letter-spacing:.02em;font-variant-numeric:tabular-nums;text-shadow:0 1px 0 #2a1406,0 0 3px #2a1406}
+.path .hr svg,.mu-ranks .hr svg{width:20px;height:20px;flex:none;filter:drop-shadow(0 1px 0 #2a1406)}
+.path span{color:var(--muted);font-size:.9rem}
+
+.section-h{font-size:1.4rem;margin:2.5rem 0 .2rem}
+.section-sub{color:var(--muted);margin:0 0 1rem}
+
+.linklist{list-style:none;padding:0;margin:0}
+.linklist li+li{border-top:2px solid var(--edge)}
+.linklist a,.linklist li>div{display:flex;align-items:center;gap:.9rem;padding:.8rem 1rem;text-decoration:none;color:var(--ink)}
+.linklist a:hover{background:#363636}
+.linklist a:hover strong{color:var(--amber)}
+.linklist img{width:36px;height:36px;flex:none}
+.linklist .txt{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.2rem 1rem;flex:1;min-width:0}
+.linklist strong{color:var(--cream);font-weight:600}
+.linklist span{color:var(--muted);font-size:.92rem}
+.linklist.plain .txt{flex-direction:column}
+
+/* updates */
+.updates{list-style:none;padding:0;margin:0}
+.updates li{display:grid;grid-template-columns:7rem 1fr;gap:1rem;padding:.7rem 1rem}
+.updates li+li{border-top:2px solid var(--edge)}
+.updates time{color:var(--amber);font-weight:700;font-size:.92rem;font-variant-numeric:tabular-nums}
+.updates a{color:var(--ink)}
+
+/* placeholders */
+.ph{background:var(--ph-bg);color:var(--ph);border:1px dashed var(--ph);border-radius:5px;padding:0 .35em;font-style:italic;white-space:nowrap}
+
+/* pages */
+.page-h{font-size:clamp(1.8rem,4.5vw,2.5rem);font-weight:800}
+.page-lede{color:var(--muted);font-size:1.05rem;margin:.6rem 0 1.6rem;max-width:62ch}
+.hi{color:var(--amber);font-weight:700}
+.skip{margin-top:1rem;color:var(--amber);border-color:var(--edge)}
+.backbtn{display:inline-flex;align-items:center;gap:.4rem;margin-bottom:1rem;width:fit-content;justify-self:start;align-self:start}
+.backbtn:hover{border-color:var(--amber)}
+.c-pierce{color:#7fb2f2;font-weight:700}.c-close{color:#fff;font-weight:700}.c-power{color:#ee6f69;font-weight:700}
+.page-h+.banner{margin-top:1.2rem}
+.banner.reco{margin-top:-.5rem}.banner.reco p{margin:.4rem 0 0;max-width:68ch}
+.banner{background:var(--card);border:2px solid var(--edge);border-left:5px solid var(--amber);padding:.7rem 1rem;border-radius:10px;margin:0 0 1rem;font-size:.95rem}
+
+/* build cards */
+.build{margin:0 0 1.5rem}
+.build .band{justify-content:space-between;flex-wrap:wrap}
+.fold>summary{cursor:pointer;list-style:none;justify-content:flex-start}
+.fold>summary::-webkit-details-marker{display:none}
+.fold>summary .bname{flex:1}
+.fold>summary:hover{filter:brightness(1.15)}
+.fold:not([open])>summary{border-bottom:0}
+.chev{width:.6rem;height:.6rem;border-right:3px solid var(--amber);border-bottom:3px solid var(--amber);transform:rotate(-45deg);transition:transform .15s;flex:none;margin-right:.2rem}
+.fold[open] .chev{transform:rotate(45deg)}
+@media (prefers-reduced-motion: reduce){.chev{transition:none}}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:flex-end;margin-left:auto}
+.tag.settag{color:var(--c);border-color:color-mix(in srgb,var(--c) 75%,transparent);background:color-mix(in srgb,var(--c) 12%,transparent)}
+.tag{font-size:.8rem;font-weight:600;color:var(--amber);border:2px solid var(--amber);border-radius:999px;padding:.05rem .65rem}
+.shot{display:block;background:transparent;padding:.6rem;border:0;width:100%;cursor:zoom-in}
+.shot img{display:block;width:100%;height:auto}
+.build .body{display:grid;grid-template-columns:1fr 1fr}
+.build .col{padding:1rem 1.2rem}
+.build .col+.col{border-left:2px solid var(--edge)}
+.build dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.35rem .9rem}
+.build dt{color:var(--muted);font-size:.92rem}
+.build dd{margin:0}
+.build h5{color:var(--cream);font-size:.95rem;margin:0 0 .5rem}
+.build ul{margin:0;padding-left:1.1rem}
+.vswitch{display:flex;gap:.4rem;padding:.8rem 1rem 0;flex-wrap:wrap}
+.vswitch button{font:inherit;font-size:.85rem;font-weight:700;padding:.35rem .9rem;border-radius:999px;border:2px solid var(--edge);background:var(--card-deep);color:var(--muted);cursor:pointer}
+.vswitch button[aria-selected="true"]{background:#3a3326;border-color:var(--amber);color:var(--cream)}
+.vswitch button:hover{color:var(--cream)}
+.vswitch{align-items:center}.vswitch::after{content:"⇄ Tap to switch";font-size:.78rem;font-weight:600;color:var(--muted);margin-left:.3rem;letter-spacing:.01em}
+.vswitch button.god[aria-selected="true"]{background:#2b4a33;border-color:#7fd19a;color:#e4f7e7}
+.build .notes{padding:.85rem 1.2rem;border-top:2px solid var(--edge);background:var(--card-deep)}
+.build .notes p{margin:0}
+
+/* guides */
+.guide{display:block}
+.guide h2{font-size:1.3rem;margin:2rem 0 .6rem}
+.guide h3{font-size:1.08rem;margin:1.4rem 0 .4rem}
+.guide p{max-width:68ch}
+.guide ul{padding-left:1.2rem}
+.guide li{margin:.25rem 0}
+.charge{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin:1rem 0 1.5rem}
+.charge .card{padding:.8rem .9rem;display:flex;flex-direction:column;gap:.5rem;font-size:.92rem}
+.charge b{color:var(--cream);font-size:1rem}
+.charge.c3{grid-template-columns:repeat(3,1fr);max-width:560px;gap:.6rem}
+.charge.c3 .card{padding:.6rem .75rem;gap:.35rem;font-size:.85rem}
+@media (max-width:560px){.charge.c3{grid-template-columns:1fr}.charge.c3 .card{flex-direction:row;align-items:center;flex-wrap:wrap;gap:.4rem .7rem}}
+.charge .lv1{--lc:#e8e4da}.charge .lv2{--lc:#f2c94c}.charge .lv3{--lc:#e8584f}
+.charge.c3 .card{background:linear-gradient(135deg,color-mix(in srgb,var(--lc) 13%,transparent),color-mix(in srgb,var(--lc) 3%,transparent)),var(--card);border-color:color-mix(in srgb,var(--lc) 35%,var(--edge))}
+.charge.c3 .card b{color:var(--lc)}
+.cdots{display:flex;gap:7px;height:14px;align-items:center}
+.cdots i{width:12px;height:12px;border-radius:50%;border:2px solid color-mix(in srgb,var(--lc) 45%,#5a5a5a);background:transparent}
+.cdots i.on{background:var(--lc);border-color:var(--lc);box-shadow:0 0 8px color-mix(in srgb,var(--lc) 60%,transparent)}
+
+.reinf{display:grid;grid-template-columns:1fr;gap:1.1rem 0;margin:1rem 0 .5rem}
+.rrow{display:grid;grid-template-columns:50px minmax(0,1fr) auto 0;align-items:center;border-top:2px solid #161616;min-height:40px}
+.rrow.a{background:linear-gradient(90deg,rgba(204,102,102,.42),rgba(204,102,102,.08))}.rrow.f{background:linear-gradient(90deg,rgba(153,102,204,.42),rgba(153,102,204,.08))}.rrow.e{background:linear-gradient(90deg,rgba(102,153,204,.42),rgba(102,153,204,.08))}
+.rrow .ric{align-self:stretch;display:grid;place-items:center;background:rgba(0,0,0,.2);border-right:2px solid #161616;overflow:visible}
+.rrow .ric img{display:block;height:44px;width:auto;margin:-10px}
+.rrow b{color:#dedebd;font-weight:600;padding-left:.8rem;font-size:.95rem;white-space:nowrap}
+.rrow{position:relative}.rrow span{position:absolute;left:100%;top:50%;transform:translateY(-50%);margin-left:17px;color:var(--muted);font-weight:700;font-size:.9rem}.rrow.x2::after{content:"";position:absolute;left:calc(100% + 6px);top:7px;bottom:7px;width:5px;border-radius:2px;background:var(--rc);box-shadow:0 0 0 2px #121212}
+.rrow.a{--rc:#b86a68}.rrow.f{--rc:#9a73c8}.rrow.e{--rc:#6f93bd}
+.reinf>.card{overflow:visible;margin-right:3rem}.reinf .card>.band{border-radius:13px 13px 0 0}.reinf .rrow:last-child{border-radius:0 0 13px 13px}.reinf .rrow:last-child .ric{border-bottom-left-radius:13px}
+.rrow em{font-style:normal;font-weight:600;font-size:1rem;color:#eee;padding-right:1rem;text-shadow:0 1px 1px rgba(0,0,0,.5);font-variant-numeric:tabular-nums}
+.rrow em.max,.rrow b.max{color:#f0c46a;text-shadow:0 0 6px rgba(240,196,106,.45),0 1px 1px rgba(0,0,0,.5)}
+.reinf .card>.band{margin:0}.reinf .rnote{margin:0;padding:.6rem 1rem;font-size:.92rem;color:var(--ink);max-width:none;background:var(--card-deep);border-bottom:2px solid #161616}.reinf .rnote+.rrow{border-top:0}.k-aff{color:#c9a2f0}.k-atk{color:#ee8f88}.k-jewel{color:#b4aef2}.k-raw{color:#ee8f88}.reinf .card>.band+.rrow{border-top:0}
+.dmg .legend{display:flex;flex-wrap:wrap;gap:.4rem 1rem;padding:.8rem 1rem 0;font-size:.85rem;font-weight:600}
+.dmg .legend span{display:flex;align-items:center;gap:.4rem}.dmg .legend i{width:14px;height:14px;border-radius:3px;background:var(--c)}
+.dmg-chart{padding:.9rem 1rem 1.1rem;display:grid;gap:.9rem}
+.dmg-grp{display:grid;grid-template-columns:5.6rem 1fr;align-items:center;gap:.6rem}
+.dmg-hz{font-size:.85rem;color:var(--muted);line-height:1.2}.dmg-hz b{display:block;color:var(--cream);font-size:1rem}
+.dmg-bars{display:grid;gap:4px}
+.dmg-bar{display:flex;align-items:center;gap:.45rem;height:18px}
+.dmg-bar i{display:block;height:100%;border-radius:0 4px 4px 0;background:var(--c);min-width:3px}
+.dmg-bar em{font-style:normal;font-size:.82rem;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.dmg-bar em.up{color:#7fd19a;font-weight:700}.dmg-bar em.down{color:#ee6f69;font-weight:700}.dmg-bar em.ref{color:var(--muted)}
+.dmg .mu-note{padding-top:.5rem}
+.figure{display:block;width:100%;max-width:640px;height:auto;margin:1rem 0 .5rem}
+.mu{display:grid;gap:1.25rem;margin-bottom:1.25rem}
+.mu-card>.band{font-size:1.15rem}
+.mu-card>.band>img{width:30px;height:30px;margin:-4px 0}
+.mu-band-close{background:linear-gradient(90deg,#4a4842,#33322f) !important}
+.mu-band-pierce{background:linear-gradient(90deg,#2c4466,#262f3d) !important}
+.mu-grid .mu-ei{display:flex;gap:3px;justify-content:center;font-style:normal;margin-top:-2px}.mu-grid .mu-ei img{width:24px;height:24px;max-width:none}
+.mu-chart .mu-row{grid-template-columns:120px 1fr 52px}.mu-tot{display:flex;flex-direction:column;align-items:center;line-height:1;border-left:2px solid rgba(255,255,255,.08);padding-left:.6rem}.mu-tot strong{font-size:1.45rem;font-weight:800;color:var(--el)}.mu-tot small{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:3px}
+@media (max-width:560px){.mu-chart .mu-row{grid-template-columns:96px 1fr 44px;gap:.6rem}.mu-chart .mu-el{gap:.35rem;font-size:.85rem}.mu-chart .mu-el img{width:22px;height:22px}}
+.mu-els{margin-bottom:1.25rem}
+.mu-els>.band{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.mu-legend{display:flex;align-items:center;gap:.45rem;font-size:.8rem;font-weight:600;color:var(--muted)}
+.mu-legend img.lg{width:20px;height:20px;margin-left:.4rem}
+.b-close{background:#ece6d6}
+.b-pierce{background:#7fb2f2}
+.mu-chart{padding:1rem;display:grid;gap:.7rem}
+.mu-row{display:grid;grid-template-columns:120px 1fr;align-items:center;gap:.8rem;background:linear-gradient(90deg,color-mix(in srgb,var(--el) var(--ea,24%),#222) 0%,color-mix(in srgb,var(--el) var(--eb,9%),#222) 60%);border:2px solid var(--edge);border-left:4px solid var(--el);border-radius:10px;padding:.55rem .8rem}
+.mu-el{display:flex;align-items:center;gap:.5rem;font-weight:700}
+.mu-el img{width:30px;height:30px}
+.mu-bars{display:grid;gap:5px}
+.mu-bar{display:flex;align-items:center;gap:.5rem;height:14px}
+.mu-bar b{display:block;height:100%;border-radius:4px;min-width:4px}
+.mu-bar em{font-style:normal;font-weight:700;font-size:.85rem;color:var(--cream);line-height:1}
+.cp .cp-lede{margin:.7rem 1rem 0;color:var(--muted);font-size:.9rem}
+.cp-list{list-style:none;margin:.8rem 0 0;padding:0 .8rem .9rem;display:grid;gap:.45rem}
+.cp-row{display:grid;grid-template-columns:2rem 16rem 1fr auto;align-items:center;gap:.4rem .8rem;padding:.45rem .7rem;border-radius:10px;border:2px solid #121212;background:linear-gradient(90deg,color-mix(in srgb,var(--el) 16%,#262626),#262626 70%)}
+.cp-n{font-size:1.15rem;color:var(--cream);text-align:center}
+.cp-bow{display:flex;align-items:center;gap:.35rem;font-size:.92rem;min-width:0}.cp-bow img{width:26px;height:26px}.cp-bow em{font-style:normal;font-weight:700}.cp-bow>span{white-space:nowrap}
+.cp-mons{display:flex;flex-wrap:wrap;gap:3px}.cp-mons img{width:40px;height:40px;border-radius:7px;background:#1d1d1d;display:block}
+.cp-c{font-size:1.2rem;color:var(--cream);min-width:1.2rem;text-align:right}
+@media (max-width:560px){.cp-row{grid-template-columns:1.6rem 1fr auto}.cp-mons{grid-column:2/3}.cp-c{grid-row:1/3;grid-column:3}}
+.mu-end{margin-bottom:1.25rem}
+.mu-ranks{display:flex;gap:.45rem}
+.pagerank{margin-bottom:.6rem}
+.pagerank .hr{font-size:1.05rem;padding:.3rem .85rem .3rem .55rem}
+.pagerank .hr svg{width:24px;height:24px}
+.mu-end>.band{justify-content:space-between;flex-wrap:wrap}
+.mu-cols{display:grid;gap:.8rem;padding:1rem}
+.mu-col{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:.8rem;background:var(--card-deep);border:2px solid var(--edge);border-radius:10px;padding:.55rem .8rem}
+.mu-hbar{display:flex;align-items:center;gap:.6rem;min-width:0}
+.mu-stack{display:flex;flex-wrap:wrap;gap:2px;padding:2px;border-radius:9px}
+.mu-stack.b-close{background:#ece6d6}
+.mu-stack.b-pierce{background:#7fb2f2}
+.mu-stack img{width:48px;height:48px;display:block;background:#1d1d1d;border-radius:7px;padding:1px;box-sizing:border-box}
+.mu-count{font-size:1.25rem;line-height:1;color:var(--cream)}
+.mu-colname{display:flex;align-items:center;gap:.4rem;font-weight:700;font-size:.95rem;white-space:nowrap}
+.mu-colname img{width:24px;height:24px}
+@media (max-width:560px){.mu-col{grid-template-columns:1fr}.mu-stack img{width:40px;height:40px}}
+.mu-note{margin:0;padding:.2rem 1rem 1rem;font-size:.8rem;color:var(--muted)}
+@media (max-width:480px){.mu-row{grid-template-columns:92px 1fr}}
+.mu-grid{list-style:none;margin:0;padding:1rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:.6rem}
+.mu-grid li{background:var(--card-deep);border:2px solid var(--edge);border-radius:10px;padding:6px 4px 8px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.mu-grid img{display:block;width:100%;max-width:96px;aspect-ratio:1;object-fit:contain}
+.mu-grid span{font-size:.72rem;font-weight:600;line-height:1.2;color:var(--ink);overflow-wrap:anywhere}
+.chain{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem;padding:0;margin:.5rem 0 .8rem}
+.chain li{background:var(--card);border:2px solid var(--edge);border-radius:8px;padding:.2rem .65rem;font-size:.9rem;font-weight:500;display:flex;align-items:center;color:var(--cream)}
+.chain li+li::before{content:"›";color:var(--amber);font-weight:800;margin:0 .45rem 0 -.1rem}
+.note{color:var(--muted);font-style:italic}
+
+/* tables */
+.tablewrap{overflow-x:auto;margin:.6rem 0 1rem}
+table{border-collapse:collapse;width:100%;min-width:540px;font-size:.93rem}
+th,td{text-align:left;padding:.6rem .9rem}
+thead th{background:var(--card-deep);color:var(--cream);font-weight:700;border-bottom:2px solid var(--edge)}
+tbody tr+tr td{border-top:1px solid var(--line)}
+tbody tr:nth-child(even) td{background:rgba(255,255,255,.025)}
+
+/* skill notes */
+.skills{display:grid;gap:.6rem;margin:1rem 0}
+.skills .card p{margin:0;padding:.8rem 1rem}
+
+/* videos */
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.vid{text-decoration:none;color:var(--ink)}
+.vid .thumb{aspect-ratio:16/9;max-width:100%;background:#6b7a5c;display:grid;place-items:center;color:var(--cream);font-weight:700;border-bottom:2px solid var(--edge)}
+.vid .meta{padding:.7rem .9rem}
+
+/* FAQ */
+.faq details{padding:.8rem 1rem}
+.faq details+details{border-top:2px solid var(--edge)}
+summary{cursor:pointer;color:var(--cream);font-weight:600}
+details p{margin:.5rem 0 0;color:var(--muted)}
+
+footer{margin-top:3rem;padding-top:1.2rem;border-top:2px solid var(--edge);color:var(--muted);font-size:.9rem}
+
+/* dialogs */
+dialog{border:3px solid var(--edge);border-radius:16px;background:var(--card);color:var(--ink);padding:0}
+dialog::backdrop{background:rgba(5,6,5,.7)}
+#searchDlg{width:min(560px,92vw)}
+dialog input{width:100%;font:inherit;font-size:1.05rem;padding:1rem 1.1rem;border:0;border-bottom:2px solid var(--edge);background:var(--card-deep);color:var(--cream)}
+dialog input:focus{outline:none}
+#results{list-style:none;margin:0;padding:.4rem;max-height:55vh;overflow:auto}
+#results a{display:block;padding:.6rem .7rem;border-radius:8px;text-decoration:none;color:var(--cream);font-weight:600}
+#results a:hover,#results a.sel{background:#3a3a3a}
+#results small{display:block;color:var(--muted);font-weight:400}
+.empty{padding:1rem;color:var(--muted)}
+#zoomDlg{width:min(1400px,96vw);max-height:94vh;background:var(--ground);overflow:auto}
+#zoomDlg img{display:block;width:100%;height:auto}
+#zoomDlg button{position:sticky;top:.5rem;float:right;margin:.5rem}
+
+@media (max-width:820px){
+  .shell{grid-template-columns:1fr}
+  .menu-btn{display:inline-block}
+  nav.side{display:none;position:fixed;top:calc(env(safe-area-inset-top,0px) + 58px);left:0;right:0;bottom:auto;height:calc(100vh - 58px - env(safe-area-inset-top,0px));height:calc(100dvh - 58px - env(safe-area-inset-top,0px));z-index:6;background:var(--ground);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:calc(2rem + env(safe-area-inset-bottom,0px))}
+  nav.side.open{display:block;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+  body.navlock{overflow:hidden}
+  main{padding-block:1.4rem 3rem}
+  .path{grid-template-columns:1fr}
+  .build .body{grid-template-columns:1fr}
+  .build .col+.col{border-left:0;border-top:2px solid var(--edge)}
+  .charge{grid-template-columns:1fr 1fr}
+  .updates li{grid-template-columns:1fr;gap:.1rem}
+  .kbd{display:none}
+}
+.card[id]{scroll-margin-top:84px}
+.card.flash{animation:flash 2.2s ease-out}
+@keyframes flash{0%,30%{box-shadow:0 0 0 2px #f0c46a,0 0 24px rgba(240,196,106,.45)}100%{box-shadow:0 0 0 2px transparent}}
+@media (prefers-reduced-motion: reduce){.card.flash{animation:none}}
+.chan{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;text-decoration:none;color:var(--ink)}
+.chan:hover{filter:brightness(1.12)}
+.chan .ytico{width:40px;height:29px;flex:none}
+.chan .txt{display:flex;flex-direction:column;gap:.15rem;min-width:0;flex:1}
+.chan strong{color:var(--cream);font-size:1.05rem;overflow-wrap:anywhere}
+.chan .txt span{color:var(--muted);font-size:.9rem}
+.chan-go{color:var(--amber);font-weight:700;font-size:.9rem;flex:none}
+.chan.mine{border-color:#f0c46a;background:linear-gradient(135deg,rgba(240,196,106,.16),rgba(240,196,106,.04)) ,var(--card);box-shadow:0 0 0 1px rgba(240,196,106,.25),0 0 22px rgba(240,196,106,.18);padding:1.3rem 1.4rem;margin:0 0 1.5rem}
+.chan-av{width:56px;height:56px;border-radius:50%;flex:none;box-shadow:0 0 0 2px #f0c46a}
+.chan.mine strong{font-size:1.3rem;color:#f0c46a;text-shadow:0 0 10px rgba(240,196,106,.35)}
+.chans{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.5rem}
+@media (max-width:560px){.chans{grid-template-columns:1fr}}
+.ctrls{float:right;width:320px;margin:.3rem 0 1rem 1.5rem;font-size:.82rem}
+.ctrls .band{padding:.55rem .9rem;font-size:.95rem}
+.ctrl-head,.ctrl-row{display:grid;grid-template-columns:1fr 44px 44px 44px 44px;align-items:center;gap:.3rem;padding:.35rem .7rem}
+.ctrl-head b{font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center}
+.ctrl-row{border-top:2px solid var(--edge)}
+.ctrl-note{margin:0;padding:.45rem .8rem .55rem;border-top:2px solid var(--edge);color:var(--muted);font-size:.72rem;font-style:italic}
+.ctrl-move{color:var(--cream);font-weight:700;line-height:1.25}
+.ctrl-key{display:flex;flex-direction:column;align-items:center;gap:.1rem;color:var(--cream)}
+.ctrl-key svg{height:26px;width:auto;max-width:44px}
+.ctrl-key em{font-style:normal;font-size:.62rem;color:var(--muted);white-space:nowrap}
+@media (max-width:900px){.ctrls{float:none;width:auto;max-width:420px;margin:0 0 1.2rem}}
+.guide img.shot,.shot{display:block;width:100%;max-width:400px;padding:0;background:none;height:auto;border-radius:10px;border:2px solid var(--edge);margin:.6rem 0 1rem}
+.clip.wide{max-width:720px;aspect-ratio:1288/360}
+.clip{display:block;width:100%;max-width:480px;height:auto;aspect-ratio:16/9;border-radius:10px;border:2px solid var(--edge);background:#000;margin:.6rem 0 .4rem}
+.clipnote{font-size:.82rem;color:var(--muted);margin:-.1rem 0 1rem}
+.clipnote a{color:var(--amber)}
+.coat-in{white-space:nowrap}.coat-in img{width:1.5em;height:1.5em;vertical-align:-.4em;margin-right:.2em}.coat-ammo{display:block;width:100%;max-width:420px;border-radius:8px;border:3px solid #121212;margin:4px 0 14px}.coat-more{font-size:.75em;opacity:.8}
+.cframes{background:var(--card);border:3px solid var(--edge);border-radius:12px;padding:14px 16px;margin:6px 0 16px;max-width:620px}.cf-bar{display:flex;height:40px;border:3px solid var(--edge);border-radius:8px;overflow:hidden}.cf-bar span{flex:1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}.cf-a{background:#b5832a;color:#fff6e0}.cf-b{background:#f0cf86;color:#2a1f0c;border-left:3px solid var(--edge)}.cf-scale{display:grid;grid-template-columns:1fr 1fr;font-size:.72rem;color:var(--muted);text-align:center;margin-top:5px}
+.tico{width:1.6em;height:1.6em;vertical-align:middle;margin-right:.35em}.con{display:inline-flex;align-items:center;white-space:nowrap}.plus-items{display:inline-flex;align-items:center;flex-wrap:wrap;gap:.15em .3em}.plus-items .tico{margin-right:.15em}
+.lvl{font-weight:800;color:#f0c46a;white-space:nowrap}
+.tplus{font-weight:800;color:#f0c46a;font-size:1.3em;line-height:1;margin-left:.9em}
+.con .pips i.e{background:repeating-linear-gradient(135deg,#fbe9a6 0 3px,#c9a84e 3px 6px);border-color:var(--edge)}.pip-legend{display:flex;flex-wrap:wrap;gap:6px 18px;padding:.6rem .9rem .75rem;font-size:.8rem;color:var(--muted);border-top:1px solid var(--line)}.pip-legend>span{display:inline-flex;align-items:center;gap:7px}.pip-legend .pips i{width:13px;height:13px}
+td.c1,th.c1{width:1%;white-space:nowrap;padding-right:1.6rem}
+.fitw{width:fit-content;max-width:100%}.fitw table{width:auto;min-width:0}
+.coat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:.6rem 0 1.2rem}.coat-grid .card{margin:0}@media(max-width:640px){.coat-grid{grid-template-columns:1fr}}
+.cpts{list-style:none;margin:0;padding:.7rem 1rem .9rem;display:grid;gap:.4rem;font-size:.92rem}.cpts li{position:relative;padding-left:1.5em}.cpts li::before{position:absolute;left:0;top:0;font-weight:800;width:1.1em;text-align:center}.cpts .pro::before{content:"+";color:#7fd07a}.cpts .con::before{content:"−";color:#ee6f69}.cpts .neu::before{content:"•";color:var(--muted)}
+.st-icons{display:flex;gap:6px;padding:.7rem 1rem 0}.st-icons img{width:30px;height:30px}
+.dk-blue{--card:color-mix(in srgb,#6687FF 14%,#2c2c2c);--card-deep:color-mix(in srgb,#6687FF 11%,#222)}.dk-indigo{--card:color-mix(in srgb,#4C4CD9 14%,#2c2c2c);--card-deep:color-mix(in srgb,#4C4CD9 11%,#222)}.dk-pink{--card:color-mix(in srgb,#E68A94 14%,#2c2c2c);--card-deep:color-mix(in srgb,#E68A94 11%,#222)}.dk-lav{--card:color-mix(in srgb,#9788D1 14%,#2c2c2c);--card-deep:color-mix(in srgb,#9788D1 11%,#222)}.dk-red{--card:color-mix(in srgb,#E15057 14%,#2c2c2c);--card-deep:color-mix(in srgb,#E15057 11%,#222)}.dk-green{--card:color-mix(in srgb,#3D7F3A 18%,#2c2c2c);--card-deep:color-mix(in srgb,#3D7F3A 14%,#222)}
+.dk-tw{--card:linear-gradient(100deg,color-mix(in srgb,#79acdf 16%,#2c2c2c) 0 50%,color-mix(in srgb,#e3c55c 14%,#2c2c2c) 50% 100%);--card-deep:linear-gradient(100deg,color-mix(in srgb,#79acdf 13%,#222) 0 50%,color-mix(in srgb,#e3c55c 11%,#222) 50% 100%)}
+.dk-lblue{--card:color-mix(in srgb,#7fc4ff 17%,#2c2c2c);--card-deep:color-mix(in srgb,#7fc4ff 13%,#222)}
+.ce{padding:0 1.1rem .2rem}.ce-bar{display:flex;align-items:center;gap:.6rem}.ce-track{display:flex;height:30px;width:min(300px,calc(100% - 90px));flex:none}.ce-track b,.ce-lv span{flex:var(--w);text-align:center}.ce .e1{--w:80}.ce .e2{--w:40}.ce .e3{--w:60}.ce-track b{display:grid;place-items:center;font-size:.8rem;font-weight:800;color:#1a1206;border:2px solid #121212}.ce-track b+b{border-left-width:0}.ce-track .e1{background:#c98a2e;border-radius:7px 0 0 7px}.ce-track .e2{background:#e0a83a}.ce-track .e3{background:#f0c766;border-radius:0 7px 7px 0}.ce-bar em{font-style:normal;font-weight:800;font-size:1.1rem;color:var(--cream);display:flex;align-items:center;gap:.3rem;white-space:nowrap}.ce-bar em img{height:26px;width:auto}.ce-lv{display:flex;width:min(300px,calc(100% - 90px));margin-top:3px}.ce-lv span{font-size:.7rem;font-weight:600;color:var(--muted)}
+.ce-chip{display:inline-flex;align-items:center;gap:.35rem;background:#5e3f7e;border:2px solid #121212;border-radius:8px;padding:.1rem .5rem;font-weight:700;color:var(--cream);font-size:.85rem;vertical-align:1px}.ce-chip img{width:20px;height:20px}
+.dk-cyan{--card:color-mix(in srgb,#4EC3E5 14%,#2c2c2c);--card-deep:color-mix(in srgb,#4EC3E5 11%,#222)}.st-gogma{--card:color-mix(in srgb,#d9b25a 14%,#2c2c2c);--card-deep:color-mix(in srgb,#d9b25a 11%,#222)}.st-gore{--card:color-mix(in srgb,#b58bd6 14%,#2c2c2c);--card-deep:color-mix(in srgb,#b58bd6 11%,#222)}.st-scorch{--card:color-mix(in srgb,#ec5f5f 14%,#2c2c2c);--card-deep:color-mix(in srgb,#ec5f5f 11%,#222)}.st-burst{--card:color-mix(in srgb,#a9dcff 14%,#2c2c2c);--card-deep:color-mix(in srgb,#a9dcff 11%,#222)}.st-lord{--card:color-mix(in srgb,#d8c7a3 14%,#2c2c2c);--card-deep:color-mix(in srgb,#d8c7a3 11%,#222)}
+.fx{margin:.8rem 1rem 0;padding:.8rem;background:rgba(0,0,0,.22);border:2px solid var(--edge);border-radius:12px;display:grid;gap:.7rem}
+.fx+p{padding-top:.6rem!important}
+.fx-cond{display:inline-flex;align-items:center;gap:.4rem;width:fit-content;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#ffb3a8;background:rgba(220,70,60,.18);border:1.5px solid rgba(238,111,105,.55);border-radius:999px;padding:.1rem .65rem .1rem .45rem}
+.fx-cond svg{width:14px;height:14px}
+.fx-stats{display:flex;flex-wrap:wrap;gap:.5rem}
+.fx-stat{display:flex;align-items:center;gap:.55rem;background:var(--card-deep);border:2px solid var(--edge);border-left:4px solid var(--sc,var(--amber));border-radius:10px;padding:.35rem .8rem .35rem .5rem;min-width:0}
+.fx-stat img{width:30px;height:30px;flex:none}
+.fx-stat b{font-size:1.25rem;line-height:1;color:var(--cream);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fx-stat span{font-size:.78rem;color:var(--muted);line-height:1.2}
+.fx-stat b.up{color:#7fd19a}.fx-stat b.dn{color:#ee6f69}
+.fx-tl{display:grid;gap:.25rem}
+.fx-bar{display:flex;height:34px;border:2px solid var(--edge);border-radius:8px;overflow:hidden;font-size:.8rem;font-weight:700}
+.fx-bar span{display:flex;align-items:center;justify-content:center;white-space:nowrap;padding:0 .4rem}
+.fx-on{flex:140;background:linear-gradient(180deg,#e2c06c,#b58a2e);color:#2a1f0c}
+.fx-off{flex:30;background:repeating-linear-gradient(135deg,#2a2a2a 0 5px,#202020 5px 10px);color:var(--muted);border-left:2px solid var(--edge)}
+.fx-scale{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted)}
+.fx-perks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem}
+.fx-perks li{display:flex;align-items:center;gap:.45rem;font-size:.85rem;background:var(--card-deep);border:2px solid var(--edge);border-radius:8px;padding:.3rem .6rem;line-height:1.3}
+.fx-perks li::before{content:"";width:16px;height:16px;flex:none;border-radius:50%;background:#d9b25a url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.3l2.6 2.5L12 5.4' fill='none' stroke='%232a1f0c' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat}
+.fx-flow{display:grid;grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:.5rem .6rem}.fx-flow .fx-lv{justify-self:start}
+.fx-lv{font-weight:800;font-size:.8rem;color:var(--sc);background:color-mix(in srgb,var(--sc) 14%,transparent);border:1.5px solid color-mix(in srgb,var(--sc) 60%,transparent);border-radius:6px;padding:.05rem .45rem}
+.fx-step{display:flex;flex-direction:column;gap:.15rem;background:var(--card-deep);border:2px solid var(--edge);border-radius:10px;padding:.4rem .7rem;min-width:0}
+.fx-step small{font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.fx-step b{color:var(--cream);font-size:1rem;display:flex;align-items:center;gap:.35rem;white-space:nowrap}
+.fx-step b img{width:24px;height:24px}
+.fx-step.inf{border-color:color-mix(in srgb,#b58bd6 55%,var(--edge))}.fx-step.inf small{color:#c9a8e6}
+.fx-step.cur{border-color:color-mix(in srgb,#7fd19a 55%,var(--edge))}.fx-step.cur small{color:#9fdcb2}
+.fx-arrow{color:var(--sc);font-weight:800;font-size:1.2rem;text-align:center}
+.fx-guts{display:flex;align-items:center;gap:.7rem;background:var(--card-deep);border:2px solid var(--edge);border-radius:10px;padding:.5rem .8rem}
+.fx-guts svg{width:34px;height:34px;flex:none}
+.fx-guts b{color:var(--cream)}.fx-guts span{color:var(--muted);font-size:.85rem;display:block}
+.fx-2col{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:.6rem;align-items:stretch}
+.fx-2col>.fx-arrow{align-self:center}
+.fx-col{display:grid;gap:.4rem;align-content:start}
+.fx-col>small{font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:560px){.fx-perks{grid-template-columns:1fr}.fx-flow{gap:.45rem .3rem}.fx-step{padding:.35rem .5rem}.fx-step b{font-size:.88rem;display:block;white-space:normal;line-height:1.25}.fx-step b img{vertical-align:-5px;margin-right:.2rem}.fx-step b img{width:20px;height:20px}.fx-lv{font-size:.7rem;padding:0 .3rem}.fx-2col{grid-template-columns:1fr}.fx-2col>.fx-arrow{transform:rotate(90deg)}}
+
+/* toned down (Olivier: less illustrated) */
+.fx{margin:.7rem 1rem 0;padding:0;background:none;border:0;border-radius:0;gap:.55rem}
+.fx-cond{background:none;border:0;padding:0;font-size:.72rem;color:#ee8f88}
+.fx-cond svg{display:none}
+.fx-cond img{width:24px;height:auto;display:block}
+.skills .fold>summary .chev{margin-right:0}.skills .fold:not([open]){box-shadow:0 3px 0 var(--shadow)}
+.secico{width:34px;height:34px;flex:none}details.sec{margin:.4rem 0}details.sec>summary{list-style:none;display:flex;align-items:center;gap:.6rem;padding:.6rem 0;border-bottom:2px solid var(--edge)}details.sec>summary::-webkit-details-marker{display:none}details.sec>summary h2{font-size:1.3rem}details.sec>summary:hover h2{color:var(--amber)}details.sec[open]>summary .chev{transform:rotate(45deg)}details.sec>.skills{margin-top:.8rem}
+.tetrad{display:block;width:100%;max-width:440px;height:auto}
+.ew{margin:.8rem 1rem 0;border:2px solid var(--edge);border-radius:10px;overflow:hidden;background:var(--card-deep)}
+.ew-legend{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.1rem;padding:.5rem .8rem;font-size:.8rem;font-weight:600;border-bottom:2px solid var(--edge)}
+.ew-legend span{display:flex;align-items:center;gap:.35rem}.ew-legend em{margin-left:auto;font-style:normal;color:var(--muted);font-weight:500}
+.ew-base{display:block;width:22px;height:11px;border-radius:3px;border:1.5px solid #121212;background:linear-gradient(90deg,#8c836f 33%,#5a87b8 33% 66%,#4ca38a 66%)}
+.ew-legend b{display:inline-grid;place-items:center;width:15px;height:15px;font-size:.62rem;color:#1a1206;border:1.5px solid #121212;margin-left:-.15rem}
+.ew-row{display:grid;grid-template-columns:118px 1fr;align-items:center;gap:.6rem;padding:.35rem .8rem .35rem}
+.ew-row+.ew-row{border-top:1px solid rgba(0,0,0,.35)}
+.ew-axis{padding-top:.3rem;padding-bottom:.1rem}.ew-axis .ew-track{height:14px}.ew-axis .ew-track span{position:absolute;top:0;transform:translateX(-50%);font-size:.66rem;color:var(--muted);font-weight:600}
+.ew-name{color:var(--cream);font-weight:700;font-size:.88rem;line-height:1.2}.ew-name small{display:block;color:var(--muted);font-weight:500;font-size:.68rem}
+.lvg{display:grid;grid-template-columns:auto repeat(5,1fr);gap:0;margin:0 1.1rem 1rem;max-width:520px;background:rgba(0,0,0,.25);border:1.5px solid #121212;border-radius:8px;overflow:hidden;font-size:.85rem;text-align:center}.lvg>*{padding:.4rem .5rem;border-top:1px solid rgba(0,0,0,.45)}.lvg>:nth-child(-n+6){border-top:0;background:rgba(0,0,0,.2)}.lvg b{color:var(--muted);font-size:.75rem;font-weight:700}.lvg .k{text-align:left;font-weight:700;color:var(--cream)}.lvg em{font-style:normal;font-weight:800;color:var(--cream)}.lvg em:nth-of-type(5),.lvg em:nth-of-type(10){color:#f2c35a}
+@media (max-width:480px){.lvg>*{padding:.4rem .25rem}.lvg{font-size:.78rem}.lvg .k{padding-left:.5rem}}
+.lvg.ea{grid-template-columns:auto 1fr 1fr;max-width:460px}.lvg.ea>:nth-child(-n+6){border-top:1px solid rgba(0,0,0,.45);background:none}.lvg.ea>:nth-child(-n+3){border-top:0;background:rgba(0,0,0,.2)}.lvg.ea em.arr{white-space:nowrap;color:var(--cream)}.lvg.ea em.arr:nth-last-of-type(-n+2){color:#f2c35a}.lvg .ar{color:var(--muted);font-weight:600;margin:0 .2em}
+.lvg.l3{grid-template-columns:auto repeat(3,1fr);max-width:380px}.lvg.l3>:nth-child(-n+6){border-top:1px solid rgba(0,0,0,.45);background:none}.lvg.l3>:nth-child(-n+4){border-top:0;background:rgba(0,0,0,.2)}.lvg.l3 em:nth-of-type(5){color:var(--cream)}.lvg.l3 em:nth-of-type(3),.lvg.l3 em:nth-of-type(6){color:#f2c35a}
+details.skill p.banner{margin:.3rem 1rem .9rem;padding:.7rem 1rem}
+details.skill video.clip{width:calc(100% - 2rem);max-width:560px;margin:.2rem 1rem 1rem}
+details.skill>.lvg{margin-top:.9rem}
+.lvg .k small{display:block;font-size:.7rem;font-weight:600;color:var(--muted);margin-top:.1rem}.lvg.l3.tet em:nth-of-type(n){color:var(--cream)}.lvg.l3.tet em:nth-of-type(3n){color:#f2c35a}
+.lvg.tet em{display:flex;align-items:center;justify-content:center}
+.deco-note{display:flex;align-items:center;gap:.4rem 1rem;flex-wrap:nowrap;margin:0 1rem 1rem;padding:.7rem .9rem;background:rgba(0,0,0,.22);border:2px solid var(--edge);border-radius:10px}details.skill .deco-note p{margin:0;padding:0;flex:1 1 260px}.deco-row{display:flex;gap:.15rem;flex:none}.deco-row img{width:56px;height:56px}
+.tet-row{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.2rem;margin:.6rem 1rem 1rem}.tet-row>.lvg{margin:0;flex:1 1 300px;max-width:380px}.tet-row>.fx.tet-fx{margin:0;flex:1 1 260px;justify-items:center}.tet-row .tetrad{max-width:340px}.fx.tet-fx .tetrad{margin:0 auto}
+.ew-track{position:relative;height:38px;margin-right:1.6rem}
+.ew-seg{position:absolute;bottom:0;height:22px;border:1.5px solid #121212;display:grid;place-items:center;font-size:.68rem;font-weight:800;color:#1a1206;box-sizing:border-box}
+.ew-seg+.ew-seg{border-left-width:0}
+.ew-b{border-radius:5px 0 0 5px;color:#fff;font-size:.78rem;text-shadow:0 1px 1px rgba(0,0,0,.4)}
+.ew-seg:not(.ew-b) b{position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:13px;height:13px;display:grid;place-items:center;font-size:.55rem;border:1.5px solid #121212;color:#1a1206}
+.ew-off{position:absolute;bottom:0;height:22px;border:1.5px dashed #6a675e;border-radius:4px;display:grid;place-items:center;font-size:.55rem;color:var(--muted);box-sizing:border-box}
+.ew-track em{position:absolute;bottom:2px;font-style:normal;font-weight:800;font-size:.95rem;color:var(--cream)}
+@media (max-width:560px){.ew-row{grid-template-columns:1fr;gap:.15rem}.ew-axis>span{display:none}.ew-seg{font-size:.58rem;overflow:visible;letter-spacing:-.04em}.ew-b{font-size:.7rem}}
+.band .sub{display:block;font-size:.8rem;font-weight:600;color:var(--muted);line-height:1.2;margin-top:.1rem}
+.fx-stats{gap:.3rem 1.4rem}
+.fx-stat{background:none;border:0;padding:0;gap:.4rem}
+.fx-stat img{width:24px;height:24px}
+.fx-stat b{font-size:1.1rem}
+.fx-stat span{font-size:.85rem}
+.fx-bar{height:26px;border-width:2px;font-size:.75rem}
+.fx-on{background:#b58a2e;color:#1e1608}
+.fx-perks{display:block;padding-left:1.1rem;list-style:disc;font-size:.9rem}
+.fx-perks li{display:list-item;background:none;border:0;padding:0;margin:.15rem 0}
+.fx-perks li::before{display:none}
+.fx-perks li::marker{color:var(--sc)}
+.fx-step{background:none;border:0;padding:0}
+.fx-step.inf,.fx-step.cur{border:0}
+.fx-step b{font-size:.95rem}
+.fx-step b img{width:20px;height:20px}
+.fx-lv{background:none;border:0;padding:0;font-size:.85rem}
+.fx-flow{gap:.35rem .8rem}
+.fx-col{gap:.2rem}
+.fx:last-child{padding-bottom:1rem}
+.fx-flow,.fx-2col{max-width:520px}
+@media (max-width:560px){.fx-2col{grid-template-columns:1fr 1fr}.fx-2col>.fx-arrow{display:none}}
+
+</style>
+
+<header class="top">
+  <button class="iconbtn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="side">Menu</button>
+  <a class="brand" href="#home">
+    <img class="logo" src="img/tidus_logo.webp" alt="">
+    Wilds Bow Guide
+  </a>
+  <span class="spacer"></span>
+  <button class="iconbtn" id="searchBtn">Search<span class="kbd">⌘K</span></button>
+</header>
+
+<div class="shell">
+  <nav class="side" id="side" aria-label="Site sections"></nav>
+  <main id="main" tabindex="-1"></main>
+</div>
+
+<dialog id="searchDlg" aria-label="Search the guide">
+  <input id="q" type="search" placeholder="Search builds, guides and resources" autocomplete="off">
+  <ul id="results"></ul>
+</dialog>
+
+<dialog id="zoomDlg" aria-label="Build image">
+  <button class="iconbtn" id="zoomClose">Close</button>
+  <img id="zoomImg" alt="">
+</dialog>
+
+<script>
+const P = t => `<span class="ph">${t}</span>`;
+const KB = {
+  lmb:`<svg viewBox="0 0 28 40" aria-hidden="true"><rect x="2" y="2" width="24" height="36" rx="12" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M14 2v14M2 16h24" stroke="currentColor" stroke-width="2"/><path d="M14 3.2A10.8 10.8 0 0 0 3.2 14v1h10.8z" fill="var(--amber)"/></svg>`,
+  rmb:`<svg viewBox="0 0 28 40" aria-hidden="true"><rect x="2" y="2" width="24" height="36" rx="12" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M14 2v14M2 16h24" stroke="currentColor" stroke-width="2"/><path d="M14 3.2A10.8 10.8 0 0 1 24.8 14v1H14z" fill="var(--amber)"/></svg>`,
+  key:t=>`<svg viewBox="0 0 ${t.length>1?64:36} 36" aria-hidden="true"><rect x="2" y="2" width="${t.length>1?60:32}" height="30" rx="6" fill="#3a3833" stroke="currentColor" stroke-width="2.2"/><text x="${t.length>1?32:18}" y="22.5" text-anchor="middle" font-size="${t.length>1?12:15}" font-weight="800" fill="currentColor" font-family="Montserrat,sans-serif">${t}</text></svg>`,
+  trig:(t,c)=>`<svg viewBox="0 0 44 40" aria-hidden="true"><path d="M8 34V16C8 8 14 4 22 4s14 4 14 12v18a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3z" fill="${c}" stroke="currentColor" stroke-width="2.4"/><text x="22" y="27" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff" font-family="Montserrat,sans-serif">${t}</text></svg>`,
+  xb:(t,c)=>`<svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15" fill="${c}" stroke="currentColor" stroke-width="2.2"/><text x="18" y="23.5" text-anchor="middle" font-size="15" font-weight="800" fill="#fff" font-family="Montserrat,sans-serif">${t}</text></svg>`,
+  ps:(shape,c)=>`<svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15" fill="#26262b" stroke="currentColor" stroke-width="2.2"/>${shape==="circle"?`<circle cx="18" cy="18" r="7" fill="none" stroke="${c}" stroke-width="3"/>`:`<path d="M12 12l12 12M24 12L12 24" stroke="${c}" stroke-width="3.2" stroke-linecap="round"/>`}</svg>`
+};
+const CONTROLS = [
+  ["Charged Shot", [KB.lmb,"Left click"], [KB.trig("RT","#2f6b35"),"RT"], [KB.trig("R2","#2b4f9a"),"R2"], [KB.trig("ZR","#55565c"),"ZR"]],
+  ["Power Shot / Power Volley", [KB.rmb,"Right click"], [KB.xb("B","#c0392b"),"B"], [KB.ps("circle","#ff6b7d"),"Circle"], [KB.xb("A","#3b3b40"),"A"]],
+  ["Dash", [KB.key("Space"),"Space"], [KB.xb("A","#2e9a44"),"A"], [KB.ps("cross","#7fb2f2"),"Cross"], [KB.xb("B","#3b3b40"),"B"]],
+];
+const controlsCard = () => `<aside class="card ctrls" aria-label="Main controls"><div class="band"><span>Main controls</span></div>
+  <div class="ctrl-head"><span></span><b>PC</b><b>Xbox</b><b>PS</b><b>Switch</b></div>
+  ${CONTROLS.map(([m,...k])=>`<div class="ctrl-row"><span class="ctrl-move">${m}</span>${k.map(([svg,t])=>`<span class="ctrl-key" title="${t}">${svg}<em>${t}</em></span>`).join("")}</div>`).join("")}
+  <p class="ctrl-note">PC keys shown are the default keybinds.</p>
+</aside>`;
+const cdots = n => `<span class="cdots" aria-label="${n} of 2 dots">${[0,1].map(i=>`<i${i<n?' class="on"':""}></i>`).join("")}</span>`;
+const chain = steps => `<ol class="chain">${steps.map(s=>`<li>${s}</li>`).join("")}</ol>`;
+const yt = (url,label) => `<a href="${url}" target="_blank" rel="noopener">${label}</a>`;
+const pips = (n,max) => `<span class="pips" aria-label="${n} of ${max}">${Array.from({length:max},(_,i)=>`<i${i<n?"":' class="e"'}></i>`).join("")}</span>`;
+const rank = (star,label) => `<span class="hr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.8l2.9 6.6 7.2.6-5.5 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L1.9 9l7.2-.6z" fill="${star}" stroke="#2a1406" stroke-width="1.6" stroke-linejoin="round"/></svg>${label}</span>`;
+const NAVSTAR = {"low-rank":["#3aa3dc","s-blue"],"high-rank":["#ee7a3c","s-orange"],"endgame":["#dc3a2c","s-red"]};
+const EL_COL = {fire:"#e87b6f",water:"#79acdf",ice:"#b3e9ff",thunder:"#e3c55c",dragon:"#a58bd6"};
+const MU_EL = {fire:["Congalala","Blangonga","Gypceros","Doshaguma","Guardian Doshaguma","Lala Barina","Nerscylla","Hirabami","Jin Dahaad","Lagiacrus","Gore Magala","Gogmazios"],water:["Quematrice","Rompopolo","Ajarakan","Nu Udra","Gravios","Guardian Ebony Odogaron"],ice:["Yian Kut-Ku","Xu Wu","Guardian Fulgur Anjanath","Rey Dau"],thunder:["Chatacabra","Balahara","Uth Duna","Mizutsune","Seregios","Omega Planetes"],dragon:["Rathian","Rathalos","Guardian Rathalos","Arkveld","Guardian Arkveld","Zoh Shia","Gogmazios"]};
+const MU_END = [["Close-Ranged","close",["Omega Planetes","Gore Magala","Lagiacrus","Mizutsune","Rathalos"]],["Pierce","pierce",["Gogmazios","Zoh Shia","Seregios","Rey Dau","Uth Duna","Nu Udra","Jin Dahaad","Arkveld"]]];
+const EL_INFO = {fire:["Fire","#e87b6f"],water:["Water","#79acdf"],ice:["Ice","#b3e9ff"],thunder:["Thunder","#e3c55c"],dragon:["Dragon","#a58bd6"]};
+const muImg = m => `<img src="img/mu/${m.toLowerCase().replace(/ /g,"-")}.webp" alt="${m}" title="${m}" loading="lazy">`;
+const craftPriority = () => { const rows = [];
+  MU_END.forEach(([t,k,ms]) => Object.keys(EL_INFO).forEach(e => { const hit = ms.filter(m => MU_EL[e].includes(m)); if (hit.length) rows.push({k,t,e,hit}); }));
+  rows.sort((a,b) => b.hit.length - a.hit.length || (a.k==="pierce"?-1:1) - (b.k==="pierce"?-1:1));
+  return rows.map((r,i) => `<li class="cp-row" style="--el:${EL_INFO[r.e][1]}"><b class="cp-n">${i+1}</b>
+    <span class="cp-bow"><img src="img/coat/${r.k}.webp" alt=""><img src="img/el/${r.e}.webp" alt=""><span><strong style="color:${EL_INFO[r.e][1]}">${EL_INFO[r.e][0]}</strong> <em class="c-${r.k}">${r.t==="Pierce"?"Pierce":"Close-Range"}</em></span></span>
+    <span class="cp-mons">${r.hit.map(muImg).join("")}</span><strong class="cp-c">${r.hit.length}</strong></li>`).join(""); };
+const muTint = m => { const cs = Object.keys(MU_EL).filter(e=>MU_EL[e].includes(m)).map(e=>EL_COL[e]); if(!cs.length) return "";
+  const mix = (c,p) => `color-mix(in srgb,${c} ${c===EL_COL.ice?Math.round(p*1.5):p}%,#222)`;
+  return cs.length===1 ? `background:linear-gradient(160deg,${mix(cs[0],26)},${mix(cs[0],8)});border-color:${mix(cs[0],45)}`
+    : `background:linear-gradient(135deg,${mix(cs[0],26)} 0%,${mix(cs[0],12)} 49.5%,${mix(cs[1],12)} 50.5%,${mix(cs[1],26)} 100%);border-color:${mix(cs[1],45)}`; };
+const ico = n => `<img class="ico" src="img/${n}.webp" alt="">`;
+const DOC = "https://docs.google.com/document/d/1i3qfZtagi5CFrIKdTlNM-DN2cMowdOwwkAVOWvMccUE";
+
+function buildCard(name, tag, notes, tint){
+  return `<article class="card build ${tint||""}">
+    <div class="band"><span>${name}</span><span class="tag">${tag}</span></div>
+    <div class="body">
+      <div class="col">
+        <h5>Equipment</h5>
+        <dl>
+          <dt>Weapon</dt><dd>${P("Bow")}</dd>
+          <dt>Head</dt><dd>${P("Helm")}</dd>
+          <dt>Chest</dt><dd>${P("Mail")}</dd>
+          <dt>Arms</dt><dd>${P("Vambraces")}</dd>
+          <dt>Waist</dt><dd>${P("Coil")}</dd>
+          <dt>Legs</dt><dd>${P("Greaves")}</dd>
+          <dt>Talisman</dt><dd>${P("Charm")}</dd>
+        </dl>
+      </div>
+      <div class="col">
+        <h5>Key skills</h5>
+        <ul><li>${P("Skills and levels")}</li><li>${P("Set / group bonus")}</li></ul>
+        <h5 style="margin-top:1rem">Decorations</h5>
+        <ul><li>${P("Weapon and armor decos")}</li></ul>
+      </div>
+    </div>
+    <div class="notes">${notes}</div>
+  </article>`;
+}
+const SETCOL = {"Gogmazios":"#d9b25a","Scorcher":"#ec5f5f","Burst Boost":"#a9dcff","Lord's Soul":"#d8c7a3","Gore Magala":"#b58bd6","Thunderous Roar":"#6fb6f2","Inspiration":"#7fd19a"};
+function buildImage(name, tag, img, alt, notes, tint){
+  return `<details class="card build fold">
+    <summary class="band"><span class="chev" aria-hidden="true"></span><span class="bname">${name}</span><span class="tags">${[].concat(tag).map(t=>Array.isArray(t)?`<span class="tag settag" style="--c:${SETCOL[t[0]]||"var(--amber)"}">${t[0]}${t[1]!=null?" "+t[1]:""}</span>`:`<span class="tag">${t}</span>`).join("")}</span></summary>
+    <button class="shot" data-zoom="img/${img}" aria-label="Open ${name} full size"><img src="img/${img}" alt="${alt}" loading="lazy"></button>
+    ${notes?`<div class="notes">${notes}</div>`:""}
+  </details>`;
+}
+function buildSwitch(name, tag, variants){
+  const tags = [].concat(tag).map(t=>Array.isArray(t)?`<span class="tag settag" style="--c:${SETCOL[t[0]]||"var(--amber)"}">${t[0]}${t[1]!=null?" "+t[1]:""}</span>`:`<span class="tag">${t}</span>`).join("");
+  return `<details class="card build fold">
+    <summary class="band"><span class="chev" aria-hidden="true"></span><span class="bname">${name}</span><span class="tags">${tags}</span></summary>
+    <div class="vswitch" role="tablist" aria-label="${name} version">${variants.map((v,i)=>`<button type="button" role="tab" aria-selected="${i===0}" data-variant="${i}"${/god charm/i.test(v.label)?' class="god"':""}>${v.label}</button>`).join("")}</div>
+    ${variants.map((v,i)=>`<div class="variant"${i?" hidden":""}>
+      <button class="shot" data-zoom="img/${v.img}" aria-label="Open ${name} (${v.label}) full size"><img src="img/${v.img}" alt="${v.alt}" loading="lazy"></button>
+      ${v.notes?`<div class="notes">${v.notes}</div>`:""}
+    </div>`).join("")}
+  </details>`;
+}
+const DMG_B = [["Gogmazios 4P","#d9b25a"],["Gore Magala","#b58bd6"],["Gore/Souls","#7fc8b4"]];
+const DMG = {craft:[[45.5,46.8,46.8],[48.9,49.5,49.5],[52.4,52.2,52.2],[59.2,57.6,57.6]], god:[[45.8,47.5,47.9],[49.3,50.2,50.6],[52.7,52.9,53.3],[59.6,58.3,58.7]]};
+const dmgChart = rows => `<div class="dmg-chart">${rows.map((r,i)=>{ const mx = Math.max(...r); return `<div class="dmg-grp"><div class="dmg-hz"><b>${[10,15,20,30][i]}</b>Elemental Hitzone</div><div class="dmg-bars">${r.map((v,j)=>`<div class="dmg-bar" style="--c:${DMG_B[j][1]}" title="${DMG_B[j][0]}: ${v}"><i style="width:calc(${((v-40)/20*100).toFixed(1)}% - 3rem)"></i>${j?`<em class="${v>=r[0]?"up":"down"}">${v>=r[0]?"+":"−"}${(Math.abs(v-r[0])/r[0]*100).toFixed(1)}%</em>`:`<em class="ref">${v}</em>`}</div>`).join("")}</div></div>`; }).join("")}</div>`;
+const GOG_NOTE = `<p>Gogmazios builds offer high elemental damage with lower affinity. Overall damage is very competitive while offering the best defensive tool in the game in the form of the <strong class="hi">Gogmazios Barrier</strong>. For more info, check the <a href="#skills/mutual-hostility-2">skill notes page</a>.</p>`;
+const GM_NOTE = `<p>Generally higher damage than the <strong class="hi">Gogmazios 4P</strong> build. Additionally, it gains more from a <strong class="hi">God Charm</strong>. Although the damage is slightly higher, you lose the <strong class="hi">Gogmazios Barrier</strong>.</p>`;
+const GS_NOTE = `<p>Theoretically the <strong class="hi">highest damage build</strong> in the game, although the RNG to get this build is very difficult: you need both <strong class="hi">Lord's Soul</strong> and <strong class="hi">Gore Magala</strong> on the weapon, and you also need a <strong class="hi">God Charm</strong>. Also, only top-level players will be able to use this build at its peak. For average to below-average players, <strong class="hi">Scorcher</strong> will be a higher value set bonus than Lord's Soul.</p>`;
+const CE_NOTE = `<p>This build is made for <strong class="hi">Dragon matchups</strong>, excluding AT Arkveld. While it works well on AT Arkveld, we have more specific builds for him right under this one. Some notable matchups for this build are <strong class="hi">Rathalos</strong>, <strong class="hi">Rathian</strong> and <strong class="hi">Zoh Shia</strong>.</p>`;
+const AT_NOTE = `<p>For the DPS version, we use the <strong class="hi">Convert Element 1</strong> charm, which can be difficult to get. If you don't have this charm, you can use the Comfort version of this build, which is very flexible and has <strong class="hi">Evade Window 2</strong>. While the Comfort build card shows a random charm, you can replace it with the <strong class="hi">Agitator III</strong> charm.</p>`;
+const fxStat = (icon,val,label,cls) => `<div class="fx-stat">${icon?`<img src="img/${icon}.webp" alt="">`:""}<b${cls?` class="${cls}"`:""}>${val}</b><span>${label}</span></div>`;
+const FX_RAGE = `<span class="fx-cond"><img src="img/enraged.webp" alt="">While enraged</span>`;
+const coatIcon = (id,fill,tri) => `<symbol id="${id}" viewBox="26 9 50 83"><g stroke="#1e1d17" stroke-width="3.2" stroke-linejoin="round" paint-order="stroke" fill="${fill}">
+    <path d="M30 17H41V34H36V80Q36 83 39 83H63Q66 83 66 80V34H61V17H72V21H68V32H72V82Q72 88 66 88H36Q30 88 30 82V32H34V21H30Z"/>
+    <rect x="46" y="12" width="10" height="9"/><path d="M47 28H56V38H62V79H41V38H47Z"/></g>
+    <g fill="${tri}"><path d="M51 41.5l4.2 7h-8.4z"/><path d="M51 54.5l4.2 7h-8.4z"/><path d="M51 67.5l4.2 7h-8.4z"/></g></symbol>`;
+const tetradUI = () => { const bw=24, pitch=27, bh=40, x0=20, y0=58;
+  const X = i => x0 + i*pitch;
+  const bottle = (i) => { const on=i>=3; return `<use href="#${on?"coat-on":"coat-off"}" x="${X(i)}" y="${y0}" width="${bw}" height="${bh}"/>
+    <text x="${X(i)+bw/2}" y="${y0+bh+17}" text-anchor="middle" font-size="12" font-weight="700" fill="${on?"#f1e6cc":"#8f8a7e"}" font-family="Montserrat,sans-serif">${i+1}</text>`; };
+  const cx = i => X(i)+bw/2;
+  const W = X(9)+bw+20, yb=y0+bh+28;
+  return `<svg class="tetrad" viewBox="0 0 ${W} ${yb+24}" role="img" aria-label="Coating counter: shots 4 to 10 get affinity, shots 4 and 6 also get raw and element">
+    <defs>${coatIcon("coat-on","#d8d890","#a9a65e")}${coatIcon("coat-off","#7d7a5c","#5f5d46")}</defs>
+    <text x="${cx(4)}" y="16" text-anchor="middle" font-size="12.5" font-weight="700" fill="#ee8f88" font-family="Montserrat,sans-serif">Raw + Element</text>
+    <path d="M${cx(4)-10} 21 L${cx(3)+3} 40 M${cx(4)+10} 21 L${cx(5)-3} 40" fill="none" stroke="#ee8f88" stroke-width="2" stroke-linecap="round"/><path d="M${cx(3)-6} 44 h12 l-6 7z M${cx(5)-6} 44 h12 l-6 7z" fill="#ee8f88"/>
+    ${Array.from({length:10},(_,i)=>bottle(i)).join("")}
+    <path d="M${X(3)} ${yb-6} V${yb} H${X(9)+bw} V${yb-6}" fill="none" stroke="#c9a2f0" stroke-width="2.4"/>
+    <text x="${(X(3)+X(9)+bw)/2}" y="${yb+15}" text-anchor="middle" font-size="12.5" font-weight="700" fill="#c9a2f0" font-family="Montserrat,sans-serif">Affinity</text>
+  </svg>`; };
+const EW_LV = ["#8a6420","#a87a26","#c4912f","#d4a33c","#f2c35a"];
+const EW = [["Roll i-frames","",0,13,"#8c836f",[2,2,2,3,3]],["Dash i-frames","",0,15,"#5a87b8",[2,0,2,3,3]],["Counter frames","Starts 1 frame later",1,14,"#4ca38a",[2,0,2,0,1]]];
+const ewChart = () => { const M = 28, pc = v => (v/M*100).toFixed(2)+"%";
+  return `<div class="ew"><div class="ew-legend"><span><i class="ew-base"></i>Base (Level 0)</span><span>Added per level ${EW_LV.map((c,i)=>`<b style="background:${c}">${i+1}</b>`).join("")}</span><em>Frames at 60 FPS</em></div>
+  <div class="ew-row ew-axis"><span></span><div class="ew-track">${[0,5,10,15,20,25].map(v=>`<span style="left:${pc(v)}">${v}f</span>`).join("")}</div></div>
+  ${EW.map(([name,sub,off,base,col,add])=>{ let x = off+base; const segs = add.map((a,i)=>{ if(!a) return ""; const s=`<div class="ew-seg" style="left:${pc(x)};width:${pc(a)};background:${EW_LV[i]}"><b style="background:${EW_LV[i]}">${i+1}</b>+${a}</div>`; x+=a; return s; }).join("");
+    return `<div class="ew-row"><div class="ew-name">${name}${sub?`<small>${sub}</small>`:""}</div><div class="ew-track">${off?`<div class="ew-off" style="left:0;width:${pc(off)}">1f</div>`:""}<div class="ew-seg ew-b" style="left:${pc(off)};width:${pc(base)};background:${col}">${base}</div>${segs}<em style="left:calc(${pc(x)} + 6px)">${x-off}</em></div></div>`; }).join("")}</div>`; };
+const scard = (title, icon, tint, inner, id) => `<details class="card fold skill ${tint}"${id?` id="${id}"`:""}><summary class="band"><span class="chev" aria-hidden="true"></span>${icon?ico(icon):""}<span class="bname">${title}</span></summary>${inner}</details>`;
+// Advanced Combos: rows = [time, combo steps, MV/s, eMV/s, MV, eMV, highlight]; assuming 3 ticks
+const CB_RAMP = [
+  [4.1,["CS1","CS2","PS3","PV3"],45.8,2.9,189.5,11.8,0,{clip:"ramp_cs1_cs2",pi:[71.5,2.8,295.7,11.7],note:`The most basic ramp-up combo. It’s <strong class="hi">flexible</strong>: you can move during the first 2 shots.`}],
+  [4.0,["CS1","Dash","CS2","PS3","PV3"],47.9,3.0,189.5,11.8,0,{clip:"ramp_cs1_dash",pi:[74.7,3.0,295.7,11.7],note:`A slightly faster variation. The dash lets you <strong class="hi">reposition</strong> better, but it costs more <strong class="hi">stamina</strong>.`}],
+  [3.6,["CS2","PS3","PV3"],49.6,3.1,179.5,11.4,0,{clip:"ramp_cs2",pi:[78.0,3.1,282.5,11.2],note:`The <strong class="hi">fastest</strong> ramp-up combo. Holding your charge while standing still charges faster, so you can skip the first shot and open with a Charged Shot 2. The catch: you have to <strong class="hi">stay stationary</strong>, so you can’t reposition during it.`}],
+];
+const CB_DD = [
+  [3.2,["Dash","CS3","PS3","PV3","*Dash Dance"],60.9,4.1,193.5,13.0,1,{clip:"dd_full",pi:[97.2,4.0,308.9,12.9],note:`The Bow’s most <strong class="hi">classic DPS combo</strong>. Apart from the Thousand Dragons combos, it’s one of the highest DPS combos available, and it’s highly flexible.`}],
+  [3.1,["Dash","PS3","PV3"],51.6,3.3,157.5,10.0,0,{clip:"dd_ps_pv",pi:[81.7,3.1,249.5,9.5],note:`A dash dance that <strong class="hi">skips the Charged Shot</strong>. It’s only slightly faster, with slightly lower DPS. Use it when an opening is just a bit too short for the full dash dance.`}],
+  [1.8,["Dash","CS3","PS3"],56.3,4.0,99.0,7.0,0,{clip:"dd_cs_ps",pi:[92.9,4.1,163.4,7.1],note:`A much <strong class="hi">shorter</strong> variation that skips the Power Volley, for short openings. The DPS is fairly high, but the repeated dashes and Charged Shots burn through a lot more <strong class="hi">stamina</strong> and <strong class="hi">coatings</strong>.`}],
+  [1.0,["Dash","CS3"],35.5,3.0,36.0,3.0,0,{clip:"dd_cs_only",pi:[58.6,3.0,59.4,5.7],note:`Common with beginners: dashing and using only Charged Shots. It feels safe, but it’s <strong class="hi">very costly</strong> on stamina and coatings, and the DPS is very low. The first step to improving on Bow is to <strong class="hi">avoid this as much as possible</strong>.`}],
+];
+const CB_TD = [
+  [5.4,["Dash","CS3","PS3","PV3","TD"],63.3,2.9,343.5,16.0,0,{clip:"td_full",pi:[104.4,4.2,566.3,22.9],note:`The <strong class="hi">longest combo</strong> available on Bow. It’s very long, but its DPS is <strong class="hi">incredibly high</strong>.`}],
+  [4.1,["Dash","CS3","PS3","TD"],60.8,2.4,249.0,10.0,0,{clip:"td_cs_ps",pi:[102.7,4.2,420.8,17.2],note:`This combo <strong class="hi">replaces the Power Volley with Thousand Dragons</strong>. Its DPS is similar to a dash dance. Use it for openings slightly longer than one dash dance, but <strong class="hi">too short for two</strong>.`}],
+];
+// bar colour by share of the best MV/s in the same coating mode
+const cbCol = r => r>=.87 ? "#2fb35a" : r>=.78 ? "#8cbf2e" : r>=.66 ? "#b8b82a" : "#d0392f";
+const CB_MAX = {cr:[63.3,4.2], pi:[104.4,4.3]};
+const cbVals = (cr, pi) => `<span class="v-cr">${cr}</span><span class="v-pi">${pi}</span>`;
+const cbBar = (v, m, i, cls) => `<b class="${cls}" style="width:${v/CB_MAX[m][i]*100}%;background:${i?"#6aa3e0":cbCol(v/CB_MAX[m][0])}"></b>`;
+const cbStep = (k,i) => k[0]==="*" ? `<span class="cbk dd">${k.slice(1)}</span>` : `${i?`<i aria-hidden="true">›</i>`:""}<span class="cbk${k==="TD"?" td":k==="Dash"?" dash":""}">${k}</span>`;
+const cbRow = ([t,seq,mv,emv,tmv,temv,hl,more]) => { const pi = more.pi; return `<details class="cb-item${hl?" hl":""}"><summary class="cb-row">
+  <div class="cb-t">${t.toFixed(1)}<small>s</small></div>
+  <div class="cb-seq">${seq.map(cbStep).join("")}</div>
+  <div class="cb-m"><em class="lbl">MV/s</em><div class="cb-bar">${cbBar(mv,"cr",0,"v-cr")}${cbBar(pi[0],"pi",0,"v-pi")}</div>${cbVals(mv.toFixed(1),pi[0].toFixed(1))}</div>
+  <div class="cb-m"><em class="lbl">eMV/s</em><div class="cb-bar">${cbBar(emv,"cr",1,"v-cr")}${cbBar(pi[1],"pi",1,"v-pi")}</div>${cbVals(emv.toFixed(1),pi[1].toFixed(1))}</div>
+  <div class="n"><em class="lbl">MV</em>${cbVals(tmv.toFixed(1),pi[2].toFixed(1))}</div>
+  <div class="n"><em class="lbl">eMV</em>${cbVals(temv.toFixed(1),pi[3].toFixed(1))}</div>
+</summary><div class="cb-more">${more&&more.clip?`<video class="clip" src="vid/${more.clip}.mp4?v=3" poster="vid/${more.clip}_poster.jpg?v=3" muted loop playsinline preload="none" aria-label="${seq.join(" > ")} clip"></video>`:`<div class="cb-clipph">Clip coming soon</div>`}<p>${more&&more.note?more.note:`<span class="ph">Note coming soon</span>`}</p></div></details>`; };
+// play a combo's clip only while its row is open
+document.addEventListener("toggle", e => { const d = e.target; if(!d.classList || !d.classList.contains("cb-item")) return; const v = d.querySelector("video"); if(v){ if(d.open){ v.muted = true; v.play().catch(()=>{}); } else v.pause(); } }, true);
+const cbTable = (title, rows, id, note) => `<section class="card cb-card" id="${id}"><div class="band"><span>${title}</span></div>${note?`<p class="cb-cnote">${note}<span class="cb-tapin"><img src="img/tap_combo.webp" alt="" width="18" height="18">Tap a combo to see it in action</span></p>`:""}${rows.length ? `<div class="cb-head"><span>Time</span><span>Combo</span><span>MV/s</span><span>eMV/s</span><span>MV</span><span>eMV</span></div>${rows.map(cbRow).join("")}` : `<div class="cb-empty">Coming soon.</div>`}</section>`;
+const card = (title, icon, tint, inner, id) => `<section class="card ${tint}"${id?` id="${id}"`:""}><div class="band">${icon?ico(icon):""}<span>${title}</span></div>${inner}</section>`;
+
+const VIEWS = {
+  home:{ group:null, title:"Home", desc:"Overview of the bow guide", html:()=>`
+    <section class="hero">
+      <svg class="orn" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="none" stroke="currentColor">
+          <circle cx="610" cy="190" r="150" stroke-width="10" opacity=".22"/><circle cx="610" cy="190" r="118" stroke-width="2" stroke-dasharray="3 9" opacity=".35"/>
+          <circle cx="610" cy="190" r="70" stroke-width="16" opacity=".14"/><path d="M460 190 A150 150 0 0 1 700 70" stroke-width="3" opacity=".4"/>
+          <circle cx="760" cy="40" r="110" stroke-width="6" opacity=".14"/><circle cx="430" cy="380" r="90" stroke-width="8" opacity=".12"/>
+          <circle cx="60" cy="330" r="140" stroke-width="12" opacity=".1"/><circle cx="60" cy="330" r="96" stroke-width="2" stroke-dasharray="14 8" opacity=".18"/>
+          <path d="M0 60 C120 20 180 120 300 80 S480 10 560 40" stroke-width="2" opacity=".2"/><path d="M0 90 C140 50 200 150 320 110" stroke-width="1.5" stroke-dasharray="2 6" opacity=".25"/>
+        </g>
+      </svg>
+      <img class="hero-art" src="img/hero_hunters.webp" alt="">
+      <div class="hero-in">
+        <p class="kicker">Monster Hunter Wilds</p>
+        <h1><img src="img/bow_mark.webp" alt="">Bow</h1>
+        <div class="rule" aria-hidden="true"><i></i><b></b><i></i></div>
+        <p>From early game builds to endgame. From basic guides to advanced techniques. Learn everything you need to know about the Bow.</p>
+      </div>
+    </section>
+    <p class="banner">This site is a refresh of the <a href="${DOC}" target="_blank" rel="noopener">Bow Compendium</a>. Big credit to <strong>p_chu</strong>, <strong>ninjazenia</strong> and <strong>Miltek</strong> for creating and maintaining the original Compendium.</p>
+
+    <h2 class="section-h">Builds</h2>
+    <p class="section-sub">Armor and weapons for each stage of the game.</p>
+    <ol class="path" aria-label="Builds">
+      <li class="card s-blue"><a href="#low-rank">${rank("#3aa3dc","HR 1-21")}<strong>Progression</strong><span>Story armor by chapter</span><i class="wip"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 15 14H1z" fill="#f0c46a"/><path d="M8 6v4" stroke="#2e2e2e" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="12" r="1" fill="#2e2e2e"/></svg>Under construction</i></a></li>
+      <li class="card s-orange"><a href="#high-rank">${rank("#ee7a3c","HR 21-100")}<strong>Early Endgame</strong><span>Easy pieces while climbing HR</span><i class="wip"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 15 14H1z" fill="#f0c46a"/><path d="M8 6v4" stroke="#2e2e2e" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="12" r="1" fill="#2e2e2e"/></svg>Under construction</i></a></li>
+      <li class="card s-red"><a href="#endgame">${rank("#dc3a2c","HR 100+")}<strong>Endgame</strong><span>Gogma Artian and meta sets</span></a></li>
+    </ol>
+
+    <h2 class="section-h">Guides</h2>
+    <p class="section-sub">How to play the weapon well.</p>
+    <ul class="card linklist">
+      <li><a href="#basics">${ico("bow_basics")}<span class="txt"><strong>Bow basics</strong><span>Bow core moveset</span></span></a></li>
+      <li><a href="#focus-mode">${ico("add_moves4")}<span class="txt"><strong>Additional Moves</strong><span>All extra moves</span></span></a></li>
+      <li><a href="#combos">${ico("combos")}<span class="txt"><strong>Advanced Combos</strong><span>Optimize your combos</span></span></a></li>
+      <li><a href="#stamina">${ico("stamina_combo")}<span class="txt"><strong>Additional information</strong><span>Stamina cap, coatings and 40 FPS</span></span></a></li>
+    </ul>
+
+    <h2 class="section-h">Resources</h2>
+    <p class="section-sub">Data and outside tools.</p>
+    <ul class="card linklist">
+      <li><a href="#skills">${ico("skills")}<span class="txt"><strong>Skill notes</strong><span>How bow-relevant skills really work</span></span></a></li>
+      <li><a href="#matchups">${ico("matchups")}<span class="txt"><strong>Match-ups</strong><span>Element per monster</span></span></a></li>
+      <li><a href="#patches">${ico("patches")}<span class="txt"><strong>Patch changes and bugs</strong><span>TU1 to TU4</span></span></a></li>
+      <li><a href="#tools">${ico("tools")}<span class="txt"><strong>Tools</strong><span>Builders, calculators, hitzones</span></span></a></li>
+      <li><a href="#videos">${ico("videos")}<span class="txt"><strong>Videos</strong><span>YouTube channels to follow</span></span></a></li>
+    </ul>
+
+    <h2 class="section-h">Frequently asked questions</h2>
+    <div class="card faq">
+      <details><summary>Which coating should my endgame bow have?</summary><p>Since TU4, Close-Range and Pierce are both strong on Gogma Artian bows. Power Coating fell behind: Gogma’s Affinity Focus stats are so low that they cancel out Power Coating’s raw buff. See <a href="#matchups">matchup charts</a>.</p></details>
+      <details><summary>Do I need to cap my FPS?</summary><p>No. If you cap your FPS at 40 for Pierce Coatings, you will see an increased tick rate, which will increase your damage by around 20% as an estimate, but it is in no way needed. Please refer to the <a href="#stamina/40-fps">40 FPS section</a> for more information.</p></details>
+      <details><summary>Do I really need to craft every element for multiple coatings? That’s a lot of bows.</summary><p>No. While it would be ideal to have one bow per element, it is not needed. Some elements have more matchups than others. For example, for <strong class="c-pierce">Pierce</strong>, Fire, Dragon and Thunder are very common matchups. For <strong class="c-close">Close-Range Coatings</strong>, only Fire and Thunder are useful. If you want to learn more, refer to the <a href="#matchups/crafting-priority">Bow crafting priority</a> table.</p></details>
+      <details><summary>Should I use the Pierce decoration for Pierce Bow?</summary><p>No. The Pierce decoration does not buff <strong class="c-pierce">Pierce Coatings</strong>. It only buffs Dragon Piercer (not the Focus Strike) and Thousand Dragons. The Spread/Power Shots decoration still works the same for Pierce bows.</p></details>
+    </div>
+
+  `},
+
+  "low-rank":{ group:"Builds", title:"Progression", desc:"Story armor pieces by chapter", html:()=>`
+    <div class="mu-ranks pagerank">${rank("#3aa3dc","HR 1-21")}</div>
+    <h1 class="page-h">Progression</h1>
+    <p class="banner">Not all <strong class="hi">Armor</strong> pieces become available at the same time. Craft them gradually as they become available. Upgrade the <strong class="hi">Bow</strong> whenever possible.</p>
+    ${buildImage("Low Rank build",["HR 1-7",["Thunderous Roar",1],["Inspiration",1]],"low_rank_build.webp","Low Rank build: Hunter’s Bow I with Rey Sandhelm, Rey Sandmail, G. Rathalos Vambraces, Rey Sandcoil, Xu Wu Greaves and Fitness Charm I. Constitution 3, Latent Power 1, Weakness Exploit 1, Stamina Surge 1, Rey Dau’s Voltage and Lord’s Favor.","","s-blue")}
+    ${buildImage("Early High Rank build","HR 8-10","early_high_rank_build.webp","Early High Rank build: Hunter’s Bow III with Kut-Ku Helm β, Gypceros Mail β, Kut-Ku Vambraces α, Kut-Ku Coil α, Xu Wu Greaves and Fitness Charm II. Constitution 5, Stamina Surge 2, Agitator 2, Recovery Up 2.","","s-blue")}
+    ${buildImage("Mid High Rank build",["HR 9-21",["Scorcher",1]],"mid_high_rank_build.webp","Mid High Rank build: Dosha Griefbringer II with Kut-Ku Helm β, G. Rathalos Mail β, Doshaguma Braces α, G. Rathalos Coil α, G. Rathalos Greaves β and Fitness Charm III. Constitution 5, Weakness Exploit 3, Stun Resistance 2, Windproof 2, Intimidator 1, Stamina Surge 1, Scorcher.","","")}
+  `},
+  "high-rank":{ group:"Builds", title:"Early Endgame", desc:"High rank progression pieces", html:()=>`
+    <div class="mu-ranks pagerank">${rank("#ee7a3c","HR 21-100")}</div>
+    <h1 class="page-h">Early Endgame</h1>
+    <p class="page-lede">Still not the time to min-max. Grab these and push toward endgame.</p>
+    <div class="guide">
+      <h2>Early High Rank</h2>
+      <div class="card tablewrap"><table>
+        <thead><tr><th>HR</th><th>Monster</th><th>How to get it</th></tr></thead>
+        <tbody>
+          <tr><td>8</td><td>Yian Kut-Ku</td><td>Unlocks in Chapter 4: New Ecosystems. Farm it with the “Kut-Ku Gone Cuckoo” event quest.</td></tr>
+          <tr><td>10</td><td>Gypceros</td><td>Find it in the wild or join SOS hunts.</td></tr>
+        </tbody>
+      </table></div>
+      <p>${P("Which Kut-Ku and Gypceros pieces to craft")}</p>
+      <h2>Mid High Rank</h2>
+      <div class="card tablewrap"><table>
+        <thead><tr><th>HR</th><th>Craft</th></tr></thead>
+        <tbody>
+          <tr><td>9</td><td>Doshaguma Braces α</td></tr>
+          <tr><td>21</td><td>Guardian Rathalos Mail β, Guardian Rathalos Coil α, Guardian Rathalos Greaves β, Fitness Charm III</td></tr>
+        </tbody>
+      </table></div>
+      <p>Craft and upgrade the G. Doshaguma bow whenever possible.</p>
+    </div>
+  `},
+  endgame:{ group:"Builds", title:"Endgame", desc:"Gogma Artian bows and meta builds", html:()=>`
+    <div class="mu-ranks pagerank">${rank("#dc3a2c","HR 100+")}</div>
+    <h1 class="page-h">Endgame</h1>
+    <button class="iconbtn skip" data-scroll="meta-builds">Skip to builds <span aria-hidden="true">↓</span></button>
+    <div class="guide">
+      <h2>Gogma Artian bows</h2>
+      <p>With the addition of <strong class="hi">Gogmazios</strong> bows, we now have an upgrade to the Artian bows. By choosing the Focus of the weapon, you can now select your main coating.</p>
+      <p><strong class="c-pierce">Pierce Coatings</strong> since the TU4 buffs are now the most dominant coatings for the majority of endgame fights.<br>
+      <strong class="c-close">Close range Coatings</strong> are best for matchups where pierce doesn't work well.<br>
+      <strong class="c-power">Power coatings</strong> were already struggling, but since Affinity Focus is the worst tradeoff, they maintain their position of worst coating.</p>
+      <p>Refer to <a href="#matchups">matchup page</a> for more info</p>
+      <img class="figure" style="max-width:528px" src="img/tarred_devices.webp" alt="Tarred Device tradeoffs. Attack Focus, Close Range Coatings: +10 Raw, -15% Aff. Affinity Focus, Power Coatings: +10% Aff, -10 Raw, -20 Ele. Element Focus, Pierce Coatings: +30 Ele, -5% Aff." loading="lazy">
+
+      <h2>Ideal reinforcements</h2>
+      <p class="banner">These ideal reinforcements are a guideline. Try to get as close as possible, but small variations are OK.</p>
+      <p>The ideal reinforcements depend on the build and the charm, but generally:</p>
+      <div class="reinf"><section class="card"><h3 class="band">Craftable charms</h3><p class="rnote">For most builds and matchups, the <strong class="hi">Overall Best</strong> reinforcements are as follows:</p><div class="rrow a x2"><div class="ric"><img src="img/reinf/r_atk_ex.webp" alt=""></div><b class="max">Attack EX</b><span>×2</span><em class="max">+12</em></div><div class="rrow a"><div class="ric"><img src="img/reinf/r_atk.webp" alt=""></div><b>Attack III</b><span></span><em>+9</em></div><div class="rrow e x2"><div class="ric"><img src="img/reinf/r_ele_ex.webp" alt=""></div><b class="max">Element EX</b><span>×2</span><em class="max">+60</em></div></section><section class="card"><h3 class="band">God charms</h3><p class="rnote">The additional point in <strong class="k-jewel">Critical</strong>, along with the higher <strong class="k-aff">affinity</strong> from the addition of <strong class="k-jewel">Expert III</strong>, makes the <strong class="k-aff">Affinity EX</strong> reinforcement superior to <strong class="k-atk">Attack III</strong>.</p><div class="rrow a x2"><div class="ric"><img src="img/reinf/r_atk_ex.webp" alt=""></div><b class="max">Attack EX</b><span>×2</span><em class="max">+12</em></div><div class="rrow f"><div class="ric"><img src="img/reinf/r_aff_ex.webp" alt=""></div><b class="max">Affinity EX</b><span></span><em class="max">+10%</em></div><div class="rrow e x2"><div class="ric"><img src="img/reinf/r_ele_ex.webp" alt=""></div><b class="max">Element EX</b><span>×2</span><em class="max">+60</em></div></section></div>
+      <p class="banner">For <strong class="hi">Gogmazios 4P</strong> builds specifically, make sure to have two <strong class="hi">Element EX</strong>. Otherwise, you will hit the element cap and some of your element skills will be wasted.</p>
+      <div class="reinf"><section class="card"><h3 class="band">Anti-AT Arkveld builds</h3><p class="rnote">While element is decent on his wings, this is still largely a <strong class="k-raw">Raw Matchup</strong>, so element is a low priority for the reinforcements.</p><div class="rrow a x2"><div class="ric"><img src="img/reinf/r_atk_ex.webp" alt=""></div><b class="max">Attack EX</b><span>×2</span><em class="max">+12</em></div><div class="rrow a x2"><div class="ric"><img src="img/reinf/r_atk.webp" alt=""></div><b>Attack III</b><span>×2</span><em>+9</em></div><div class="rrow f"><div class="ric"><img src="img/reinf/r_aff_ex.webp" alt=""></div><b class="max">Affinity EX</b><span></span><em class="max">+10%</em></div></section></div>
+
+      <h2>RNG charms</h2>
+      <p>RNG charms are a small damage upgrade, usually around 2%, give or take. They can also be quite comfortable thanks to the extra armor decoration slots, which make it easy to fit more <strong class="hi">Constitution</strong>.</p>
+      <p>In the picture below, the <strong style="color:#7fd19a">green skills</strong> are usually the best, but any skill combination shown is acceptable.</p>
+      <img class="figure" style="max-width:480px" src="img/golden_age_charm.webp" alt="Golden Age Charm (God Charm) options. Weapon skill, one of: Spread/Power Shots 1, Critical Eye 3 (best), Charge Master 3, Attack Boost 3. Armor skill, one of: Agitator 1, Weakness Exploit 1 (best), Adrenaline Rush 1, Burst 1. Slots: Critical plus two optional." loading="lazy">
+      <p>In the builds, each <strong class="hi">God Charm</strong> version shows a specific God Charm. If yours is a little different, you can still use the same build, but you'll have to shuffle the decorations around to keep the same skills.</p>
+
+      <h2>Which build for you?</h2>
+      <p>Damage of the three builds on a 45 raw hitzone, at different elemental hitzones. The higher the elemental hitzone, the better <strong class="hi">Gogmazios 4P</strong> does.</p>
+      <p><strong class="hi">Gore Magala</strong> and <strong class="hi">Gore/Souls</strong> benefit more from a God Charm, because they keep <strong style="color:#e8b4ae">Agitator 5</strong> while Gogmazios 4P can't. With a God Charm, Gore/Souls also does better than Gore Magala: it keeps <strong style="color:#e8b4ae">Peak Performance</strong> at level 4 in both versions, while Gore Magala has to drop from 5 to 4. While Gore/Souls does better, this is calculated for very high DPS uptime: average or newer players will see more benefit from <strong class="hi">Scorcher</strong>.</p>
+      <p>Additionally, the Gore builds are infinitely easier to grind for.</p>
+      <p>The only difference in skill uptime: <strong style="color:#e8b4ae">Peak Performance</strong> uptime is assumed around 80% on Gogmazios 4P, and 50% on the other builds because they don't benefit from the Gogmazios shield.</p>
+    </div>
+    <section class="card build dmg">
+      <div class="band"><span>Damage by elemental hitzone</span></div>
+      <div class="vswitch" role="tablist" aria-label="Charm"><button type="button" role="tab" aria-selected="true" data-variant="0">Craftable charm</button><button type="button" role="tab" aria-selected="false" data-variant="1" class="god">God Charm</button></div>
+      <div class="legend">${DMG_B.map(([n,c])=>`<span style="--c:${c}"><i></i>${n}</span>`).join("")}</div>
+      <div class="variant">${dmgChart(DMG.craft)}</div>
+      <div class="variant" hidden>${dmgChart(DMG.god)}</div>
+    </section>
+    <div class="banner reco"><strong class="hi">Recommendation</strong>
+      <p>For most people, the <strong class="hi">Gogmazios 4P</strong> build offers the best balance between high DPS, comfort and defense.</p>
+      <p>If you're looking for the absolute best damage, the <strong class="hi">Gore</strong> builds are generally better. <strong class="hi">Gore/Souls</strong> is even slightly better if you have high DPS, but the RNG is difficult: it requires both a God Charm and Lord's Soul + Gore Magala on the weapon.</p></div>
+    <div class="guide">
+      <h2 id="meta-builds">Meta builds</h2>
+    </div>
+    ${buildSwitch("Gogmazios 4P",[["Gogmazios",2],["Scorcher",1],["Burst Boost",1]],[{label:"Constitution 3",img:"dps_build.webp",alt:"DPS set: Calamitous Angel with G. Rathalos Helm β, Gogmazios Mail β, G. Ebony Braces β, Gogmazios Coil α, Gogmazios Greaves and Agitator Charm III. Weakness Exploit 5, Peak Performance 5, Agitator 5.",notes:GOG_NOTE},{label:"Constitution 5",img:"comfort_build.webp",alt:"Comfort set: Calamitous Angel with G. Ebony Helm β, Gogmazios Mail β, G. Rath Braces β, Gogmazios Coil α, Gogmazios Greaves and Agitator III. Weakness Exploit 5, Constitution 5, Stamina Surge 3.",notes:GOG_NOTE},{label:"God Charm",img:"gogma_dps_god_build_v3.webp",alt:"Gogmazios 4P DPS with a God Charm: Constitution 5, Affinity EX instead of Attack III, Critical III weapon deco, Expert jewels in the talisman slots.",notes:GOG_NOTE}])}
+    ${buildSwitch("Gore Magala",[["Gore Magala",1],["Scorcher",1],["Gogmazios",1]],[{label:"Constitution 2",img:"gore_dps_build_v3.webp",alt:"DPS set: Calamitous Angel with Sororal Earrings A, Gogmazios Mail B, G. Rath Braces B, Dahaad Shardcoil Y, Gogmazios Greaves and Weakness Exploit III talisman. Flawless jewels instead of Counter. Weakness Exploit 5, Agitator 5, Peak Performance 5, Adrenaline Rush 4, Constitution 2, Burst 1.",notes:GM_NOTE},{label:"Constitution 5",img:"gore_comfort_build_v2.webp",alt:"Comfort set: Calamitous Angel with Arkvulcan Helm Y, Gogmazios Mail B, G. Rath Braces B, Gore Coil A, Gogmazios Greaves and Agitator III talisman. Flawless jewels instead of Counter. Weakness Exploit 5, Agitator 5, Constitution 5, Peak Performance 5, Adrenaline Rush 3.",notes:GM_NOTE},{label:"God Charm",img:"gore_dps_god_build_v2.webp",alt:"Gore Magala DPS with a God Charm: Sororal Earrings α, Gogmazios Mail β, G. Rathalos Vambraces β, Dahaad Shardcoil γ, Gogmazios Greaves α and a Spread/Agitator 1 charm. Agitator 5, Constitution 5, Weakness Exploit 5, Critical Boost 4, Peak Performance 4.",notes:GM_NOTE}])}
+    ${buildSwitch("Gore/Souls",[["Gore Magala",1],["Gogmazios",1],["Lord's Soul"]],[{label:"Constitution 3",img:"gore_souls_con3_build.webp",alt:"Gore/Souls, Constitution 3: Calamitous Angel with Sororal Earrings α, Gogmazios Mail α, Arkvulcan Vambraces γ, Dahaad Shardcoil γ, Gogmazios Greaves α and Weakness Exploit III talisman. Weakness Exploit 5, Agitator 5, Adrenaline Rush 4, Peak Performance 4, Constitution 3. Set bonuses Gogmapocalypse, Gore Magala's Tyranny, Lord's Soul.",notes:GS_NOTE},{label:"God Charm",img:"gore_souls_god_build_v2.webp",alt:"Gore/Souls, God Charm: the same build with a custom charm.",notes:GS_NOTE}])}
+    ${buildSwitch("Convert Element",[["Gore Magala",1],["Scorcher",1],["Lord's Soul"]],[{label:"Constitution 3",img:"convert_element_con3_build.webp",alt:"Convert Element, Constitution 3: Calamitous Angel with Arkvulcan Helm γ, Arkvulcan Mail γ, G. Rath Braces β, Rathalos Coil β, Gore Greaves β and Agitator III talisman. Weakness Exploit 5, Agitator 5, Constitution 3, Antivirus 3, Counterstrike 3, Convert Element 3, Adrenaline Rush 2. Set bonuses Scorcher, Gore Magala's Tyranny, Lord's Soul.",notes:CE_NOTE},{label:"Constitution 5",img:"convert_element_con5_build.webp",alt:"Convert Element, Constitution 5: the same build with Tenderizer on the chest and Rathalos Vambraces β. Weakness Exploit 5, Constitution 5, Agitator 4, Antivirus 3, Counterstrike 3, Convert Element 3, Adrenaline Rush 2.",notes:CE_NOTE}])}
+    ${buildSwitch("Anti-AT Arkveld",[["Gore Magala",1],["Lord's Soul"]],[{label:"DPS",img:"anti_at_arkveld_dps_build.webp",alt:"Anti-AT Arkveld DPS: Calamitous Angel (Attack EX ×2, Attack III ×2, Affinity EX) with Arkvulcan Helm γ, Gogmazios Mail β, Arkvulcan Vambraces γ, Gore Coil β, Gogmazios Greaves β and a Spread/Power Shots + Convert Element talisman. Constitution 5, Peak Performance 5, Weakness Exploit 5, Agitator 3, Antivirus 3, Adrenaline Rush 2, Flayer 2, Speed Eating 2. Set bonuses Gogmapocalypse, Gore Magala's Tyranny, Lord's Soul.",notes:AT_NOTE},{label:"Comfort",img:"anti_at_arkveld_comfort_build.webp",alt:"Anti-AT Arkveld Comfort: Calamitous Angel with Arkvulcan Helm γ, Arkvulcan Mail γ, G. Rathalos Vambraces β, Gore Coil α, Rathalos Greaves β and a Spread/Power Shots + Agitator talisman. Constitution 5, Weakness Exploit 5, Agitator 3, Antivirus 3, Convert Element 3, Peak Performance 3, Evade Window 2, Blight Resistance 1. Set bonuses Arkveld's Hunger, Gore Magala's Tyranny, Rathalos's Flare, Lord's Soul.",notes:AT_NOTE}])}
+
+  `},
+
+  basics:{ group:"Guides", icon:"bow_basics", title:"Bow basics", desc:"Bow core moveset", html:()=>`
+    <article class="guide">
+      <h1 class="page-h">Bow basics</h1>
+      <p class="page-lede">The goal of Bow is to get to max charge as fast as possible and stay there as long as possible, while using as many Power Shots and Power Volleys as you can.</p>
+      ${controlsCard()}
+      <h2>Charge levels</h2>
+      <p>Bow has three charge levels. Level 1 is uncharged, and each level above it makes your shots stronger.</p>
+      <div class="charge c3">
+        <div class="card lv1">${cdots(0)}<b>Level 1</b>Uncharged</div>
+        <div class="card lv2">${cdots(1)}<b>Level 2</b>Half charge</div>
+        <div class="card lv3">${cdots(2)}<b>Level 3</b>Max charge</div>
+      </div>
+      <h2>Ramping up</h2>
+      <p>Getting to max charge is usually referred to as <strong class="hi">ramping up</strong>. There are 3 ways to ramp up:</p>
+      <ol>
+        <li><strong>Discerning Dodge.</strong> The most efficient way is to counter an attack with your <strong class="hi">Discerning Dodge</strong>. It instantly gives you <strong class="hi">Max Charge</strong> and <strong class="hi">full stamina</strong>. More on this later.<video class="clip" src="vid/discerning_dodge.mp4?v=2" poster="vid/discerning_dodge_poster.jpg?v=2" autoplay muted loop playsinline aria-label="Discerning Dodge clip: dodging into an attack to instantly reach max charge"></video></li>
+        <li><strong>Charged Shots.</strong> Each Charged Shot increases your charge level by 1 after firing. This is called a <strong class="hi">Manual Ramp-up</strong>.<video class="clip" src="vid/charged_shot_rampup.mp4" poster="vid/charged_shot_rampup_poster.jpg" autoplay muted loop playsinline aria-label="Manual ramp-up clip: two Charged Shots take you from level 1 to level 2, then level 3, followed by Power Shot and Power Volley"></video></li>
+        <li><strong>Hold your arrow.</strong> Holding gradually increases your charge level (faster if you’re stationary). This is very rarely used.</li>
+      </ol>
+      <p>There are other variations of the Manual Ramp-up combos, detailed in the <a href="#combos">Advanced Combos</a> page.</p>
+      <p class="banner">Your other moves, like <strong class="hi">Power Shot</strong> and <strong class="hi">Thousand Dragons</strong>, don’t increase your charge level. They keep and use your current charge level.</p>
+      <h2 id="max-charge">Staying at Max Charge Level</h2>
+      <p>Once at max charge, you can maintain your charge level by using <strong class="hi">Power Shots</strong> and <strong class="hi">Power Volleys</strong>, which are your most damaging moves, so you need to use them as much as possible.</p>
+      <p>After that, your only option to maintain your charge level is to <strong class="hi">dash</strong>. Dashing doesn’t increase your charge level, but it maintains your current one.</p>
+      <p>This loop is known as <strong class="hi">dash dancing</strong>:</p>
+      <video class="clip" src="vid/dash_dancing_combo.mp4?v=2" poster="vid/dash_dancing_combo_poster.jpg?v=2" autoplay muted loop playsinline aria-label="Dash dancing clip: ramp up to level 3, then loop Power Shot, Power Volley and dash while staying at max charge"></video>
+      <p class="clipnote">There are variations of the dash dance combo, detailed in the <a href="#combos">Advanced Combos</a> page.</p>
+      <p>Dash dancing is one of your highest DPS combos. Sometimes you’ll have to break the loop:</p>
+      <ol>
+        <li>to avoid the monster’s attacks,</li>
+        <li>because you’re running out of <strong class="hi">stamina</strong>,</li>
+        <li>or because you’re running out of <strong class="hi">coatings</strong>.</li>
+      </ol>
+      <h2>Managing your Coatings</h2>
+      <p>In Wilds, the way coatings work has changed. They went from <strong class="hi">limited and craftable</strong> to <strong class="hi">unlimited</strong>, using the <strong class="hi">Trick Arrow gauge</strong> instead.</p>
+      <p>The drawback is that you have to reload very frequently, because you can only load <strong class="hi">10 coatings at a time</strong>. When doing combos, keep track of how many coatings you have left so you don't end up shooting without any.</p>
+      <img class="coat-ammo" src="img/coat_ammo.webp?v=2" alt="Coating menu showing Pierce Coating 10/10">
+      <p class="clipnote">For a full list of all coatings, <a href="#stamina/coatings">click here</a>.</p>
+      <p>By default, reloading your coatings <strong class="hi">drops your charge level</strong>.</p>
+      <p>Because the reload animation is so fast, the most efficient time to reload is <strong class="hi">right before a monster is about to hit you</strong>. That way you reload, then instantly get back to max charge with a Discerning Dodge.</p>
+      <p>If you have to reload but there is no occasion for a Discerning Dodge, for example when the monster is toppled, you will have to do a <strong class="hi">Manual Ramp-up</strong>.</p>
+      <p class="banner"><strong class="hi">Advanced tip:</strong> you can maintain your charge level while reloading after a Discerning Dodge by holding your charge button and letting go of the aim button.</p>
+      <video class="clip" src="vid/reload_keep_charge.mp4" poster="vid/reload_keep_charge.jpg" autoplay muted loop playsinline></video>
+      <h2 id="discerning-dodge">Discerning Dodge</h2>
+      <p>The Discerning Dodge is your <strong class="hi">best defensive tool</strong>. It has both <strong class="hi">i-frames</strong> and <strong class="hi">counter frames</strong>.</p>
+      <p class="clipnote">If you want to learn more about how Evade Window interacts with those i-frames and counter frames, <a href="#skills/evade-window">click here</a>.</p>
+      <p>If you dodge through an attack, your counter frames <strong class="hi">nullify the attack completely</strong>. Not only that, but it also gets you to <strong class="hi">max charge level instantly</strong>, gives you your <strong class="hi">stamina back</strong> and refills some of <strong class="hi">the resource gauge</strong>.</p>
+      <video class="clip" src="vid/dodge_gauge.mp4" poster="vid/dodge_gauge.jpg" autoplay muted loop playsinline></video>
+      <p>The amount of stamina and Trick Arrow gauge you get back depends on your <strong class="hi">dodge timing</strong>. By default, the counter window lasts <strong class="hi">14 frames</strong>.</p>
+      <div class="cframes">
+        <div class="cf-bar"><span class="cf-a">Perfect counter</span><span class="cf-b">Counter</span></div>
+        <div class="cf-scale"><span>Frames 1–7</span><span>Frames 8–14</span></div>
+      </div>
+      <p class="clipnote">For more information about Discerning Dodge evade frames, <a href="#stamina">click here</a>.</p>
+      <p>If you dodge with <strong class="hi">perfect timing</strong>, you get full stamina and a lot of Trick Arrow gauge. If you dodge without perfect timing, you get only a little bit of stamina and Trick Arrow gauge.</p>
+      <p>After a counter, you get a <strong class="hi">full second of hyper armor</strong>.</p>
+      <h2 id="trick-arrow-gauge">Trick Arrow Gauge</h2>
+      <p>Wilds adds the <strong class="hi">Trick Arrow gauge</strong>. For now, in the base game, it is only used for two things:</p>
+      <ol>
+        <li>Creating <strong class="hi">coatings</strong></li>
+        <li>Making a <strong class="hi">Tracer Arrow</strong></li>
+      </ol>
+      <img class="coat-ammo" src="img/trick_gauge2.webp" alt="Trick Arrow gauge" style="max-width:360px">
+      <p>Coatings are <strong class="hi">very cheap</strong>. We'll talk about Tracer in the <a href="#focus-mode/tracer">Additional Moves</a> page, but Tracers are not used very often.</p>
+      <p>You generate Trick Arrow gauge by doing damage, holding an arrow, or most importantly, by doing a <strong class="hi">Discerning Dodge</strong>.</p>
+      <div class="banner reco" style="margin-top:1.6rem"><strong class="hi">The bread and butter of Bow</strong>
+        <p>This page covered only the core moveset of Bow. If that's all you use, you'll be able to comfortably clear any content in the game.</p>
+        <p>However, Bow has additional moves that can enhance your gameplay. We'll talk about them in detail on the <a href="#focus-mode">Additional Moves</a> page.</p>
+      </div>
+    </article>
+  `},
+  combos:{ group:"Guides", icon:"combos", title:"Advanced Combos", desc:"Optimize your combos", html:()=>`
+    <article class="guide">
+      <h1 class="page-h">Advanced Combos</h1>
+      <p>If you want a quick video overview of combo optimization, watch this video: ${yt("https://www.youtube.com/watch?v=LWDhcFlNvTs&t=174s","Bow combo optimization")}</p>
+      <p>In every damage window, use the <strong class="hi">longest combo that fits</strong>. If several fit, pick the one with the <strong class="hi">highest MV/s</strong> (motion value per second).</p>
+      <p>Below are the most commonly used combos. For each one, the table shows its duration, total motion value (MV) and elemental motion value (eMV), and the resulting <strong class="hi">MV/s</strong> and <strong class="hi">eMV/s</strong>. A motion value is the base strength of an attack, before any outside factors.</p>
+      <div class="cb-wrap">
+      <div class="vswitch cb-mode" role="tablist" aria-label="Coating type"><button type="button" role="tab" aria-selected="true" data-cbmode="cr"><img src="img/coat/close.webp" alt="">Close Range / Power</button><button type="button" role="tab" aria-selected="false" data-cbmode="pi" class="pi"><img src="img/coat/pierce.webp" alt="">Pierce</button></div>
+      <p class="cb-modenote">The best combo choices are the <strong class="hi">same for every coating</strong>. Two things to keep in mind: <strong class="c-close">Close Range</strong> and <strong class="c-power">Power</strong> Coatings add a <strong class="hi">raw modifier</strong> that isn’t included in these numbers, and with <strong class="c-pierce">Pierce</strong>, Thousand Dragons combos deal <strong class="hi">much more elemental damage</strong>.</p>
+      <div class="cb-legend"><span><b class="cbk">CS</b>Charged Shot</span><span><b class="cbk">PS</b>Power Shot</span><span><b class="cbk">PV</b>Power Volley</span><span><b class="cbk td">TD</b>Thousand Dragons</span></div>
+      ${cbTable("Ramp up combo", CB_RAMP, "ramp-up", `The best way to ramp up is a <a href="#basics/discerning-dodge">Discerning Dodge</a> that counters an attack (see <a href="#basics">Bow basics</a>). When that isn’t an option, you have to <strong class="hi">ramp up manually</strong>: that’s what these combos are for.`)}
+      ${cbTable("Dash dance combos", CB_DD, "dash-dance", `The <a href="#basics/max-charge">dash dance</a> is the Bow’s <strong class="hi">bread and butter</strong> combo. It’s also very <strong class="hi">flexible</strong>: depending on the opening, you can adjust it to fit the window better.`)}
+      ${cbTable("TD combos", CB_TD, "td-combos", `<a href="#focus-mode/thousand-dragons">Thousand Dragons</a> is best used as a <strong class="hi">combo extender</strong>. It can be difficult to use because it needs strict <strong class="hi">positioning, distance and timing</strong>, but when you work it in correctly, it gives you the <strong class="hi">highest DPS combos</strong>.`)}
+      </div>
+    </article>
+  `},
+  "focus-mode":{ group:"Guides", icon:"add_moves4", title:"Additional Moves", desc:"All extra moves", html:()=>`
+    <article class="guide">
+      <h1 class="page-h">Additional Moves</h1>
+
+      <h2 id="hailstorm">Focus Strike: Hailstorm</h2>
+      <p>Like every weapon, Bow has a <strong class="hi">Focus Strike</strong> to target and destroy wounds. Unlike most weapons, it has <strong class="hi">no real utility</strong>: it only does damage and fills a bit of your <a href="#basics/trick-arrow-gauge">Trick Arrow Gauge</a>.</p>
+      <video class="clip" src="vid/focus_strike.mp4" poster="vid/focus_strike_poster.jpg" autoplay muted loop playsinline aria-label="Focus Strike: Hailstorm clip on a training target, locking on and destroying wounds"></video>
+      <p>For most of the game it’s <strong class="hi">not worth using</strong>, and in multiplayer other weapons get more out of theirs. In endgame against <strong class="hi">9 and 10 star monsters</strong> it becomes <strong class="hi">very relevant</strong>, because its damage <strong class="hi">scales on the monster’s health</strong>.</p>
+      <img class="shot" src="img/multi_wound_break.webp" width="450" height="239" alt="Four wounds broken at once with a Focus Strike, each break dealing thousands of damage" loading="lazy">
+      <p>For some reason, Bow does <strong class="hi">more wound break damage</strong> than any other weapon, and it scales higher for each wound you break at once, <strong class="hi">up to 4</strong>. On 10 star monsters a 4-wound break is <strong class="hi">ridiculous</strong> in solo, and even more so in multiplayer.</p>
+      <p>Locking on to 4 wounds one by one is slow, so use the <a href="#focus-mode/arc-shot">instant wound lock</a> tech from the Arc Shot section.</p>
+      <p class="banner"><strong class="hi">Pro tip:</strong> Focus Strike can also be used to activate <strong class="hi">environmental traps</strong>.</p>
+      <video class="clip" src="vid/focus_strike_trap.mp4" poster="vid/focus_strike_trap_poster.jpg" autoplay muted loop playsinline aria-label="Focus Strike activating an environmental trap"></video>
+
+      <h2 id="thousand-dragons">Thousand Dragons</h2>
+      <p>A slow, <strong class="hi">point-blank</strong> attack that hits <strong class="hi">very hard</strong>, but only connects if you’re right next to the monster.</p>
+      <p>Its long recovery can be cancelled surprisingly early with a Focus Strike or, better, a <strong class="hi">dash</strong>.</p>
+      <video class="clip wide" src="vid/thousand_dragons_compare.mp4" poster="vid/thousand_dragons_compare_poster.jpg" autoplay muted loop playsinline aria-label="Thousand Dragons side by side: default recovery on the left, dash cancel on the right"></video>
+      <p>Damage is the <strong class="hi">same at any charge level</strong>, and it <strong class="hi">keeps your current charge level</strong>, so dashing out of it leaves your charge intact.</p>
+      <p>This move can be difficult to use because it requires <strong class="hi">perfect positioning</strong> and is pretty slow. When used as a <strong class="hi">combo extender</strong>, it has very high DPS. <a href="#combos">Click here to see more</a>.</p>
+      <p>It’s <strong class="hi">not buffed by Spread/Power Shots</strong>. Instead, it’s buffed by <strong class="hi">Piercing Shots</strong> (the Pierce decoration) or <strong class="hi">Special Ammo Boost</strong>. <a href="#skills/weapon-skills">Click here for more details on those skills</a>.</p>
+
+      <h2 id="swallow-shot">Flying Swallow Shot</h2>
+      <p>New to Wilds, this is a <strong class="hi">leap that fires a Power Shot in the air</strong>. It’s an <strong class="hi">amazing movement tool</strong>.</p>
+      <video class="clip" src="vid/swallow_shot.mp4" poster="vid/swallow_shot_poster.jpg" autoplay muted loop playsinline aria-label="Flying Swallow Shot clip: leaping and firing a Power Shot in the air"></video>
+      <p>While the DPS of Flying Swallow Shot combos is lower than a regular <a href="#basics/max-charge">dash dance</a>, it’s an <strong class="hi">essential tool for repositioning</strong>.</p>
+      <p>Additionally, Flying Swallow Shot can be used to <strong class="hi">jump over small ledges</strong> without interrupting your combo.</p>
+      <video class="clip" src="vid/swallow_ledge.mp4" poster="vid/swallow_ledge_poster.jpg" autoplay muted loop playsinline aria-label="Flying Swallow Shot clip: jumping over a small ledge mid-combo"></video>
+      <p>Flying Swallow Shot is <strong class="hi">not buffed by Spread/Power Shots</strong>.</p>
+
+      <h2 id="arc-shot">Arc Shot</h2>
+      <p>Arc Shot fires a <strong class="hi">rain of arrows</strong> that deals light damage and <strong class="hi">embeds fuses</strong> in the monster. Holding it <strong class="hi">builds your charge level</strong> while your stamina recovers.</p>
+      <video class="clip" src="vid/arc_shot.mp4" poster="vid/arc_shot_poster.jpg" autoplay muted loop playsinline aria-label="Arc Shot clip: a rain of arrows embedding fuses in the monster"></video>
+      <p>Its damage is too low to matter most of the time. What makes it worth learning is the <strong class="hi">instant wound lock tech</strong>.</p>
+      <p>Normally, Focus Strike locks onto wounds one at a time. With this tech, it <strong class="hi">locks onto up to 4 wounds at once</strong>.</p>
+      <video class="clip wide" src="vid/wound_lock_compare.mp4" poster="vid/wound_lock_compare_poster.jpg" autoplay muted loop playsinline aria-label="Side-by-side: normal Focus Strike lock-on versus the instant wound lock tech"></video>
+      <p>You need <strong class="hi">at least 4 fuses</strong> in the monster. When you Focus Strike, keep both the wounds and the fuses inside the reticle, and every wound locks <strong class="hi">at once</strong>. A <strong class="hi">level 3 Arc Shot fires exactly 4 fuses</strong>, so one is all it takes.</p>
+      <p>You can fire a level 3 Arc Shot straight out of a Discerning Dodge, but the timing is finicky: <strong class="hi">wait a split second</strong> or you'll get a Power Shot instead.</p>
+      <p>It takes some practice, but it's worth it. The best moment to fire the Arc Shot is during an <strong class="hi">attack you can't punish</strong>. For a deeper look at the tech, watch this video: ${yt("https://www.youtube.com/watch?v=jdYF51kyBHc&t=5s","Instant wound lock tech")}</p>
+      <p class="banner"><strong>Note:</strong> In rare situations, Arc Shot can build your charge level while you're completely out of stamina, and regenerate some stamina at the same time.</p>
+
+      <h2 id="tracer">Tracer Arrow</h2>
+      <p>Placing a Tracer Arrow on a monster makes <strong class="hi">all following shots track to it</strong>. This helps players who aren't confident in their aim, but often <strong class="hi">causes missed shots</strong> when the monster moves or is at an odd angle.</p>
+      <video class="clip" src="vid/tracer.mp4" poster="vid/tracer_poster.jpg" autoplay muted loop playsinline aria-label="Tracer Arrow clip: shots tracking to the placed tracer"></video>
+      <p>On the plus side, it <strong class="hi">extends your critical range</strong> so you can play from further away, helps with <strong class="hi">small weak spots</strong>, and shots always <strong class="hi">count as max charged</strong>, so there's no ramp up.</p>
+      <p>Applying it costs a lot of Trick Arrow Gauge and time, so it's <strong class="hi">always a DPS loss</strong>. In most situations, treat it as a <strong class="hi">comfort option</strong>.</p>
+      <p>On Pierce, it <strong class="hi">slows the tick rate</strong> (though each tick hits much harder) and can mess with the pierce lines. It's generally not advised, except on <strong class="hi">oddly shaped hitzones</strong> like Gogmazios's wings.</p>
+      <video class="clip" src="vid/tracer_gogmazios.mp4" poster="vid/tracer_gogmazios_poster.jpg" autoplay muted loop playsinline aria-label="Tracer Arrow on Pierce against Gogmazios's wings"></video>
+
+      <h2 id="dragon-piercer">Dragon Piercer</h2>
+      <p>A <strong class="hi">slow, stationary move</strong> that fires one arrow <strong class="hi">piercing through the monster</strong>. Used right after a dash or an attack, it becomes the <strong class="hi">Instant Dragon Piercer</strong>: about <strong class="hi">20% faster</strong>, for about 20% less damage.</p>
+      <video class="clip wide" src="vid/dragon_piercer_compare.mp4" poster="vid/dragon_piercer_compare_poster.jpg" autoplay muted loop playsinline aria-label="Side-by-side: regular Dragon Piercer (DP) versus Instant Dragon Piercer (iDP) animation speed"></video>
+      <p>In Wilds, it uses <strong class="hi">sever hitzones</strong> instead of shot hitzones, and takes on your coating: <strong class="c-close">Close Range</strong> and <strong class="c-power">Power</strong> raise its raw damage, <strong class="c-pierce">Pierce</strong> raises its tick rate.</p>
+      <p>It was briefly relevant at launch, but got nerfed and is now <strong class="hi">never used</strong>.</p>
+      <p class="banner"><strong>Note:</strong> Focus Strike looks like a Dragon Piercer, but it's a separate attack and doesn't inherit its properties.</p>
+
+    </article>
+  `},
+  stamina:{ group:"Guides", icon:"stamina_combo", title:"Additional information", desc:"Stamina cap, coatings and 40 FPS", html:()=>`
+    <article class="guide">
+      <h1 class="page-h">Additional information</h1>
+      <p class="page-lede">Stamina is bow’s most important resource. Any of these six combinations caps your stamina reduction.</p>
+      <div class="card t-tan tablewrap fitw"><table>
+        <thead><tr><th class="c1">Constitution</th><th>Items needed</th></tr></thead>
+        <tbody>
+          <tr><td class="c1"><span class="con"><img class="tico" src="img/stamina.webp" alt="">${pips(5,5)}</span></td><td></td></tr>
+          <tr><td class="c1"><span class="con"><img class="tico" src="img/stamina.webp" alt="">${pips(4,5)}<span class="tplus">+</span></span></td><td><span class="plus-items"><img class="tico" src="img/dash_juice2.webp" alt="">Dash Juice</span></td></tr>
+          <tr><td class="c1"><span class="con"><img class="tico" src="img/stamina.webp" alt="">${pips(3,5)}<span class="tplus">+</span></span></td><td><span class="plus-items"><img class="tico" src="img/black_belt_lo2.webp" alt="">Black Belt (Lo)</span></td></tr>
+          <tr><td class="c1"><span class="con"><img class="tico" src="img/stamina.webp" alt="">${pips(2,5)}<span class="tplus">+</span></span></td><td><span class="plus-items"><img class="tico" src="img/dash_juice2.webp" alt="">Dash Juice + <img class="tico" src="img/black_belt_lo2.webp" alt="">Black Belt (Lo)</span></td></tr>
+          <tr><td class="c1"><span class="con"><img class="tico" src="img/stamina.webp" alt="">${pips(2,5)}<span class="tplus">+</span></span></td><td><span class="plus-items"><img class="tico" src="img/black_belt_hi.webp" alt="">Black Belt (Hi)</span></td></tr>
+          <tr><td class="c1"><span class="con"><img class="tico" src="img/stamina.webp" alt="">${pips(1,5)}<span class="tplus">+</span></span></td><td><span class="plus-items"><img class="tico" src="img/dash_juice2.webp" alt="">Dash Juice + <img class="tico" src="img/black_belt_hi.webp" alt="">Black Belt (Hi)</span></td></tr>
+        </tbody>
+      </table>
+        <div class="pip-legend"><span><span class="pips"><i></i></span>Constitution level</span><span class="con"><span class="pips"><i class="e"></i></span>From items, counts as a level</span></div>
+      </div>
+      <p>Constitution 5 is easy to slot with jewels on current sets, but use any row if you need your level 1 slots elsewhere.</p>
+
+      <h2 id="coatings">Coatings</h2>
+      <div class="coat-grid">
+      ${card("Close-Range Coating","coat/close","t-grey",`<ul class="cpts"><li class="pro"><strong>40%</strong> extra raw damage</li><li class="pro">No penalty at close range</li><li class="con">Shorter range</li></ul>`)}
+      ${card("Power Coating","coat/power","t-red",`<ul class="cpts"><li class="pro"><strong>35%</strong> additional raw damage</li><li class="pro">Long critical range</li><li class="con">Penalty at close range</li></ul>`)}
+      ${card("Pierce Coating","coat/pierce","t-blue",`<ul class="cpts"><li class="pro">Multiple instances of damage per arrow</li><li class="pro">Long critical range</li><li class="con">Penalty at close range</li><li class="neu">No raw modifier</li></ul>`)}
+      ${card("Status Coatings","coat/paralysis","t-purple",`<div class="st-icons"><img src="img/coat/paralysis.webp" alt="paralysis" title="Paralysis"><img src="img/coat/poison.webp" alt="poison" title="Poison"><img src="img/coat/sleep.webp" alt="sleep" title="Sleep"><img src="img/coat/blast.webp" alt="blast" title="Blast"><img src="img/coat/exhaust.webp" alt="exhaust" title="Exhaust"></div><ul class="cpts"><li class="pro">Applies a small amount of the coating’s status</li><li class="con">Removes your bow’s element</li><li class="neu">No raw modifier</li></ul>`)}
+      </div>
+      <p><strong class="c-power">Power Coating</strong> is generally considered the worst coating for damage.</p>
+      <p><strong class="c-pierce">Pierce Coating</strong> is generally the best for endgame, but needs a monster that is compatible with Pierce. The monster's shape and hitzones need to allow Pierce Coating to do multiple ticks of damage on good hitzones.</p>
+      <p>Whenever Pierce Coating is not suitable, <strong class="c-close">Close-Range Coating</strong> becomes the best coating.</p>
+      <p class="clipnote"><a href="#matchups">Click here</a> to see a match-up chart of Close-Range Coating versus Pierce Coating.</p>
+      <h2 id="40-fps">40 FPS</h2>
+      <p>As in many other Capcom games, a lot of things are tied to FPS. In Wilds, it’s usually pierce attacks, so for Bow this affects <strong class="c-pierce">Pierce Coatings</strong>.</p><p>If you lock your FPS at <strong class="hi">exactly 40</strong>, you increase the tick rate of Pierce Coatings, which increases their damage by <strong class="hi">around 20%</strong> (estimate). If you want to learn more, you can check out ${yt("https://youtu.be/kQcXS3EWRQA","this video")}.</p><p>Even without the FPS lock, Pierce Bow is extremely strong, so do not feel that you have to use this.</p>
+      <p class="banner"><strong>Frame gen does not affect this</strong>, so you can play at 40 FPS with frame gen X2 or X3 to get smoother frames.</p>
+    </article>
+  `},
+
+  skills:{ group:"Resources", icon:"skills", title:"Skill notes", desc:"Gogmapocalypse, Tetrad Shot, Charge Master, Counterstrike and more", html:()=>`
+    <h1 class="page-h">Skill notes</h1>
+    <p class="page-lede">How the skills that matter for bow actually behave.</p>
+    <details class="sec"><summary><span class="chev" aria-hidden="true"></span><img class="secico" src="img/set_bonus.webp" alt=""><h2>Set bonus and Group Skills</h2></summary>
+    <div class="skills">
+      ${scard(`Gogmapocalypse (2p)<small class="sub">Mutual Hostility I</small>`,"set_bonus","st-gogma",`<div class="fx" style="--sc:#d9b25a">${FX_RAGE}<div class="fx-stats">${fxStat("element","+20%","of base element")}${fxStat("element","+20","flat element")}</div></div>`)}
+      ${scard(`Gogmapocalypse (4p)<small class="sub">Mutual Hostility II</small>`,"set_bonus","st-gogma",`<div class="fx" style="--sc:#d9b25a">${FX_RAGE}<div class="fx-stats">${fxStat("element","+30%","of base element")}${fxStat("element","+40","flat element")}</div>
+        <div class="fx-tl"><div class="fx-bar"><span class="fx-on">Barrier up · 2:20</span><span class="fx-off">0:30</span></div><div class="fx-scale"><span>Monster enrages</span><span>Cooldown 2:50</span></div></div>
+        <ul class="fx-perks"><li>Absorbs 75 damage</li><li>A bigger hit is fully absorbed</li><li>Triggers Counterstrike and Elemental Absorption</li><li>Immune to status ailments</li></ul></div>
+        <p>The barrier lasts until it absorbs 75 damage or for 2:20. On a permanently enraged monster you spend 30 seconds without it.</p>`,"mutual-hostility-2")}
+      ${scard(`Gore Magala’s Tyranny (2/4p)<small class="sub">Black Eclipse</small>`,"set_bonus","st-gore",`<p><strong style="color:#c9a8e6">Black Eclipse I</strong> gives Frenzy, which grants <strong class="hi">+15% affinity</strong> when cured (+10% with Antivirus 3).</p><p style="padding-top:0"><strong style="color:#c9a8e6">Black Eclipse II</strong> gives <strong class="hi">+10 raw</strong>, and an additional <strong class="hi">+5</strong> when Frenzy is cured.</p>`)}
+      ${scard(`Rathalos’s Flare (2/4p)<small class="sub">Scorcher</small>`,"set_bonus","st-scorch",`<p>Uncommonly adds a tick of fire damage while attacking: <strong class="hi">Fire hitzone × 0.6 + 20</strong> in High Rank (× 1.2 + 40 with 4 pieces). Scales with Fire Attack and other element multipliers.</p>`)}
+      ${scard(`Ebony Odogaron’s Power (2/4p)<small class="sub">Burst Boost</small>`,"set_bonus","st-burst",`<p>Extends the duration of <strong class="hi">Burst</strong> and grants <strong class="hi">+8 attack</strong> while Burst is active (+18 and a longer duration with 4 pieces).</p>`)}
+      ${scard("Lord’s Soul","group_skill","st-lord",`<p><strong style="color:#d8c7a3">Guts</strong> prevents 1 fatal hit per cart, leaving you at 1 HP.</p><p style="padding-top:0">As long as Guts is still active, you gain <strong class="hi">+5% base raw</strong>.</p>`)}
+    </div></details>
+    <details class="sec" id="weapon-skills"><summary><span class="chev" aria-hidden="true"></span><img class="secico" src="img/weapon_bow.webp" alt=""><h2>Weapon Skills</h2></summary>
+    <div class="skills">
+      ${scard("Elemental Attack","element","dk-indigo",`<p>Increases element attack power. (Elemental attack power has a maximum limit.)</p><p style="padding-top:0"><strong class="hi">Lv 1:</strong> +40 Element<br><strong class="hi">Lv 2:</strong> x1.1 Element and +50 Element<br><strong class="hi">Lv 3:</strong> x1.2 Element and +60 Element</p>`)}
+      ${scard("Tetrad Shot","spread_power_shots","dk-lblue",`<p>Buffs your coating shots once you reach the <strong class="hi">4th shot</strong> of a load. <strong class="hi">Don’t reload early</strong> if you want full value.</p><div class="tet-row"><div class="lvg l3 tet"><span></span>${[1,2,3].map(n=>`<b>Lv ${n}</b>`).join("")}<span class="k">Affinity<small>4th to 10th shot</small></span>${[8,10,12].map(v=>`<em>+${v}%</em>`).join("")}<span class="k">Attack<small>4th and 6th shot</small></span>${[3,6,10].map(v=>`<em>+${v}</em>`).join("")}<span class="k">Element<small>4th and 6th shot</small></span>${[5,5,5].map(v=>`<em>+${v}%</em>`).join("")}</div><div class="fx tet-fx">${tetradUI()}</div></div><div class="deco-note"><span class="deco-row"><img src="img/deco3_water.webp" alt="Level 3 Element/Bandolier jewel"></span><p>This is a <strong class="hi">frontloaded skill</strong>, meaning the first point brings most of the value. Since it comes as a bonus point with the <strong class="hi">Elemental Attack 3 deco</strong>, it is one of the highest value skills in the game currently.</p></div>`)}
+      ${scard("Spread/Power Shots","spread_power_shots","dk-green",`<p>Increases raw damage by <strong class="hi">5%</strong> on Power Shot and Power Volley. Total modifier.</p>`)}
+      ${scard("Critical Boost","affinity","dk-lav",`<p>Increases the damage of critical hits.</p><p style="padding-top:0"><strong class="hi">Default:</strong> x1.25 Critical Damage<br><strong class="hi">Lv 1:</strong> x1.28 Critical Damage<br><strong class="hi">Lv 2:</strong> x1.31 Critical Damage<br><strong class="hi">Lv 3:</strong> x1.34 Critical Damage<br><strong class="hi">Lv 4:</strong> x1.37 Critical Damage<br><strong class="hi">Lv 5:</strong> x1.40 Critical Damage</p>`)}
+      ${scard("Critical Eye","affinity","dk-lav",`<p>Increases affinity.</p><p style="padding-top:0"><strong class="hi">Lv 1:</strong> +4% Affinity<br><strong class="hi">Lv 2:</strong> +8% Affinity<br><strong class="hi">Lv 3:</strong> +12% Affinity<br><strong class="hi">Lv 4:</strong> +16% Affinity<br><strong class="hi">Lv 5:</strong> +20% Affinity</p>`)}
+      ${scard("Charge Master","element","dk-lblue",`<p><strong class="hi">+5/10/15% element</strong> on Charged Shot, Power Shot, Power Volley and Flying Swallow Shot.</p><ul class="cpts" style="padding-top:0"><li class="neu">Buffs the element <strong>stat</strong>, unlike Critical Element</li><li class="pro">Scales with element stacking on sets like Gogmazios 4P</li><li class="con">No effect on uncharged shots, Thousand Dragons or Dragon Piercer</li></ul><p style="padding-top:0">Thanks to element stacking, it ends up being <strong class="hi">pretty good</strong>.</p>`)}
+      ${scard("Critical Element","element","dk-indigo",`<p><strong class="hi">+5/10/15% extra elemental damage</strong> on critical hits.</p><ul class="cpts" style="padding-top:0"><li class="pro">The only skill that buffs elemental <strong>output</strong>, not the element stat</li><li class="pro">Bypasses the element cap (total modifier)</li><li class="con">High-element builds lack affinity, so it rarely triggers</li></ul><p style="padding-top:0">Strong on paper, but one of the <strong class="hi">worst skills</strong> in practice.</p>`)}
+      ${scard("Special Ammo Boost","spread_power_shots","dk-blue",`<p>Increases the power of the bow’s <strong class="hi">Dragon Piercer</strong>, <strong class="hi">Thousand Dragons</strong> and <strong class="hi">Tracer</strong>.</p><p style="padding-top:0"><strong class="hi">Lv 1:</strong> x1.1 Raw<br><strong class="hi">Lv 2:</strong> x1.2 Raw</p>`)}
+      ${scard("Piercing Shots","spread_power_shots","dk-blue",`<p>×1.05 raw on Dragon Piercer and Thousand Dragons only. It doesn’t boost Pierce Coating (use Spread/Power Shots for that) or the Focus Strike follow-up.</p>`)}
+      ${scard("Ballistics","spread_power_shots","dk-pink",`<p>No visible range gain for Close-Range Coating, measured in backhops (${yt("https://www.youtube.com/watch?v=_a15FGq17vA","test")}). Level 3 adds 5 raw in critical distance.</p>`)}
+      ${scard("Bladescale Loading","spread_power_shots","t-grey",`<p>Narrowly evading a monster’s attack while your weapon is drawn grants special applied coatings.</p><p style="padding-top:0"><strong class="hi">Lv 1:</strong> Adds 3 coatings with <strong class="hi">×1.25 raw</strong>.</p>`)}
+      ${scard("Convert Thunder and Water Resistance","element","dk-tw",`<p>Increases your weapon’s element proportional to your Thunder or Water resistance. Both work the same way.</p><p style="padding-top:0"><strong class="hi">Lv 1:</strong> +40 element for each point of Thunder or Water Resistance.</p>`)}
+    </div></details>
+    <details class="sec"><summary><span class="chev" aria-hidden="true"></span><img class="secico" src="img/armor_chest_r8.webp" alt=""><h2>Armor Skills</h2></summary>
+    <div class="skills">
+      ${scard("Weakness Exploit","affinity","dk-lav",`<p>Increases the affinity of attacks that exploit a monster’s weak points and wounds.</p><div class="lvg"><span></span>${[1,2,3,4,5].map(n=>`<b>Lv ${n}</b>`).join("")}<span class="k">Weak hitzones</span><em>+5%</em><em>+10%</em><em>+15%</em><em>+20%</em><em>+30%</em><span class="k">Wounds</span><em>+3%</em><em>+5%</em><em>+10%</em><em>+15%</em><em>+20%</em></div><p style="padding-top:0"><strong class="hi">Note:</strong> A weak hitzone is a Raw hitzone of 45 and above.</p>`)}
+      ${scard("Agitator","empower","dk-red",`<p>Increases attack power and affinity when large monsters become enraged.</p><div class="lvg"><span></span>${[1,2,3,4,5].map(n=>`<b>Lv ${n}</b>`).join("")}<span class="k">Raw</span><em>+4</em><em>+8</em><em>+12</em><em>+16</em><em>+20</em><span class="k">Affinity</span><em>+3%</em><em>+5%</em><em>+7%</em><em>+10%</em><em>+15%</em></div>`)}
+      ${scard("Burst","empower","dk-red",`<p>Lasts <strong class="hi">3 seconds</strong> on bow.</p><div class="lvg"><span></span>${[1,2,3,4,5].map(n=>`<b>Lv ${n}</b>`).join("")}<span class="k">Attack</span>${[6,7,8,9,10].map(v=>`<em>+${v}</em>`).join("")}<span class="k">Element</span>${[40,60,80,100,120].map(v=>`<em>+${v}</em>`).join("")}</div><p style="padding-top:0">A very <strong class="hi">frontloaded skill</strong>: generally we only care about the <strong class="hi">first point</strong>.</p>`)}
+      ${scard("Adrenaline Rush","convert_element","dk-red",`<p>Temporarily increases attack power after executing a perfectly-timed evade just as a monster attacks. Lasts <strong class="hi">30 seconds</strong>.</p><p style="padding-top:0"><strong class="hi">Lv 1:</strong> +10 Raw<br><strong class="hi">Lv 2:</strong> +15 Raw<br><strong class="hi">Lv 3:</strong> +20 Raw<br><strong class="hi">Lv 4:</strong> +25 Raw<br><strong class="hi">Lv 5:</strong> +30 Raw</p><p style="padding-top:0">Also a <strong class="hi">frontloaded skill</strong>: the <strong class="hi">first point</strong> is the most valuable.</p><p class="banner"><strong class="hi">Pro tip:</strong> Adrenaline Rush adds an invisible hitbox, which allows you to proc “on hit” skills like <strong class="hi">Convert Element</strong> and <strong class="hi">Elemental Absorption</strong> by just dodging instead of taking damage. Works on every weapon.</p>`)}
+      ${scard("Antivirus","affinity","dk-lav",`<p>Cures Frenzy faster, +10% affinity when cured, stacking with Black Eclipse.</p>`)}
+      ${scard("Counterstrike","convert_element","dk-red",`<div class="lvg l3"><span></span>${[1,2,3].map(n=>`<b>Lv ${n}</b>`).join("")}<span class="k">Raw</span>${[10,15,25].map(v=>`<em>+${v}</em>`).join("")}<span class="k">Duration</span>${[30,35,45].map(v=>`<em>${v}s</em>`).join("")}</div><p>A very efficient skill, even if you only activate it sometimes while getting hit accidentally.</p><p>It procs when getting hit by an attack that knocks you over. It also activates when getting hit through hyper armor.</p><p class="banner"><strong class="hi">Pro tip:</strong> Counterstrike can be activated when taking chip damage while countering a multi hit attack.</p><video class="clip" src="vid/counterstrike_chip.mp4?v=2" poster="vid/counterstrike_chip_poster.jpg?v=2" autoplay muted loop playsinline aria-label="Counterstrike clip: chip damage from Arkveld triggers Counterstrike"></video>`)}
+      ${scard("Peak Performance","empower","dk-red",`<p>Increases attack when your health is full.</p><div class="lvg"><span></span>${[1,2,3,4,5].map(n=>`<b>Lv ${n}</b>`).join("")}<span class="k">Raw</span><em>+3</em><em>+6</em><em>+10</em><em>+15</em><em>+20</em></div>`)}
+      ${scard("Coalescence","element","dk-indigo",`<p>Temporarily increases elemental attack power and status effects after recovering from blights or abnormal status.</p><div class="lvg l3"><span></span>${[1,2,3].map(n=>`<b>Lv ${n}</b>`).join("")}<span class="k">Element</span><em>x1.05</em><em>x1.1</em><em>x1.15</em><span class="k">Status</span><em>x1.05</em><em>x1.1</em><em>x1.15</em></div><p class="banner"><strong class="hi">Pro tip:</strong> Procs off of the Gore set bonus.</p>`)}
+      ${scard("Evade Window","evade","dk-cyan",`${ewChart()}<p>Increases both dash i-frames and counter frames, though counter frames are less impacted. Mostly used to reduce or avoid chip damage when countering multi-hits. For more info, watch ${yt("https://youtu.be/WdmwCqzD62s","this video")}.</p>`,"evade-window")}
+      ${scard("Convert Element","convert_element","t-red",`<p>Adds up to <strong class="hi">180 dragon</strong> element. Procs when you <strong class="hi">evade an elemental attack</strong> or <strong class="hi">take elemental damage</strong>. Lasts <strong class="hi">2 min</strong>, with a <strong class="hi">90 s</strong> cooldown.</p><div class="ce">
+        <div class="ce-bar"><div class="ce-track"><b class="e1">+80</b><b class="e2">+40</b><b class="e3">+60</b></div><em>180 <img src="img/ce_dragon.webp" alt=""></em></div>
+        <div class="ce-lv"><span class="e1">Lv 1</span><span class="e2">Lv 2</span><span class="e3">Lv 3</span></div>
+      </div><p style="padding-top:.8rem"><span class="ce-chip"><img src="img/ce_blast.webp" alt="">Dragon Blast</span> Explodes for up to <strong class="hi">280 raw + 100 dragon</strong> at Lv 3. Every explosion is a <strong class="hi">guaranteed flinch</strong>.</p>`)}
+      ${scard("Elemental Absorption","element","dk-indigo",`<p>After taking elemental damage, temporarily grants you element effects. (Cooldown after effect ends)</p><div class="lvg ea"><span></span><b>Element</b><b>Element Res.</b><span class="k">Lv 1</span><em class="arr">+30<span class="ar">→</span>+40<span class="ar">→</span>+50</em><em class="arr">+4<span class="ar">→</span>+8<span class="ar">→</span>+12</em><span class="k">Lv 2</span><em class="arr">+40<span class="ar">→</span>+50<span class="ar">→</span>+60</em><em class="arr">+6<span class="ar">→</span>+12<span class="ar">→</span>+18</em><span class="k">Lv 3</span><em class="arr">+50<span class="ar">→</span>+60<span class="ar">→</span>+70</em><em class="arr">+8<span class="ar">→</span>+16<span class="ar">→</span>+24</em></div><p style="padding-top:0"><strong class="hi">Note:</strong> The Elemental Resistance bonus only applies to the element you absorbed.</p>`)}
+    </div></details>
+  `},
+  matchups:{ group:"Resources", icon:"matchups", title:"Match-ups", desc:"Best element for each monster", html:()=>`
+    <h1 class="page-h">Match-ups</h1>
+    <div class="mu">
+      ${[["Close-Ranged Coatings","c-close",["Chatacabra","Balahara","Doshaguma","Guardian Doshaguma","Blangonga","Congalala","Yian Kut-Ku","Lala Barina","Nerscylla","Hirabami","Ajarakan","Xu Wu","Guardian Fulgur Anjanath","Guardian Ebony Odogaron","Gypceros","Rathalos","Rathian","Lagiacrus","Mizutsune","Gore Magala","Omega Planetes"]],["Pierce Coatings","c-pierce",["Quematrice","Rompopolo","Guardian Rathalos","Gravios","Seregios","Rey Dau","Uth Duna","Nu Udra","Jin Dahaad","Guardian Arkveld","Arkveld","Zoh Shia","Gogmazios"]]].map(([t,c,ms])=>`<section class="card mu-card">
+        <div class="band mu-band-${c.slice(2)}"><img src="img/coat/${c.slice(2)}.webp" alt=""><span class="${c}">${t}</span></div>
+        <ul class="mu-grid">${ms.map(m=>`<li style="${muTint(m)}"><img src="img/mu/${m.toLowerCase().replace(/ /g,"-")}.webp" alt="" loading="lazy"><i class="mu-ei">${Object.keys(MU_EL).filter(e=>MU_EL[e].includes(m)).map(e=>`<img src="img/el/${e}.webp" alt="${e}" title="${e}">`).join("")}</i><span>${m}</span></li>`).join("")}</ul>
+      </section>`).join("")}
+    </div>
+    <section class="card mu-card mu-els">
+      <div class="band"><span>Weakness by element</span><span class="mu-legend"><img class="lg" src="img/coat/close.webp" alt="">Close-Ranged<img class="lg" src="img/coat/pierce.webp" alt="">Pierce</span></div>
+      <div class="mu-chart">${[["Fire","fire","#e87b6f",10,2],["Water","water","#79acdf",2,4],["Ice","ice","#b3e9ff",3,1],["Thunder","thunder","#e3c55c",4,2],["Dragon","dragon","#a58bd6",2,5]].sort((a,b)=>(b[3]+b[4])-(a[3]+a[4])||b[3]-a[3]).map(([n,k,col,c,p])=>`<div class="mu-row" style="--el:${col}${k==="ice"?";--ea:36%;--eb:15%":""}">
+        <div class="mu-el"><img src="img/el/${k}.webp" alt=""><span style="color:${col}">${n}</span></div>
+        <div class="mu-bars">
+          <div class="mu-bar"><b class="b-close" style="width:${c*10}%"></b><em>${c}</em></div>
+          <div class="mu-bar"><b class="b-pierce" style="width:${p*10}%"></b><em>${p}</em></div>
+        </div>
+        <div class="mu-tot"><strong>${c+p}</strong><small>total</small></div>
+      </div>`).join("")}</div>
+    </section>
+    <p class="banner">Although there is more <strong class="c-close">Close range Coatings</strong> in total, <strong class="c-pierce">Pierce Coating</strong> dominates the endgame matchups.</p>
+    <section class="card mu-card mu-end">
+      <div class="band"><span>Endgame match-ups</span><span class="mu-ranks">${rank("#ee7a3c","9")}${rank("#dc3a2c","10")}</span></div>
+      <div class="mu-cols">${MU_END.map(([t,k,ms])=>`<div class="mu-col">
+        <div class="mu-colname"><img src="img/coat/${k}.webp" alt=""><span class="c-${k}">${t}</span></div>
+        <div class="mu-hbar"><div class="mu-stack b-${k}">${ms.map(m=>`<img src="img/mu/${m.toLowerCase().replace(/ /g,"-")}.webp" alt="${m}" title="${m}">`).join("")}</div><strong class="mu-count">${ms.length}</strong></div>
+      </div>`).join("")}</div>
+    </section>
+    <section class="card mu-card cp" id="crafting-priority">
+      <div class="band"><span>Bow crafting priority</span><span class="mu-ranks">${rank("#ee7a3c","9")}${rank("#dc3a2c","10")}</span></div>
+      <ol class="cp-list">${craftPriority()}</ol>
+    </section>
+  `},
+  patches:{ group:"Resources", icon:"patches", title:"Patch changes and bugs", desc:"Bow changes from TU1 to TU4 and known bugs", html:()=>`
+    <article class="guide">
+      <h1 class="page-h">Patch changes and bugs</h1>
+      <p class="page-lede">What changed for bow in each title update.</p>
+      <h2>Title Update 4</h2>
+      <p>Gogma Artian weapons arrive as the new best in slot. Pierce Coating gets a huge buff, so Close-Range bows aren’t the only option. Power Coating’s raw buff doesn’t save it. Gogmazios armor adds a lot of element and comfort.</p>
+      <ul>
+        <li>Coating reload animation is shorter.</li>
+        <li>Tracer can be buffered during Discerning Dodge.</li>
+        <li>Power Coating raw: ×1.3 → ×1.35.</li>
+        <li>Element cap raised to ×2.3 of the weapon’s base element.</li>
+      </ul>
+      <div class="card tablewrap"><table>
+        <thead><tr><th>Move</th><th>Motion value</th><th>Element</th></tr></thead>
+        <tbody>
+          <tr><td>Charged Shot 3</td><td>11 → 12</td><td>0.6 → 1.0</td></tr>
+          <tr><td>Power Shot 3</td><td>11 → 12</td><td>0.6 → 0.8</td></tr>
+          <tr><td>Flying Swallow</td><td>11 → 12</td><td>0.6 → 0.8</td></tr>
+          <tr><td>Power Volley 3</td><td>14 → 15</td><td>0.75 → 1.0</td></tr>
+          <tr><td>Arc Shot 3 (arrows, fuse, explosion)</td><td>+1 each</td><td></td></tr>
+          <tr><td>Thousand Dragons</td><td>23 → 25</td><td></td></tr>
+          <tr><td>Dragon Piercer</td><td>23 → 25</td><td></td></tr>
+          <tr><td>Tracer Arrow (impact, explosion)</td><td>25 → 30</td><td></td></tr>
+          <tr><td>Pierce Charged Shot 3</td><td>5 → 6</td><td>0.2 → 0.4</td></tr>
+          <tr><td>Pierce Power Shot 3</td><td>5 → 6</td><td>0.2 → 0.27</td></tr>
+          <tr><td>Pierce Power Volley 3</td><td>6 → 7</td><td>0.25 → 0.34</td></tr>
+          <tr><td>Pierce Thousand Dragons</td><td>11 → 13</td><td></td></tr>
+        </tbody>
+      </table></div>
+      <h2>Title Update 1</h2>
+      <ul>
+        <li>Dragon Piercer damage per tick falls off faster.</li>
+        <li>Power Volley element multipliers +0.1 (to 0.45 / 0.65 / 0.75).</li>
+        <li>Power Shot and Power Volley now benefit from Charge Master.</li>
+        <li>Thousand Dragons 18 → 23, Tracer Thousand Dragons 21 → 26.</li>
+        <li>Corrupted Mantle nerfed.</li>
+      </ul>
+    </article>
+  `},
+  tools:{ group:"Resources", icon:"tools", title:"Tools", desc:"Set builders, calculators, motion values, hitzones", html:()=>`
+    <h1 class="page-h">Tools</h1>
+    <p class="page-lede">Outside tools for planning and theorycrafting.</p>
+    <ul class="card linklist">
+      <li><a href="https://www.mathhunter.ca/" target="_blank" rel="noopener"><span class="txt"><strong>Set Builder</strong><span>Math Hunter</span></span></a></li>
+      <li><a href="https://mhwilds.wiki-db.com/sim/" target="_blank" rel="noopener"><span class="txt"><strong>Set Searcher</strong><span>wiki-db</span></span></a></li>
+      <li><a href="https://docs.google.com/spreadsheets/d/1F_bOwQT6A6mFtCN7WCetnZDrmvLYu-ne4y97IsG6Fkk/edit?gid=675791945#gid=675791945" target="_blank" rel="noopener"><span class="txt"><strong>Bow motion values</strong><span>Spreadsheet</span></span></a></li>
+      <li><a href="https://robomeche.github.io/MHWilds-Database/" target="_blank" rel="noopener"><span class="txt"><strong>Monster hitzones</strong><span>MHWilds Database</span></span></a></li>
+      <li><a href="https://docs.google.com/spreadsheets/d/1uy47Ie9Ci4y4Jwk9yvnqEsw2V2sVqbBgKguaZR0td2Y/edit" target="_blank" rel="noopener"><span class="txt"><strong>Decoration drop rates</strong><span>Spreadsheet</span></span></a></li>
+      <li><a href="${DOC}" target="_blank" rel="noopener"><span class="txt"><strong>Bow Compendium</strong><span>The full community doc</span></span></a></li>
+    </ul>
+  `},
+  videos:{ group:"Resources", icon:"videos", title:"Videos", desc:"YouTube channels: Tidus69 and top speedrunners", html:()=>`
+    <h1 class="page-h">Videos</h1>
+    <p class="page-lede">YouTube channels worth following for bow.</p>
+    <a class="card chan mine" href="https://youtube.com/@lyonolivier69" target="_blank" rel="noopener"><img class="chan-av" src="img/tidus_logo.webp" alt=""><span class="txt"><strong>Tidus69</strong><span>Guides and informative content (shameless plug)</span></span><span class="chan-go">Visit ↗</span></a>
+    <h2 class="section-h">Speedrunners</h2>
+    <p class="section-sub">Some of the best active speedrunners.</p>
+    <div class="chans">
+      <a class="card chan" href="https://youtube.com/@nekogami_kuroha" target="_blank" rel="noopener"><svg class="ytico" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#ff0033"/><path d="M11 5.5v9l8-4.5z" fill="#fff"/></svg><span class="txt"><strong>@nekogami_kuroha</strong><span>Speedruns</span></span><span class="chan-go">↗</span></a>
+      <a class="card chan" href="https://youtube.com/@iroha104" target="_blank" rel="noopener"><svg class="ytico" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#ff0033"/><path d="M11 5.5v9l8-4.5z" fill="#fff"/></svg><span class="txt"><strong>@iroha104</strong><span>Speedruns</span></span><span class="chan-go">↗</span></a>
+    </div>
+  `}
+};
+const NAVICON = {home:"home"};
+
+const ORDER = ["home","low-rank","high-rank","endgame","basics","focus-mode","combos","stamina","skills","matchups","patches","tools","videos"];
+
+// nav
+const side = document.getElementById("side");
+const groups = {};
+ORDER.forEach(id=>{ const g = VIEWS[id].group || "Start"; (groups[g] ||= []).push(id); });
+side.innerHTML = Object.entries(groups).map(([g,ids])=>`
+  <div class="navgroup"><h4>${g}</h4>${ids.map(id=>{ const ic = VIEWS[id].icon || NAVICON[id]; const st = NAVSTAR[id]; return `<a href="#${id}" data-id="${id}"${st?` class="navbuild ${st[1]}" style="--star:${st[0]}"`:""}>${st?`<svg class="navstar" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.8l2.9 6.6 7.2.6-5.5 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L1.9 9l7.2-.6z" fill="${st[0]}" stroke="#2a1406" stroke-width="1.6" stroke-linejoin="round"/></svg>`:ic?`<img src="img/${ic}.webp" alt="">`:""}${VIEWS[id].title}</a>`; }).join("")}</div>`).join("");
+
+const main = document.getElementById("main");
+let navDepth = 0;
+const menuBtn = document.getElementById("menuBtn");
+function render(){
+  let [id, anchor] = location.hash.replace("#","").split("/");
+  if(!VIEWS[id]) id = "home";
+  main.innerHTML = `<div class="view">${id==="home"?"":`<button class="iconbtn backbtn" type="button"><span aria-hidden="true">←</span> Back</button>`}${VIEWS[id].html()}</div>`;
+  navDepth++;
+  document.title = id==="home" ? "Wilds Bow Guide" : `${VIEWS[id].title} · Wilds Bow Guide`;
+  side.querySelectorAll("a").forEach(a=>{ if(a.dataset.id===id) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  side.classList.remove("open"); menuBtn.setAttribute("aria-expanded","false"); document.body.classList.remove("navlock");
+  main.querySelectorAll("video[autoplay]").forEach(v=>{ v.muted = true; v.play().catch(()=>{}); });
+  const t = anchor && document.getElementById(anchor);
+  if(t){ if(t.tagName==="DETAILS") t.open = true; const sec = t.closest("details.sec"); if(sec) sec.open = true; t.scrollIntoView(); t.classList.add("flash"); } else window.scrollTo(0,0);
+}
+menuBtn.addEventListener("click",()=>{ const o = side.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", o); document.body.classList.toggle("navlock", o); });
+window.addEventListener("hashchange", render);
+render();
+
+// build version switch (e.g. Constitution 2 / 5)
+main.addEventListener("click", e=>{ const t = e.target.closest("[data-variant]"); if(!t) return; const box = t.closest(".build"); const n = +t.dataset.variant;
+  box.querySelectorAll("[data-variant]").forEach(x=>x.setAttribute("aria-selected", x===t));
+  box.querySelectorAll(".variant").forEach((v,i)=>v.hidden = i!==n); });
+
+// back arrow: previous page inside the site, else Home
+main.addEventListener("click", e=>{ const t = e.target.closest("[data-cbmode]"); if(!t) return; const w = t.closest(".cb-wrap");
+  w.querySelectorAll("[data-cbmode]").forEach(x=>x.setAttribute("aria-selected", x===t)); w.classList.toggle("pierce", t.dataset.cbmode==="pi"); });
+main.addEventListener("click", e=>{ if(!e.target.closest(".backbtn")) return; if(navDepth>1) history.back(); else location.hash = "#home"; });
+
+// in-page jumps (the hash is used for page routing, so scroll instead of linking)
+main.addEventListener("click", e=>{ const b = e.target.closest("[data-scroll]"); if(!b) return; const t = document.getElementById(b.dataset.scroll); if(t) t.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}); });
+
+// build image zoom
+const zoomDlg = document.getElementById("zoomDlg"), zoomImg = document.getElementById("zoomImg");
+main.addEventListener("click", e=>{ const b = e.target.closest("[data-zoom]"); if(!b) return; zoomImg.src = b.dataset.zoom; zoomImg.alt = b.querySelector("img").alt; zoomDlg.showModal(); });
+document.getElementById("zoomClose").addEventListener("click", ()=>zoomDlg.close());
+zoomDlg.addEventListener("click", e=>{ if(e.target===zoomDlg) zoomDlg.close(); });
+
+// search
+const dlg = document.getElementById("searchDlg"), q = document.getElementById("q"), results = document.getElementById("results");
+let sel = 0;
+function doSearch(){
+  const term = q.value.trim().toLowerCase();
+  const hits = ORDER.filter(id=>{ const v = VIEWS[id]; return !term || (v.title+" "+v.desc+" "+(v.group||"")).toLowerCase().includes(term); });
+  sel = 0;
+  results.innerHTML = hits.length ? hits.map((id,i)=>`<li><a href="#${id}" class="${i===0?"sel":""}">${VIEWS[id].title}<small>${VIEWS[id].group||"Start"}: ${VIEWS[id].desc}</small></a></li>`).join("")
+    : `<li class="empty">No pages match “${q.value}”. Try a monster, build stage or guide name.</li>`;
+}
+function openSearch(){ q.value=""; doSearch(); dlg.showModal(); q.focus(); }
+document.getElementById("searchBtn").addEventListener("click", openSearch);
+document.addEventListener("keydown", e=>{ if((e.metaKey||e.ctrlKey) && e.key.toLowerCase()==="k"){ e.preventDefault(); openSearch(); }});
+q.addEventListener("input", doSearch);
+q.addEventListener("keydown", e=>{
+  const links = [...results.querySelectorAll("a")];
+  if(!links.length) return;
+  if(e.key==="ArrowDown"||e.key==="ArrowUp"){ e.preventDefault(); links[sel].classList.remove("sel"); sel = (sel + (e.key==="ArrowDown"?1:-1) + links.length) % links.length; links[sel].classList.add("sel"); links[sel].scrollIntoView({block:"nearest"}); }
+  if(e.key==="Enter"){ e.preventDefault(); location.hash = links[sel].getAttribute("href"); dlg.close(); }
+});
+results.addEventListener("click", e=>{ if(e.target.closest("a")) dlg.close(); });
+dlg.addEventListener("click", e=>{ if(e.target===dlg) dlg.close(); });
+</script>
