@@ -1,5 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Wilds Bow Guide</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body><title>Wilds Bow Guide</title>
 <link rel="icon" href="img/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
@@ -21,7 +20,7 @@
   --cream:#f1e6cc;       /* titles */
   --ink:#ddd7c8;         /* body text */
   --muted:#a29d90;
-  --amber:#e0a83a; --blue:#5b87b8; --teal:#4fa08a; --red:#c4555a;
+  --amber:#e0a83a; --link:#8fd6ea; --blue:#5b87b8; --teal:#4fa08a; --red:#c4555a;
   --pip:#b37a0a; --pip-empty:#1f1f1f; --pip-empty-edge:#5a5a5a; --pip-set:#33cc33;
   /* icon tints */
   --t-red:#463839; --t-blue:#363c4d; --t-tan:#443d31; --t-purple:#3f3747; --t-teal:#33433f; --t-grey:#393b40;
@@ -33,7 +32,7 @@
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
 body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font);font-size:1rem;line-height:1.6}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--card-deep)}
-a{color:var(--amber);text-underline-offset:2px}
+a{color:var(--link);text-underline-offset:2px}a:hover{color:#c4ecf8}
 :focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:4px}
 h1,h2,h3{color:var(--cream);line-height:1.2;margin:0;text-wrap:balance;font-weight:700}
 
@@ -374,6 +373,11 @@ tbody tr:nth-child(even) td{background:rgba(255,255,255,.025)}
 .faq details+details{border-top:2px solid var(--edge)}
 summary{cursor:pointer;color:var(--cream);font-weight:600}
 details p{margin:.5rem 0 0;color:var(--muted)}
+.faq details>div{margin:.6rem 0 .2rem;padding-left:.9rem;border-left:3px solid #4a463c;color:var(--ink);font-size:.95rem;max-width:66ch}
+.faq details>div p{margin:0;color:inherit}.faq details>div p+p,.faq details>div p+ul,.faq details>div ul+p{margin-top:.5rem}
+.faq details>div ul{margin:.4rem 0 0;padding-left:1.1rem}.faq details>div li{margin:.15rem 0}
+.faq .ans{color:var(--cream);font-weight:800}
+.faq .more{font-size:.88rem;color:var(--muted)}
 
 footer{margin-top:3rem;padding-top:1.2rem;border-top:2px solid var(--edge);color:var(--muted);font-size:.9rem}
 
@@ -418,6 +422,10 @@ dialog input:focus{outline:none}
 .chan .txt span{color:var(--muted);font-size:.9rem}
 .chan-go{color:var(--amber);font-weight:700;font-size:.9rem;flex:none}
 .chan.mine{border-color:#f0c46a;background:linear-gradient(135deg,rgba(240,196,106,.16),rgba(240,196,106,.04)) ,var(--card);box-shadow:0 0 0 1px rgba(240,196,106,.25),0 0 22px rgba(240,196,106,.18);padding:1.3rem 1.4rem;margin:0 0 1.5rem}
+.faqbtn{margin-top:1.2rem;font:inherit;font-size:1.05rem;font-weight:800;letter-spacing:.05em;color:#2a1f0c;background:linear-gradient(180deg,#f6d488,#d9a640);border:2px solid #121212;border-radius:999px;padding:.55rem 1.4rem;cursor:pointer;box-shadow:0 0 0 1px rgba(255,230,170,.5),0 0 18px rgba(240,196,106,.35),0 4px 10px rgba(0,0,0,.5)}.faqbtn:hover{filter:brightness(1.08)}
+#faq{scroll-margin-top:80px}
+.bline{display:block;margin-top:.45rem}
+.chanlink{font-weight:700;white-space:nowrap}.chanlink img{width:1.4em;height:1.4em;vertical-align:middle;margin:-.3em .35em -.2em 0;border-radius:50%;box-shadow:0 0 0 1.5px #f0c46a}
 .chan-av{width:56px;height:56px;border-radius:50%;flex:none;box-shadow:0 0 0 2px #f0c46a}
 .chan.mine strong{font-size:1.3rem;color:#f0c46a;text-shadow:0 0 10px rgba(240,196,106,.35)}
 .chans{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.5rem}
@@ -440,7 +448,7 @@ dialog input:focus{outline:none}
 .clip.wide{max-width:720px;aspect-ratio:1288/360}
 .clip{display:block;width:100%;max-width:480px;height:auto;aspect-ratio:16/9;border-radius:10px;border:2px solid var(--edge);background:#000;margin:.6rem 0 .4rem}
 .clipnote{font-size:.82rem;color:var(--muted);margin:-.1rem 0 1rem}
-.clipnote a{color:var(--amber)}
+.clipnote a{color:var(--link)}
 .coat-in{white-space:nowrap}.coat-in img{width:1.5em;height:1.5em;vertical-align:-.4em;margin-right:.2em}.coat-ammo{display:block;width:100%;max-width:420px;border-radius:8px;border:3px solid #121212;margin:4px 0 14px}.coat-more{font-size:.75em;opacity:.8}
 .cframes{background:var(--card);border:3px solid var(--edge);border-radius:12px;padding:14px 16px;margin:6px 0 16px;max-width:620px}.cf-bar{display:flex;height:40px;border:3px solid var(--edge);border-radius:8px;overflow:hidden}.cf-bar span{flex:1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}.cf-a{background:#b5832a;color:#fff6e0}.cf-b{background:#f0cf86;color:#2a1f0c;border-left:3px solid var(--edge)}.cf-scale{display:grid;grid-template-columns:1fr 1fr;font-size:.72rem;color:var(--muted);text-align:center;margin-top:5px}
 .tico{width:1.6em;height:1.6em;vertical-align:middle;margin-right:.35em}.con{display:inline-flex;align-items:center;white-space:nowrap}.plus-items{display:inline-flex;align-items:center;flex-wrap:wrap;gap:.15em .3em}.plus-items .tico{margin-right:.15em}
@@ -760,9 +768,10 @@ const VIEWS = {
         <h1><img src="img/bow_mark.webp" alt="">Bow</h1>
         <div class="rule" aria-hidden="true"><i></i><b></b><i></i></div>
         <p>From early game builds to endgame. From basic guides to advanced techniques. Learn everything you need to know about the Bow.</p>
+        <button class="faqbtn" data-scroll="faq">FAQ <span aria-hidden="true">↓</span></button>
       </div>
     </section>
-    <p class="banner">This site is a refresh of the <a href="${DOC}" target="_blank" rel="noopener">Bow Compendium</a>. Big credit to <strong>p_chu</strong>, <strong>ninjazenia</strong> and <strong>Miltek</strong> for creating and maintaining the original Compendium.</p>
+    <p class="banner">This site is a refresh of the <a href="${DOC}" target="_blank" rel="noopener">Bow Compendium</a>. Big credit to <strong>p_chu</strong>, <strong>ninjazenia</strong> and <strong>Miltek</strong> for creating and maintaining the original Compendium.<span class="bline">For more information on Bow, you can also check out my channel <a class="chanlink" href="https://youtube.com/@lyonolivier69" target="_blank" rel="noopener"><img src="img/tidus_logo.webp" alt="">Tidus69</a>.</span></p>
 
     <h2 class="section-h">Builds</h2>
     <p class="section-sub">Armor and weapons for each stage of the game.</p>
@@ -791,12 +800,23 @@ const VIEWS = {
       <li><a href="#videos">${ico("videos")}<span class="txt"><strong>Videos</strong><span>YouTube channels to follow</span></span></a></li>
     </ul>
 
-    <h2 class="section-h">Frequently asked questions</h2>
+    <h2 class="section-h" id="faq">Frequently asked questions</h2>
     <div class="card faq">
-      <details><summary>Which coating should my endgame bow have?</summary><p>Since TU4, Close-Range and Pierce are both strong on Gogma Artian bows. Power Coating fell behind: Gogma’s Affinity Focus stats are so low that they cancel out Power Coating’s raw buff. See <a href="#matchups">matchup charts</a>.</p></details>
-      <details><summary>Do I need to cap my FPS?</summary><p>No. If you cap your FPS at 40 for Pierce Coatings, you will see an increased tick rate, which will increase your damage by around 20% as an estimate, but it is in no way needed. Please refer to the <a href="#stamina/40-fps">40 FPS section</a> for more information.</p></details>
-      <details><summary>Do I really need to craft every element for multiple coatings? That’s a lot of bows.</summary><p>No. While it would be ideal to have one bow per element, it is not needed. Some elements have more matchups than others. For example, for <strong class="c-pierce">Pierce</strong>, Fire, Dragon and Thunder are very common matchups. For <strong class="c-close">Close-Range Coatings</strong>, only Fire and Thunder are useful. If you want to learn more, refer to the <a href="#matchups/crafting-priority">Bow crafting priority</a> table.</p></details>
-      <details><summary>Should I use Piercing Shots for Pierce Bow?</summary><p>No. Piercing Shots does not buff <strong class="c-pierce">Pierce Coatings</strong>. It only buffs Dragon Piercer (not the Focus Strike) and Thousand Dragons. Spread/Power Shots still works the same for Pierce bows.</p></details>
+      <details><summary>Which coating should my endgame bow have?</summary><div>
+        <p>Since TU4, <strong class="c-close">Close-Range</strong> and <strong class="c-pierce">Pierce</strong> are both strong on Gogma Artian bows.</p>
+        <p><strong class="c-power">Power Coating</strong> fell behind: Gogma’s Affinity Focus stats are so low that they cancel out Power Coating’s raw buff.</p>
+        <p class="more">See <a href="#matchups">matchup charts</a>.</p></div></details>
+      <details><summary>Do I need to cap my FPS?</summary><div>
+        <p><span class="ans">No.</span> If you cap your FPS at 40 for Pierce Coatings, you will see an increased tick rate, which will increase your damage by <strong class="hi">around 20%</strong> as an estimate, but it is in no way needed.</p>
+        <p class="more">Please refer to the <a href="#stamina/40-fps">40 FPS section</a> for more information.</p></div></details>
+      <details><summary>Do I really need to craft every element for multiple coatings? That’s a lot of bows.</summary><div>
+        <p><span class="ans">No.</span> While it would be ideal to have one bow per element, it is not needed. Some elements have more matchups than others. For example:</p>
+        <ul><li>For <strong class="c-pierce">Pierce</strong>, Fire, Dragon and Thunder are very common matchups.</li>
+        <li>For <strong class="c-close">Close-Range Coatings</strong>, only Fire and Thunder are useful.</li></ul>
+        <p class="more">If you want to learn more, refer to the <a href="#matchups/crafting-priority">Bow crafting priority</a> table.</p></div></details>
+      <details><summary>Should I use Piercing Shots for Pierce Bow?</summary><div>
+        <p><span class="ans">No.</span> Piercing Shots <strong class="hi">does not buff</strong> <strong class="c-pierce">Pierce Coatings</strong>.</p>
+        <p>It only buffs Dragon Piercer (not the Focus Strike) and Thousand Dragons. Spread/Power Shots still works the same for Pierce bows.</p></div></details>
     </div>
 
   `},
@@ -979,38 +999,38 @@ const VIEWS = {
       <h1 class="page-h">Additional Moves</h1>
 
       <h2 id="hailstorm">Focus Strike: Hailstorm</h2>
-      <p>Like every weapon, Bow has a <strong class="hi">Focus Strike</strong> to target and destroy wounds. Unlike most weapons, it has <strong class="hi">no real utility</strong>: it only does damage and fills a bit of your <a href="#basics/trick-arrow-gauge">Trick Arrow Gauge</a>.</p>
+      <p>Like every weapon, Bow has a Focus Strike to target and destroy wounds. Unlike most weapons, it has <strong class="hi">no real utility</strong>: it only does damage and fills a bit of your <a href="#basics/trick-arrow-gauge">Trick Arrow Gauge</a>.</p>
       <video class="clip" src="vid/focus_strike.mp4" poster="vid/focus_strike_poster.jpg" autoplay muted loop playsinline aria-label="Focus Strike: Hailstorm clip on a training target, locking on and destroying wounds"></video>
-      <p>For most of the game it’s <strong class="hi">not worth using</strong>, and in multiplayer other weapons get more out of theirs. In endgame against <strong class="hi">9 and 10 star monsters</strong> it becomes <strong class="hi">very relevant</strong>, because its damage <strong class="hi">scales on the monster’s health</strong>.</p>
+      <p>For most of the game it’s <strong class="hi">not worth using</strong>, and in multiplayer other weapons get more out of theirs. In endgame against <strong class="hi">9 and 10 star monsters</strong> it becomes very relevant, because its damage <strong class="hi">scales on the monster’s health</strong>.</p>
       <img class="shot" src="img/multi_wound_break.webp" width="450" height="239" alt="Four wounds broken at once with a Focus Strike, each break dealing thousands of damage" loading="lazy">
-      <p>For some reason, Bow does <strong class="hi">more wound break damage</strong> than any other weapon, and it scales higher for each wound you break at once, <strong class="hi">up to 4</strong>. On 10 star monsters a 4-wound break is <strong class="hi">ridiculous</strong> in solo, and even more so in multiplayer.</p>
+      <p>For some reason, Bow does <strong class="hi">more wound break damage</strong> than any other weapon, and it scales higher for each wound you break at once, up to 4. On 10 star monsters a 4-wound break is <strong class="hi">ridiculous</strong> in solo, and even more so in multiplayer.</p>
       <p>Locking on to 4 wounds one by one is slow, so use the <a href="#focus-mode/arc-shot">instant wound lock</a> tech from the Arc Shot section.</p>
-      <p class="banner"><strong class="hi">Pro tip:</strong> Focus Strike can also be used to activate <strong class="hi">environmental traps</strong>.</p>
+      <p class="banner"><strong class="hi">Pro tip:</strong> Focus Strike can also be used to activate environmental traps.</p>
       <video class="clip" src="vid/focus_strike_trap.mp4" poster="vid/focus_strike_trap_poster.jpg" autoplay muted loop playsinline aria-label="Focus Strike activating an environmental trap"></video>
 
       <h2 id="thousand-dragons">Thousand Dragons</h2>
-      <p>A slow, <strong class="hi">point-blank</strong> attack that hits <strong class="hi">very hard</strong>, but only connects if you’re right next to the monster.</p>
-      <p>Its long recovery can be cancelled surprisingly early with a Focus Strike or, better, a <strong class="hi">dash</strong>.</p>
+      <p>A slow, point-blank attack that hits <strong class="hi">very hard</strong>, but only connects if you’re right next to the monster.</p>
+      <p>Its long recovery can be cancelled surprisingly early with a Focus Strike or, better, a dash.</p>
       <video class="clip wide" src="vid/thousand_dragons_compare.mp4" poster="vid/thousand_dragons_compare_poster.jpg" autoplay muted loop playsinline aria-label="Thousand Dragons side by side: default recovery on the left, dash cancel on the right"></video>
-      <p>Damage is the <strong class="hi">same at any charge level</strong>, and it <strong class="hi">keeps your current charge level</strong>, so dashing out of it leaves your charge intact.</p>
+      <p>Damage is the <strong class="hi">same at any charge level</strong>, and it keeps your current charge level, so dashing out of it leaves your charge intact.</p>
       <p>This move can be difficult to use because it requires <strong class="hi">perfect positioning</strong> and is pretty slow. When used as a <strong class="hi">combo extender</strong>, it has very high DPS. <a href="#combos">Click here to see more</a>.</p>
-      <p>It’s <strong class="hi">not buffed by Spread/Power Shots</strong>. Instead, it’s buffed by <strong class="hi">Piercing Shots</strong> or <strong class="hi">Special Ammo Boost</strong>. <a href="#skills/weapon-skills">Click here for more details on those skills</a>.</p>
+      <p>It’s <strong class="hi">not buffed by Spread/Power Shots</strong>. Instead, it’s buffed by Piercing Shots or Special Ammo Boost. <a href="#skills/weapon-skills">Click here for more details on those skills</a>.</p>
 
       <h2 id="swallow-shot">Flying Swallow Shot</h2>
-      <p>New to Wilds, this is a <strong class="hi">leap that fires a Power Shot in the air</strong>. It’s an <strong class="hi">amazing movement tool</strong>.</p>
+      <p>New to Wilds, this is a leap that fires a Power Shot in the air. It’s an <strong class="hi">amazing movement tool</strong>.</p>
       <video class="clip" src="vid/swallow_shot.mp4" poster="vid/swallow_shot_poster.jpg" autoplay muted loop playsinline aria-label="Flying Swallow Shot clip: leaping and firing a Power Shot in the air"></video>
       <p>While the DPS of Flying Swallow Shot combos is lower than a regular <a href="#basics/max-charge">dash dance</a>, it’s an <strong class="hi">essential tool for repositioning</strong>.</p>
       <p>Additionally, Flying Swallow Shot can be used to <strong class="hi">jump over small ledges</strong> without interrupting your combo.</p>
       <video class="clip" src="vid/swallow_ledge.mp4" poster="vid/swallow_ledge_poster.jpg" autoplay muted loop playsinline aria-label="Flying Swallow Shot clip: jumping over a small ledge mid-combo"></video>
-      <p>Flying Swallow Shot is <strong class="hi">not buffed by Spread/Power Shots</strong>.</p>
+      <p>Flying Swallow Shot is not buffed by Spread/Power Shots.</p>
 
       <h2 id="arc-shot">Arc Shot</h2>
-      <p>Arc Shot fires a <strong class="hi">rain of arrows</strong> that deals light damage and <strong class="hi">embeds fuses</strong> in the monster. Holding it <strong class="hi">builds your charge level</strong> while your stamina recovers.</p>
+      <p>Arc Shot fires a rain of arrows that deals light damage and <strong class="hi">embeds fuses</strong> in the monster. Holding it builds your charge level while your stamina recovers.</p>
       <video class="clip" src="vid/arc_shot.mp4" poster="vid/arc_shot_poster.jpg" autoplay muted loop playsinline aria-label="Arc Shot clip: a rain of arrows embedding fuses in the monster"></video>
       <p>Its damage is too low to matter most of the time. What makes it worth learning is the <strong class="hi">instant wound lock tech</strong>.</p>
       <p>Normally, Focus Strike locks onto wounds one at a time. With this tech, it <strong class="hi">locks onto up to 4 wounds at once</strong>.</p>
       <video class="clip wide" src="vid/wound_lock_compare.mp4" poster="vid/wound_lock_compare_poster.jpg" autoplay muted loop playsinline aria-label="Side-by-side: normal Focus Strike lock-on versus the instant wound lock tech"></video>
-      <p>You need <strong class="hi">at least 4 fuses</strong> in the monster. When you Focus Strike, keep both the wounds and the fuses inside the reticle, and every wound locks <strong class="hi">at once</strong>. A <strong class="hi">level 3 Arc Shot fires exactly 4 fuses</strong>, so one is all it takes.</p>
+      <p>You need <strong class="hi">at least 4 fuses</strong> in the monster. When you Focus Strike, keep both the wounds and the fuses inside the reticle, and every wound locks at once. A <strong class="hi">level 3 Arc Shot fires exactly 4 fuses</strong>, so one is all it takes.</p>
       <p>You can fire a level 3 Arc Shot straight out of a Discerning Dodge, but the timing is finicky: <strong class="hi">wait a split second</strong> or you'll get a Power Shot instead.</p>
       <p>It takes some practice, but it's worth it. The best moment to fire the Arc Shot is during an <strong class="hi">attack you can't punish</strong>. For a deeper look at the tech, watch this video: ${yt("https://www.youtube.com/watch?v=jdYF51kyBHc&t=5s","Instant wound lock tech")}</p>
       <p class="banner"><strong>Note:</strong> In rare situations, Arc Shot can build your charge level while you're completely out of stamina, and regenerate some stamina at the same time.</p>
@@ -1018,15 +1038,15 @@ const VIEWS = {
       <h2 id="tracer">Tracer Arrow</h2>
       <p>Placing a Tracer Arrow on a monster makes <strong class="hi">all following shots track to it</strong>. This helps players who aren't confident in their aim, but often <strong class="hi">causes missed shots</strong> when the monster moves or is at an odd angle.</p>
       <video class="clip" src="vid/tracer.mp4" poster="vid/tracer_poster.jpg" autoplay muted loop playsinline aria-label="Tracer Arrow clip: shots tracking to the placed tracer"></video>
-      <p>On the plus side, it <strong class="hi">extends your critical range</strong> so you can play from further away, helps with <strong class="hi">small weak spots</strong>, and shots always <strong class="hi">count as max charged</strong>, so there's no ramp up.</p>
+      <p>On the plus side, it <strong class="hi">extends your critical range</strong> so you can play from further away, helps with <strong class="hi">small weak spots</strong>, and shots always count as max charged, so there's no ramp up.</p>
       <p>Applying it costs a lot of Trick Arrow Gauge and time, so it's <strong class="hi">always a DPS loss</strong>. In most situations, treat it as a <strong class="hi">comfort option</strong>.</p>
-      <p>On Pierce, it <strong class="hi">slows the tick rate</strong> (though each tick hits much harder) and can mess with the pierce lines. It's generally not advised, except on <strong class="hi">oddly shaped hitzones</strong> like Gogmazios's wings.</p>
+      <p>On Pierce, it <strong class="hi">slows the tick rate</strong> (though each tick hits much harder) and can mess with the pierce lines. It's generally not advised, except on oddly shaped hitzones like Gogmazios's wings.</p>
       <video class="clip" src="vid/tracer_gogmazios.mp4" poster="vid/tracer_gogmazios_poster.jpg" autoplay muted loop playsinline aria-label="Tracer Arrow on Pierce against Gogmazios's wings"></video>
 
       <h2 id="dragon-piercer">Dragon Piercer</h2>
-      <p>A <strong class="hi">slow, stationary move</strong> that fires one arrow <strong class="hi">piercing through the monster</strong>. Used right after a dash or an attack, it becomes the <strong class="hi">Instant Dragon Piercer</strong>: about <strong class="hi">30% faster</strong>, for about 30% less damage.</p>
+      <p>A slow, stationary move that fires one arrow piercing through the monster. Used right after a dash or an attack, it becomes the <strong class="hi">Instant Dragon Piercer</strong>: about <strong class="hi">30% faster</strong>, for about 30% less damage.</p>
       <video class="clip wide" src="vid/dragon_piercer_compare.mp4" poster="vid/dragon_piercer_compare_poster.jpg" autoplay muted loop playsinline aria-label="Side-by-side: regular Dragon Piercer (DP) versus Instant Dragon Piercer (iDP) animation speed"></video>
-      <p>In Wilds, it uses <strong class="hi">sever hitzones</strong> instead of shot hitzones, and takes on your coating: <strong class="c-close">Close Range</strong> and <strong class="c-power">Power</strong> raise its raw damage, <strong class="c-pierce">Pierce</strong> raises its tick rate.</p>
+      <p>In Wilds, it uses sever hitzones instead of shot hitzones, and takes on your coating: <strong class="c-close">Close Range</strong> and <strong class="c-power">Power</strong> raise its raw damage, <strong class="c-pierce">Pierce</strong> raises its tick rate.</p>
       <p>It was briefly relevant at launch, but got nerfed and is now <strong class="hi">never used</strong>.</p>
       <p class="banner"><strong>Note:</strong> Focus Strike looks like a Dragon Piercer, but it's a separate attack and doesn't inherit its properties.</p>
 
