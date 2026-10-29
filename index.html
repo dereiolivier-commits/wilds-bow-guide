@@ -110,14 +110,23 @@ h1,h2,h3{color:var(--cream);line-height:1.2;margin:0;text-wrap:balance;font-weig
 .cb-empty{padding:1rem;color:var(--muted);font-style:italic}
 .cb-note{font-size:.85rem;color:var(--muted);margin:-.6rem 0 1.2rem}
 .cb-row .lbl{display:none}
+.cb-res{grid-column:3/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:24px;margin-top:.35rem;padding-top:.3rem;border-top:1px dashed rgba(255,255,255,.08)}
+@media (min-width:821px){.cb-res{grid-row:2}.cb-row.res>.cb-t,.cb-row.res>.cb-seq{grid-row:1/3}.cb-row.res>.cb-m,.cb-row.res>.n{align-self:end}}
+.cb-st{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto 24px;align-items:center;column-gap:6px;font-size:.68rem;font-weight:700;color:var(--muted);line-height:1.2}
+.cb-st>em{grid-column:1/-1;font-style:normal}.cb-st.co{grid-column:2}
+.cb-st .sb{height:6px;border-radius:99px;background:#1c1c1c;overflow:hidden;box-shadow:inset 0 0 0 1px #121212}.cb-st .sb b{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#d9b43a,#f2d35b)}
+.cb-st svg{display:block;height:22px;width:auto;justify-self:start}.cb-st span{text-align:right;font-size:.82rem}
+.cb-st span{text-align:right}
+.cb-st span{color:var(--cream);font-variant-numeric:tabular-nums;white-space:nowrap}.cb-st span small{color:var(--muted);font-size:.9em;margin-left:1px}
 @media (max-width:820px){
   .cb-head{display:none}
-  .cb-row{grid-template-columns:58px minmax(0,1fr);grid-template-areas:"t seq" "a a" "b b" "c d";row-gap:.55rem;padding:.8rem 14px .8rem 1.6rem}
+  .cb-row{grid-template-columns:58px minmax(0,1fr);grid-template-areas:"t seq" "a a" "b b" "c d" "r r";row-gap:.55rem;padding:.8rem 14px .8rem 1.6rem}
   .cb-t{grid-area:t;font-size:1.25rem}.cb-seq{grid-area:seq}
   .cb-row>.cb-m:nth-of-type(3){grid-area:a}.cb-row>.cb-m:nth-of-type(4){grid-area:b}
   .cb-row>.n:nth-of-type(5){grid-area:c;text-align:left}.cb-row>.n:nth-of-type(6){grid-area:d;text-align:right}
   .cb-row .lbl{display:inline;font-style:normal;font-size:.72rem;font-weight:700;color:var(--muted);margin-right:.35rem}
   .cb-m{grid-template-columns:52px minmax(0,1fr) auto}
+  .cb-res{grid-area:r;margin-top:.1rem;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px}
 }
 /* shell */
 .shell{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1200px;margin:0 auto}
@@ -714,19 +723,19 @@ const ewChart = () => { const M = 28, pc = v => (v/M*100).toFixed(2)+"%";
 const scard = (title, icon, tint, inner, id) => `<details class="card fold skill ${tint}"${id?` id="${id}"`:""}><summary class="band"><span class="chev" aria-hidden="true"></span>${icon?ico(icon):""}<span class="bname">${title}</span></summary>${inner}</details>`;
 // Advanced Combos: rows = [time, combo steps, MV/s, eMV/s, MV, eMV, highlight]; assuming 3 ticks
 const CB_RAMP = [
-  [4.1,["CS1","CS2","PS3","PV3"],45.8,2.9,189.5,11.8,0,{clip:"ramp_cs1_cs2",pi:[71.5,2.8,295.7,11.7],note:`The most basic ramp-up combo. It’s <strong class="hi">flexible</strong>: you can move during the first 2 shots.`}],
-  [4.0,["CS1","Dash","CS2","PS3","PV3"],47.9,3.0,189.5,11.8,0,{clip:"ramp_cs1_dash",pi:[74.7,3.0,295.7,11.7],note:`A slightly faster variation. The dash lets you <strong class="hi">reposition</strong> better, but it costs more <strong class="hi">stamina</strong>.`}],
-  [3.6,["CS2","PS3","PV3"],49.6,3.1,179.5,11.4,0,{clip:"ramp_cs2",pi:[78.0,3.1,282.5,11.2],note:`The <strong class="hi">fastest</strong> ramp-up combo. Holding your charge while standing still charges faster, so you can skip the first shot and open with a Charged Shot 2. The catch: you have to <strong class="hi">stay stationary</strong>, so you can’t reposition during it.`}],
+  [4.1,["CS1","CS2","PS3","PV3"],45.8,2.9,189.5,11.8,0,{clip:"ramp_cs1_cs2",st:7.2,coat:4/4.1,pi:[71.5,2.8,295.7,11.7],note:`The most basic ramp-up combo. It’s <strong class="hi">flexible</strong>: you can move during the first 2 shots.`}],
+  [4.0,["CS1","Dash","CS2","PS3","PV3"],47.9,3.0,189.5,11.8,0,{clip:"ramp_cs1_dash",st:12.1,coat:4/4.0,pi:[74.7,3.0,295.7,11.7],note:`A slightly faster variation. The dash lets you <strong class="hi">reposition</strong> better, but it costs more <strong class="hi">stamina</strong>.`}],
+  [3.6,["CS2","PS3","PV3"],49.6,3.1,179.5,11.4,0,{clip:"ramp_cs2",st:7.4,coat:3/3.6,pi:[78.0,3.1,282.5,11.2],note:`The <strong class="hi">fastest</strong> ramp-up combo. Holding your charge while standing still charges faster, so you can skip the first shot and open with a Charged Shot 2. The catch: you have to <strong class="hi">stay stationary</strong>, so you can’t reposition during it.`}],
 ];
 const CB_DD = [
-  [3.2,["Dash","CS3","PS3","PV3","*Dash Dance"],60.9,4.1,193.5,13.0,1,{clip:"dd_full",pi:[97.2,4.0,308.9,12.9],note:`The Bow’s most <strong class="hi">classic DPS combo</strong>. Apart from the Thousand Dragons combos, it’s one of the highest DPS combos available, and it’s highly flexible.`}],
-  [3.1,["Dash","PS3","PV3"],51.6,3.3,157.5,10.0,0,{clip:"dd_ps_pv",pi:[81.7,3.1,249.5,9.5],note:`A dash dance that <strong class="hi">skips the Charged Shot</strong>. It’s only slightly faster, with slightly lower DPS. Use it when an opening is just a bit too short for the full dash dance.`}],
-  [1.8,["Dash","CS3","PS3"],56.3,4.0,99.0,7.0,0,{clip:"dd_cs_ps",pi:[92.9,4.1,163.4,7.1],note:`A much <strong class="hi">shorter</strong> variation that skips the Power Volley, for short openings. The DPS is fairly high, but the repeated dashes and Charged Shots burn through a lot more <strong class="hi">stamina</strong> and <strong class="hi">coatings</strong>.`}],
-  [1.0,["Dash","CS3"],35.5,3.0,36.0,3.0,0,{clip:"dd_cs_only",pi:[58.6,3.0,59.4,5.7],note:`Common with beginners: dashing and using only Charged Shots. It feels safe, but it’s <strong class="hi">very costly</strong> on stamina and coatings, and the DPS is very low. The first step to improving on Bow is to <strong class="hi">avoid this as much as possible</strong>.`}],
+  [3.2,["Dash","CS3","PS3","PV3","*Dash Dance"],60.9,4.1,193.5,13.0,1,{clip:"dd_full",st:14.6,coat:3/3.2,pi:[97.2,4.0,308.9,12.9],note:`The Bow’s most <strong class="hi">classic DPS combo</strong>. Apart from the Thousand Dragons combos, it’s one of the highest DPS combos available, and it’s highly flexible.`}],
+  [3.1,["Dash","PS3","PV3"],51.6,3.3,157.5,10.0,0,{clip:"dd_ps_pv",st:13.7,coat:2/3.1,pi:[81.7,3.1,249.5,9.5],note:`A dash dance that <strong class="hi">skips the Charged Shot</strong>. It’s only slightly faster, with slightly lower DPS. Use it when an opening is just a bit too short for the full dash dance.`}],
+  [1.8,["Dash","CS3","PS3"],56.3,4.0,99.0,7.0,0,{clip:"dd_cs_ps",st:18.5,coat:2/1.8,pi:[92.9,4.1,163.4,7.1],note:`A much <strong class="hi">shorter</strong> variation that skips the Power Volley, for short openings. The DPS is fairly high, but the repeated dashes and Charged Shots burn through a lot more <strong class="hi">stamina</strong> and <strong class="hi">coatings</strong>.`}],
+  [1.0,["Dash","CS3"],35.5,3.0,36.0,3.0,0,{clip:"dd_cs_only",st:21.7,coat:1/1.0,pi:[58.6,3.0,59.4,5.7],note:`Common with beginners: dashing and using only Charged Shots. It feels safe, but it’s <strong class="hi">very costly</strong> on stamina and coatings, and the DPS is very low. The first step to improving on Bow is to <strong class="hi">avoid this as much as possible</strong>.`}],
 ];
 const CB_TD = [
-  [5.4,["Dash","CS3","PS3","PV3","TD"],63.3,2.9,343.5,16.0,0,{clip:"td_full",pi:[104.4,4.2,566.3,22.9],note:`The <strong class="hi">longest combo</strong> available on Bow. It’s very long, but its DPS is <strong class="hi">incredibly high</strong>.`}],
-  [4.1,["Dash","CS3","PS3","TD"],60.8,2.4,249.0,10.0,0,{clip:"td_cs_ps",pi:[102.7,4.2,420.8,17.2],note:`This combo <strong class="hi">replaces the Power Volley with Thousand Dragons</strong>. Its DPS is similar to a dash dance. Use it for openings slightly longer than one dash dance, but <strong class="hi">too short for two</strong>.`}],
+  [5.4,["Dash","CS3","PS3","PV3","TD"],63.3,2.9,343.5,16.0,0,{clip:"td_full",st:9.1,coat:4/5.4,pi:[104.4,4.2,566.3,22.9],note:`The <strong class="hi">longest combo</strong> available on Bow. It’s very long, but its DPS is <strong class="hi">incredibly high</strong>.`}],
+  [4.1,["Dash","CS3","PS3","TD"],60.8,2.4,249.0,10.0,0,{clip:"td_cs_ps",st:10.1,coat:3/4.1,pi:[102.7,4.2,420.8,17.2],note:`This combo <strong class="hi">replaces the Power Volley with Thousand Dragons</strong>. Its DPS is similar to a dash dance. Use it for openings slightly longer than one dash dance, but <strong class="hi">too short for two</strong>.`}],
 ];
 // bar colour by share of the best MV/s in the same coating mode
 const cbCol = r => r>=.87 ? "#2fb35a" : r>=.78 ? "#8cbf2e" : r>=.66 ? "#b8b82a" : "#d0392f";
@@ -734,13 +743,21 @@ const CB_MAX = {cr:[63.3,4.2], pi:[104.4,4.3]};
 const cbVals = (cr, pi) => `<span class="v-cr">${cr}</span><span class="v-pi">${pi}</span>`;
 const cbBar = (v, m, i, cls) => `<b class="${cls}" style="width:${v/CB_MAX[m][i]*100}%;background:${i?"#6aa3e0":cbCol(v/CB_MAX[m][0])}"></b>`;
 const cbStep = (k,i) => k[0]==="*" ? `<span class="cbk dd">${k.slice(1)}</span>` : `${i?`<i aria-hidden="true">›</i>`:""}<span class="cbk${k==="TD"?" td":k==="Dash"?" dash":""}">${k}</span>`;
-const cbRow = ([t,seq,mv,emv,tmv,temv,hl,more]) => { const pi = more.pi; return `<details class="cb-item${hl?" hl":""}"><summary class="cb-row">
+// stamina used per second, measured from clips (full bar = 150); bar scaled to CB_STMAX
+const CB_STMAX = 25;
+const cbSt = v => `<div class="cb-st" title="Stamina used per second (full bar = 150)"><em>Stamina</em><div class="sb"><b style="width:${Math.min(v/CB_STMAX,1)*100}%"></b></div><span>${v.toFixed(1)}<small>/s</small></span></div>`;
+// coatings used per second: full bottles + a partly filled one (same bottle as the Tetrad Shot counter)
+const cbCoat = v => { const n=Math.max(1,Math.ceil(v)), bw=15, bh=25, gap=5, id=Math.random().toString(36).slice(2,7);
+  const bots = Array.from({length:n},(_,i)=>{ const x=i*(bw+gap), f=Math.min(1,Math.max(0,v-i)); return `<use href="#cbc-off-${id}" x="${x}" y="0" width="${bw}" height="${bh}"/>${f>0?`<clipPath id="cbk-${id}-${i}"><rect x="0" y="0" width="${bw*f}" height="${bh}"/></clipPath><use href="#cbc-on-${id}" x="${x}" y="0" width="${bw}" height="${bh}" clip-path="url(#cbk-${id}-${i})"/>`:""}`; }).join("");
+  return `<div class="cb-st co" title="Coatings used per second"><em>Coatings</em><svg viewBox="-1 -1 ${n*(bw+gap)-gap+2} ${bh+2}" aria-hidden="true"><defs>${coatIcon("cbc-on-"+id,"#d8d890","#a9a65e")}${coatIcon("cbc-off-"+id,"#4a4836","#3b3a2c")}</defs>${bots}</svg><span>${v.toFixed(1)}<small>/s</small></span></div>`; };
+const cbRow = ([t,seq,mv,emv,tmv,temv,hl,more]) => { const pi = more.pi; return `<details class="cb-item${hl?" hl":""}"><summary class="cb-row${more.st!=null||more.coat!=null?" res":""}">
   <div class="cb-t">${t.toFixed(1)}<small>s</small></div>
   <div class="cb-seq">${seq.map(cbStep).join("")}</div>
   <div class="cb-m"><em class="lbl">MV/s</em><div class="cb-bar">${cbBar(mv,"cr",0,"v-cr")}${cbBar(pi[0],"pi",0,"v-pi")}</div>${cbVals(mv.toFixed(1),pi[0].toFixed(1))}</div>
   <div class="cb-m"><em class="lbl">eMV/s</em><div class="cb-bar">${cbBar(emv,"cr",1,"v-cr")}${cbBar(pi[1],"pi",1,"v-pi")}</div>${cbVals(emv.toFixed(1),pi[1].toFixed(1))}</div>
   <div class="n"><em class="lbl">MV</em>${cbVals(tmv.toFixed(1),pi[2].toFixed(1))}</div>
   <div class="n"><em class="lbl">eMV</em>${cbVals(temv.toFixed(1),pi[3].toFixed(1))}</div>
+  ${more.st!=null||more.coat!=null?`<div class="cb-res">${more.st!=null?cbSt(more.st):""}${more.coat!=null?cbCoat(more.coat):""}</div>`:""}
 </summary><div class="cb-more">${more&&more.clip?`<video class="clip" src="vid/${more.clip}.mp4?v=3" poster="vid/${more.clip}_poster.jpg?v=3" muted loop playsinline preload="none" aria-label="${seq.join(" > ")} clip"></video>`:`<div class="cb-clipph">Clip coming soon</div>`}<p>${more&&more.note?more.note:`<span class="ph">Note coming soon</span>`}</p></div></details>`; };
 // play a combo's clip only while its row is open
 document.addEventListener("toggle", e => { const d = e.target; if(!d.classList || !d.classList.contains("cb-item")) return; const v = d.querySelector("video"); if(v){ if(d.open){ v.muted = true; v.play().catch(()=>{}); } else v.pause(); } }, true);
