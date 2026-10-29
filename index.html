@@ -226,7 +226,7 @@ main{padding-block:2rem 4rem;padding-left:max(16px,env(safe-area-inset-left,0px)
 .build .band{justify-content:space-between;flex-wrap:wrap}
 .fold>summary{cursor:pointer;list-style:none;justify-content:flex-start}
 .fold>summary::-webkit-details-marker{display:none}
-.fold>summary .bname{flex:1}
+.fold>summary .bname{flex:1;min-width:max-content}
 .fold>summary:hover{filter:brightness(1.15)}
 .fold:not([open])>summary{border-bottom:0}
 .chev{width:.6rem;height:.6rem;border-right:3px solid var(--amber);border-bottom:3px solid var(--amber);transform:rotate(-45deg);transition:transform .15s;flex:none;margin-right:.2rem}
@@ -297,6 +297,29 @@ main{padding-block:2rem 4rem;padding-left:max(16px,env(safe-area-inset-left,0px)
 .dmg-bar em{font-style:normal;font-size:.82rem;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
 .dmg-bar em.up{color:#7fd19a;font-weight:700}.dmg-bar em.down{color:#ee6f69;font-weight:700}.dmg-bar em.ref{color:var(--muted)}
 .dmg .mu-note{padding-top:.5rem}
+/* Progression: Low Rank chapters (Olivier's notes 2026-10-29): monster icon from the match-up chart, then its notes */
+.chap{margin:.4rem 0}.chap>summary{list-style:none;display:flex;align-items:center;gap:.6rem;padding:.7rem 0;font-size:1.15rem;font-weight:700;color:var(--cream);border-bottom:2px solid var(--edge)}.chap>summary::-webkit-details-marker{display:none}.chap>summary:hover{color:var(--amber)}.chap[open]>summary .chev{transform:rotate(45deg)}.chap[open]{margin-bottom:1.2rem}.guide .chap:last-child{margin-bottom:1.4rem}.guide p.lr-done{max-width:none}.lr-done{display:flex;align-items:center;gap:1rem;margin:1.6rem 0 1.4rem;color:var(--muted);font-size:.95rem;text-align:center}.lr-done span{flex:0 1 auto}.lr-done::before,.lr-done::after{content:"";flex:1 1 1.5rem;min-width:1.5rem;height:1px;background:var(--edge)}.chap .step p{color:var(--ink)}
+.chap>summary .sub{margin-left:auto;font-size:.82rem;font-weight:600;color:var(--muted)}
+.chap>summary .cn{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:#3aa3dc;color:#0f1a22;font-weight:800;font-size:.95rem;border:2px solid var(--edge)}
+.steps{list-style:none;margin:0;padding:0}
+.guide .step{display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:1rem;padding:.9rem 0;margin:0;border-top:1px solid var(--line)}
+.step:first-child{border-top:0}
+.mtiles{display:grid;gap:.4rem;align-content:start}
+.mtile{background:var(--card-deep);border:2px solid var(--edge);border-radius:10px;padding:6px 4px 7px;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center}
+.mtile img{display:block;width:100%;max-width:80px;aspect-ratio:1;object-fit:contain}
+.mtile span{font-size:.72rem;font-weight:600;line-height:1.2;color:var(--ink)}
+.stxt>p:first-child,.stxt>.when+p{margin-top:0}
+.step .when .aft{color:var(--cream);font-size:1rem;font-weight:700;margin-right:.2rem}
+.step .when{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0 0 .4rem}
+.step .when .hrb{font-size:.75rem;font-weight:700;color:#8fc9ee;border:2px solid #3aa3dc;border-radius:999px;padding:0 .55rem}
+.step p{margin:.4rem 0 0;font-size:.95rem}
+.lr-con{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:800;color:#8fe0a8;border:2px solid #4c9a63;background:#1f2a22;border-radius:999px;padding:.05rem .6rem .05rem .3rem}.lr-con img{width:22px;height:22px}.lr-con .pips{gap:3px}.lr-con .pips i{width:13px;height:13px;border-width:2px;border-radius:3px}.lr-con .pips i.g{background:#33cc33;border-color:#121212}.lr-con b{color:#c9c6b4;font-weight:600}
+.lr-dmg{display:inline-block;font-size:.8rem;font-weight:800;color:#7fd19a;border:2px solid #4c9a63;background:#1f2a22;border-radius:999px;padding:0 .55rem}
+.sbuild{margin-top:.7rem;min-width:0}.sbuild .upgnote{font-size:.88rem;color:var(--muted);margin:.4rem 0 0}.chap .todo{color:#f0c46a;font-weight:800;margin-left:.3rem}.mrow{display:flex;align-items:center;gap:1.2rem;margin:.2rem 0 .9rem;max-width:720px}.mrow:last-child{margin-bottom:0}.mrow .mtxt{flex:1;min-width:0}.mrow .mtxt p{margin:0 0 .6rem}.mrow .mtxt p:last-child{margin:0}.mrow .mmedia{flex:none;width:48%;max-width:340px;height:auto;margin:0;border-radius:10px;border:2px solid var(--edge)}.mrow.rev{flex-direction:row-reverse}@media (max-width:560px){.mrow,.mrow.rev{flex-direction:column;align-items:stretch;gap:.6rem}.mrow .mmedia{width:100%;max-width:none}}
+.mapfilter{display:flex;align-items:center;gap:1rem;margin-top:.7rem;max-width:640px}.mapfilter img{width:46%;max-width:280px;height:auto;border-radius:10px;border:1px solid var(--line,#333);flex:none}.mapfilter .mftxt{flex:1;min-width:0}.mapfilter .mftxt p{margin:0 0 .6rem}.mapfilter .mftxt p:last-child{margin:0}.dirnote img{width:50%;max-width:300px}p.mftxt{margin:0}
+.sbuild img.upg{display:block;width:100%;max-width:560px;height:auto}.sbuild .build{margin:0}
+.step .ph{display:inline-block;margin-top:.5rem;white-space:normal}
+@media (max-width:560px){.guide .step{grid-template-columns:72px minmax(0,1fr);column-gap:.75rem}.mtile span{font-size:.64rem}.chap>summary .sub{display:none}}
 .figure{display:block;width:100%;max-width:640px;height:auto;margin:1rem 0 .5rem}
 .mu{display:grid;gap:1.25rem;margin-bottom:1.25rem}
 .mu-card>.band{font-size:1.15rem}
@@ -666,6 +689,15 @@ function buildCard(name, tag, notes, tint){
   </article>`;
 }
 const SETCOL = {"Mutual Hostility":"#d9b25a","Scorcher":"#ec5f5f","Burst Boost":"#a9dcff","Lord's Soul":"#d8c7a3","Black Eclipse":"#b58bd6","Thunderous Roar":"#6fb6f2","Inspiration":"#7fd19a"};
+// Low Rank progression steps, by chapter (Olivier's notes, /mnt/project-files/progression-sets/notes.md)
+// each step: the monster's match-up chart icon, then what it unlocks (Olivier 2026-10-29)
+const lrName = slug => slug.split("-").map(w=>w[0].toUpperCase()+w.slice(1)).join(" ");
+// stamina gain instead of damage (Olivier): [points already had, points gained] out of 5; gained pips are green
+const lrCon = (had, gain) => `<span class="lr-con" title="Constitution ${had+gain}/5"><img src="img/stamina.webp" alt="">Constitution<span class="pips">${Array.from({length:5},(_,i)=>`<i class="${i<had?"":i<had+gain?"g":"e"}"></i>`).join("")}</span><b>Lv ${had+gain}</b></span>`;
+const lrStep = (mons, body, dmg, hr, build) => `<li class="step"><div class="mtiles">${[].concat(mons).map(m=>`<span class="mtile" style="${muTint(lrName(m))}"><img src="img/mu/${m}.webp" alt="" loading="lazy"><span>${lrName(m)}</span></span>`).join("")}</div><div class="stxt">
+  <div class="when"><b class="aft">After hunting ${[].concat(mons).map(lrName).join(" and ")}</b>${hr?`<span class="hrb">${hr}</span>`:""}${dmg?(Array.isArray(dmg)?(dmg.length>2?`<span class="lr-dmg">+${dmg[0]}% damage</span>`+lrCon(dmg[1],dmg[2]):lrCon(...dmg)):`<span class="lr-dmg">+${dmg}% damage</span>`):""}</div>
+  ${body}${build?`<div class="sbuild">${build}</div>`:""}</div></li>`;   // extras (build dropdown, upgrade graphic) stay in the text column, nothing under the icon (Olivier)
+const lrChapter = (n, sub, steps) => `<details class="chap" id="chapter-${n}"><summary><span class="chev" aria-hidden="true"></span><span class="cn">${n}</span>Chapter ${n}<span class="sub">${sub}</span></summary><ol class="steps">${steps.join("")}</ol></details>`;
 function buildImage(name, tag, img, alt, notes, tint){
   return `<details class="card build fold">
     <summary class="band"><span class="chev" aria-hidden="true"></span><span class="bname">${name}</span><span class="tags">${[].concat(tag).map(t=>Array.isArray(t)?`<span class="tag settag" style="--c:${SETCOL[t[0]]||"var(--amber)"}">${t[0]}${t[1]!=null?" "+t[1]:""}</span>`:`<span class="tag">${t}</span>`).join("")}</span></summary>
@@ -839,10 +871,26 @@ const VIEWS = {
   "low-rank":{ group:"Builds", title:"Progression", desc:"Story armor pieces by chapter", html:()=>`
     <div class="mu-ranks pagerank">${rank("#3aa3dc","HR 1-21")}</div>
     <h1 class="page-h">Progression</h1>
-    <p class="banner">Not all <strong class="hi">Armor</strong> pieces become available at the same time. Craft them gradually as they become available. Upgrade the <strong class="hi">Bow</strong> whenever possible.</p>
-    ${buildImage("Low Rank build",["HR 1-7",["Thunderous Roar",1],["Inspiration",1]],"low_rank_build.webp","Low Rank build: Hunter’s Bow I with Rey Sandhelm, Rey Sandmail, G. Rathalos Vambraces, Rey Sandcoil, Xu Wu Greaves and Fitness Charm I. Constitution 3, Latent Power 1, Weakness Exploit 1, Stamina Surge 1, Rey Dau’s Voltage and Lord’s Favor.","","s-blue")}
-    ${buildImage("Early High Rank build","HR 8-10","early_high_rank_build.webp","Early High Rank build: Hunter’s Bow III with Kut-Ku Helm β, Gypceros Mail β, Kut-Ku Vambraces α, Kut-Ku Coil α, Xu Wu Greaves and Fitness Charm II. Constitution 5, Stamina Surge 2, Agitator 2, Recovery Up 2.","","s-blue")}
-    ${buildImage("Mid High Rank build",["HR 9-21",["Scorcher",1]],"mid_high_rank_build.webp","Mid High Rank build: Dosha Griefbringer II with Kut-Ku Helm β, G. Rathalos Mail β, Doshaguma Braces α, G. Rathalos Coil α, G. Rathalos Greaves β and Fitness Charm III. Constitution 5, Weakness Exploit 3, Stun Resistance 2, Windproof 2, Intimidator 1, Stamina Surge 1, Scorcher.","","")}
+    <p class="banner">Every build and upgrade listed below is <strong class="hi">optional</strong>. The story is quite easy, so feel free to upgrade as much or as little as you want.</p>
+    <div class="guide">
+      <h2 id="low-rank-chapters">Low Rank</h2>
+      <p class="banner"><strong class="hi">Early campaign tip:</strong> at the start of the campaign we have very low stamina, so be on the lookout for the <strong class="hi">Wiggly Litchi</strong>. And also, use <a href="#focus-mode/tracer">Tracer</a> to save on stamina.</p>
+      ${lrChapter(1,"Chatacabra to Uth Duna",[
+        lrStep("chatacabra",`<p>Swap to the <strong class="hi">Hunter’s Bow I</strong>: higher raw and better coatings.</p>`,28,"",`<picture><source media="(max-width:560px)" srcset="img/hope_upgrade_v.webp?v=2"><img class="upg" src="img/hope_upgrade.webp?v=2" alt="Hope Bow I (90 attack, 0% affinity, Power coatings, +35% raw) upgrades to Hunter’s Bow I (110 attack, 0% affinity, Close-range coatings, +40% raw, Focus 1): +28% damage" loading="lazy"></picture>`),
+        lrStep("lala-barina",`<p>Upgrade to <strong class="hi">Hunter’s Bow II</strong>.</p>`,21,"",`<picture><source media="(max-width:560px)" srcset="img/hb_upgrade_v.webp"><img class="upg" src="img/hb_upgrade.webp" alt="Hunter’s Bow I (110 attack, 0% affinity, Focus 1) upgrades to Hunter’s Bow II (130 attack, 0% affinity, Focus 1, Attack Boost 1): +21% damage" loading="lazy"></picture>`),
+        lrStep("congalala",`<div class="mrow"><div class="mtxt"><p>Unlocks <strong class="hi">Wudwud Village</strong>. Trade shiny treasures for <strong class="hi">Droolshrooms</strong>, which lets you eat for <strong class="hi">Black Belt (Lo)</strong>.</p><p><strong class="hi">Black Belt (Lo)</strong> counts as <strong class="hi">Constitution 2</strong>.</p></div><video class="clip mmedia" src="vid/wud_droolshroom_trade.mp4?v=3" poster="vid/wud_droolshroom_trade_poster.jpg?v=3" autoplay muted loop playsinline aria-label="Trading shiny treasures for Droolshrooms with the Wudwuds"></video></div><div class="mrow rev"><div class="mtxt"><p>You can find shiny treasures all around the <strong class="hi">Scarlet Forest</strong>. Look for their location on your map.</p><p>On your map, search for <strong class="hi">Weathered Treasures</strong>.</p></div><img class="mmedia" src="img/weathered_treasure_filter.webp?v=2" alt="Map filter icons, Gathering: Weathered Treasure selected" loading="lazy"></div>`,[0,2])
+      ])}
+      ${lrChapter(2,`Rompopolo to Nu Udra`,[
+        lrStep("rey-dau",`<p>The priority here is the <strong class="hi">chest</strong> for the <strong class="hi">Constitution</strong> point. If you’re able to craft the <strong class="hi">helmet</strong>, you can do so as well.</p><p>The rest of the armor is not unlocked yet.</p>`,[2,1],"",buildImage("Rey Dau build",[["Thunderous Roar",1]],"rey_dau_build_cropped_transparent.webp?v=2","Rey Dau build: Hunter’s Bow II with Rey Sandhelm, Rey Sandmail, Hope Vambraces, Hope Coil and Hope Greaves, no talisman. Divine Blessing 2, Constitution 1, Latent Power 1, Stun Resistance 1, Thunderous Roar.","",""))
+      ])}
+      ${lrChapter(3,`G. Doshaguma to Zoh Shia`,[
+        lrStep(["guardian-doshaguma","guardian-rathalos"],`<p>Craft <strong class="hi">Hunter’s Bow III</strong>.</p>`,30,"",`<picture><source media="(max-width:560px)" srcset="img/hb3_upgrade_v.webp"><img class="upg" src="img/hb3_upgrade.webp" alt="Hunter’s Bow II (130 attack, 0% affinity, Focus 1, Attack Boost 1) upgrades to Hunter’s Bow III (170 attack, 0% affinity, Focus 2, Attack Boost 1): +30% damage" loading="lazy"></picture><p class="upgnote">You can find <strong class="hi">Tough Guardian Bones</strong> all over the map in Wyveria, in bone piles.</p>`),
+        lrStep("guardian-arkveld",`<p>Unlocks the rest of the <strong class="hi">Rey Dau</strong> armor, which lets us add one more point of <strong class="hi">Constitution</strong>, as well as the <strong class="hi">Guardian Rathalos</strong> armor, which gives us <strong class="hi">Scorcher</strong> and some <strong class="hi">Weakness Exploit</strong>.</p><p>Also unlocks the <strong class="hi">Fitness Charm</strong>, which lets us add another point of <strong class="hi">Constitution</strong>.</p>`,[9,3,2],"",`${buildImage("Scorcher build",[["Scorcher",1],["Thunderous Roar",1]],"scorcher_g_arkveld_build_cropped_transparent.webp","Scorcher build after Guardian Arkveld: Hunter’s Bow III with G. Rathalos Helm, Rey Sandmail, G. Rathalos Vambraces, Rey Sandcoil, G. Rathalos Greaves and Fitness Charm I. Constitution 3, Weakness Exploit 3, Intimidator 1, Scorcher, Wylk Burst, Thunderous Roar.","","")}`),
+        lrStep("jin-dahaad",`<p>Unlocks the <strong class="hi">Melder</strong> once you get to Suja. Try to get a <strong class="hi">Physique</strong> decoration. This is optional.</p>`),
+        lrStep("guardian-ebony-odogaron",`<p>You can gain a bit of extra damage by adding <strong class="hi">Burst Boost</strong> to your build.</p><p>This set loses a point of <strong class="hi">Constitution</strong>, but if you have a <strong class="hi">Constitution decoration</strong>, you can put that back on the build.</p><p>If you don’t want to lose any point of <strong class="hi">Constitution</strong>, you can skip that build.</p>`,8,"",`${buildImage("Burst Boost build",[["Scorcher",1],["Burst Boost",1]],"ebony_odogaron_build_cropped_transparent.webp","Burst Boost build after Guardian Ebony Odogaron: Hunter’s Bow III with G. Ebony Helm (Physique jewel), Rey Sandmail, G. Rathalos Vambraces, G. Ebony Coil, G. Rathalos Greaves and Fitness Charm I. Constitution 3, Burst 2, Weakness Exploit 2, Bleeding Resistance 1, Scorcher, Burst Boost, Wylk Burst.","","")}`)
+      ])}
+      <p class="lr-done"><span>Congratulations, you completed <strong class="hi">Low Rank</strong>.</span></p>
+    </div>
   `},
   "high-rank":{ group:"Builds", title:"Early Endgame", desc:"High rank progression pieces", html:()=>`
     <div class="mu-ranks pagerank">${rank("#ee7a3c","HR 21-100")}</div>
@@ -1038,6 +1086,7 @@ const VIEWS = {
       <p>Additionally, Flying Swallow Shot can be used to <strong class="hi">jump over small ledges</strong> without interrupting your combo.</p>
       <video class="clip" src="vid/swallow_ledge.mp4" poster="vid/swallow_ledge_poster.jpg" autoplay muted loop playsinline aria-label="Flying Swallow Shot clip: jumping over a small ledge mid-combo"></video>
       <p>Flying Swallow Shot is not buffed by Spread/Power Shots.</p>
+      <div class="banner mapfilter dirnote"><p class="mftxt"><strong class="hi">Note:</strong> If you’re finding yourself jumping in the wrong direction, try changing your <strong class="hi">Directional Controls</strong> type from 2 to 1.</p><img src="img/directional_controls.webp?v=3" alt="Directional Controls, Type 1 selected: pressing W moves the Hunter in the direction the camera is facing" loading="lazy"></div>
 
       <h2 id="arc-shot">Arc Shot</h2>
       <p>Arc Shot fires a rain of arrows that deals light damage and <strong class="hi">embeds fuses</strong> in the monster. Holding it builds your charge level while your stamina recovers.</p>
