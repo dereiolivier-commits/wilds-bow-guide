@@ -775,18 +775,18 @@ const VIEWS = {
     <h2 class="section-h">Guides</h2>
     <p class="section-sub">How to play the weapon well.</p>
     <ul class="card linklist">
-      <li><a href="#basics">${ico("bow_basics")}<span class="txt"><strong>Bow basics</strong><span>Bow core moveset</span></span></a></li>
+      <li><a href="#basics">${ico("bow_basics")}<span class="txt"><strong>Bow Basics</strong><span>Bow core moveset</span></span></a></li>
       <li><a href="#focus-mode">${ico("add_moves4")}<span class="txt"><strong>Additional Moves</strong><span>All extra moves</span></span></a></li>
       <li><a href="#combos">${ico("combos")}<span class="txt"><strong>Advanced Combos</strong><span>Optimize your combos</span></span></a></li>
-      <li><a href="#stamina">${ico("stamina_combo")}<span class="txt"><strong>Additional information</strong><span>Stamina cap, coatings and 40 FPS</span></span></a></li>
+      <li><a href="#stamina">${ico("stamina_combo")}<span class="txt"><strong>Additional Information</strong><span>Stamina cap, coatings and 40 FPS</span></span></a></li>
     </ul>
 
     <h2 class="section-h">Resources</h2>
     <p class="section-sub">Data and outside tools.</p>
     <ul class="card linklist">
-      <li><a href="#skills">${ico("skills")}<span class="txt"><strong>Skill notes</strong><span>How bow-relevant skills really work</span></span></a></li>
+      <li><a href="#skills">${ico("skills")}<span class="txt"><strong>Skill Notes</strong><span>How bow-relevant skills really work</span></span></a></li>
       <li><a href="#matchups">${ico("matchups")}<span class="txt"><strong>Match-ups</strong><span>Element per monster</span></span></a></li>
-      <li><a href="#patches">${ico("patches")}<span class="txt"><strong>Patch changes and bugs</strong><span>TU1 to TU4</span></span></a></li>
+      <li><a href="#patches">${ico("patches")}<span class="txt"><strong>Patch Changes and Bugs</strong><span>TU1 to TU4</span></span></a></li>
       <li><a href="#tools">${ico("tools")}<span class="txt"><strong>Tools</strong><span>Builders, calculators, hitzones</span></span></a></li>
       <li><a href="#videos">${ico("videos")}<span class="txt"><strong>Videos</strong><span>YouTube channels to follow</span></span></a></li>
     </ul>
@@ -887,9 +887,9 @@ const VIEWS = {
 
   `},
 
-  basics:{ group:"Guides", icon:"bow_basics", title:"Bow basics", desc:"Bow core moveset", html:()=>`
+  basics:{ group:"Guides", icon:"bow_basics", title:"Bow Basics", desc:"Bow core moveset", html:()=>`
     <article class="guide">
-      <h1 class="page-h">Bow basics</h1>
+      <h1 class="page-h">Bow Basics</h1>
       <p class="page-lede">The goal of Bow is to get to max charge as fast as possible and stay there as long as possible, while using as many Power Shots and Power Volleys as you can.</p>
       ${controlsCard()}
       <h2>Charge levels</h2>
@@ -968,7 +968,7 @@ const VIEWS = {
       <div class="vswitch cb-mode" role="tablist" aria-label="Coating type"><button type="button" role="tab" aria-selected="true" data-cbmode="cr"><img src="img/coat/close.webp" alt="">Close Range / Power</button><button type="button" role="tab" aria-selected="false" data-cbmode="pi" class="pi"><img src="img/coat/pierce.webp" alt="">Pierce</button></div>
       <p class="cb-modenote">The best combo choices are the <strong class="hi">same for every coating</strong>. Two things to keep in mind: <strong class="c-close">Close Range</strong> and <strong class="c-power">Power</strong> Coatings add a <strong class="hi">raw modifier</strong> that isn’t included in these numbers, and with <strong class="c-pierce">Pierce</strong>, Thousand Dragons combos deal <strong class="hi">much more elemental damage</strong>.</p>
       <div class="cb-legend"><span><b class="cbk">CS</b>Charged Shot</span><span><b class="cbk">PS</b>Power Shot</span><span><b class="cbk">PV</b>Power Volley</span><span><b class="cbk td">TD</b>Thousand Dragons</span></div>
-      ${cbTable("Ramp up combo", CB_RAMP, "ramp-up", `The best way to ramp up is a <a href="#basics/discerning-dodge">Discerning Dodge</a> that counters an attack (see <a href="#basics">Bow basics</a>). When that isn’t an option, you have to <strong class="hi">ramp up manually</strong>: that’s what these combos are for.`)}
+      ${cbTable("Ramp up combo", CB_RAMP, "ramp-up", `The best way to ramp up is a <a href="#basics/discerning-dodge">Discerning Dodge</a> that counters an attack (see <a href="#basics">Bow Basics</a>). When that isn’t an option, you have to <strong class="hi">ramp up manually</strong>: that’s what these combos are for.`)}
       ${cbTable("Dash dance combos", CB_DD, "dash-dance", `The <a href="#basics/max-charge">dash dance</a> is the Bow’s <strong class="hi">bread and butter</strong> combo. It’s also very <strong class="hi">flexible</strong>: depending on the opening, you can adjust it to fit the window better.`)}
       ${cbTable("TD combos", CB_TD, "td-combos", `<a href="#focus-mode/thousand-dragons">Thousand Dragons</a> is best used as a <strong class="hi">combo extender</strong>. It can be difficult to use because it needs strict <strong class="hi">positioning, distance and timing</strong>, but when you work it in correctly, it gives you the <strong class="hi">highest DPS combos</strong>.`)}
       </div>
@@ -1032,9 +1032,9 @@ const VIEWS = {
 
     </article>
   `},
-  stamina:{ group:"Guides", icon:"stamina_combo", title:"Additional information", desc:"Stamina cap, coatings and 40 FPS", html:()=>`
+  stamina:{ group:"Guides", icon:"stamina_combo", title:"Additional Information", desc:"Stamina cap, coatings and 40 FPS", html:()=>`
     <article class="guide">
-      <h1 class="page-h">Additional information</h1>
+      <h1 class="page-h">Additional Information</h1>
       <p class="page-lede">Stamina is bow’s most important resource. Any of these six combinations caps your stamina reduction.</p>
       <div class="card t-tan tablewrap fitw"><table>
         <thead><tr><th class="c1">Constitution</th><th>Items needed</th></tr></thead>
@@ -1068,8 +1068,8 @@ const VIEWS = {
     </article>
   `},
 
-  skills:{ group:"Resources", icon:"skills", title:"Skill notes", desc:"Gogmapocalypse, Tetrad Shot, Charge Master, Counterstrike and more", html:()=>`
-    <h1 class="page-h">Skill notes</h1>
+  skills:{ group:"Resources", icon:"skills", title:"Skill Notes", desc:"Gogmapocalypse, Tetrad Shot, Charge Master, Counterstrike and more", html:()=>`
+    <h1 class="page-h">Skill Notes</h1>
     <p class="page-lede">How the skills that matter for bow actually behave.</p>
     <details class="sec"><summary><span class="chev" aria-hidden="true"></span><img class="secico" src="img/set_bonus.webp" alt=""><h2>Set bonus and Group Skills</h2></summary>
     <div class="skills">
@@ -1148,9 +1148,9 @@ const VIEWS = {
       <ol class="cp-list">${craftPriority()}</ol>
     </section>
   `},
-  patches:{ group:"Resources", icon:"patches", title:"Patch changes and bugs", desc:"Bow changes from TU1 to TU4 and known bugs", html:()=>`
+  patches:{ group:"Resources", icon:"patches", title:"Patch Changes and Bugs", desc:"Bow changes from TU1 to TU4 and known bugs", html:()=>`
     <article class="guide">
-      <h1 class="page-h">Patch changes and bugs</h1>
+      <h1 class="page-h">Patch Changes and Bugs</h1>
       <p class="page-lede">What changed for bow in each title update.</p>
       <h2>Title Update 4</h2>
       <p>Gogma Artian weapons arrive as the new best in slot. Pierce Coating gets a huge buff, so Close-Range bows aren’t the only option. Power Coating’s raw buff doesn’t save it. Gogmazios armor adds a lot of element and comfort.</p>
