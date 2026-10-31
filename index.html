@@ -213,7 +213,7 @@ main{padding-block:2rem 4rem;padding-left:max(16px,env(safe-area-inset-left,0px)
 .skip{position:sticky;top:calc(env(safe-area-inset-top,0px) + 68px);z-index:4;align-self:flex-start;font-size:1rem;font-weight:700;padding:.6rem 1.15rem;border:2px solid #f0c46a;background:#2a2620;color:#f6d488;box-shadow:0 0 0 1px rgba(240,196,106,.35),0 0 14px rgba(240,196,106,.35),0 4px 10px rgba(0,0,0,.55)}
 .abnote{margin:.6rem 1rem 0;font-size:.88rem;font-style:italic;font-weight:600;color:#f0c46a}
 .skip:hover{background:#36302a;border-color:#ffd98a}
-#meta-builds{scroll-margin-top:130px}
+#meta-builds,#ee-builds{scroll-margin-top:130px}.skip+.guide>.banner:first-child{margin-top:1.4rem}
 .backbtn{display:inline-flex;align-items:center;gap:.4rem;margin-bottom:1rem;width:fit-content;justify-self:start;align-self:start}
 .backbtn:hover{border-color:var(--amber)}
 .c-pierce{color:#7fb2f2;font-weight:700}.c-close{color:#fff;font-weight:700}.c-power{color:#ee6f69;font-weight:700}
@@ -916,6 +916,7 @@ const VIEWS = {
   "high-rank":{ group:"Builds", title:"Early Endgame", desc:"High rank progression pieces", html:()=>`
     <div class="mu-ranks pagerank">${rank("#ee7a3c","HR 41-100")}</div>
     <h1 class="page-h">Early Endgame</h1>
+    <button class="iconbtn skip" data-scroll="ee-builds">Skip to build <span aria-hidden="true">↓</span></button>
     <div class="guide">
       <p class="banner">The goal here is to get ready for <strong class="hi">Gogmazios</strong> and the other endgame monsters once you reach <strong class="hi">HR&nbsp;100</strong>. To do so, we will optimize our current build as well as prepare some equipment for the actual endgame.</p>
       <p>You now have access to the highest tier of <span style="white-space:nowrap"><img class="inico" src="img/relic_device_red.webp" alt=""><strong class="hi">Artian weapons</strong></span>. Not only are they your best weapons now, but they’ll also be upgradable and a core part of your builds with <strong class="hi">Gogmazios</strong> bows.</p>
@@ -929,8 +930,9 @@ const VIEWS = {
       <p>To save time, craft them in this order:</p>
       <ol class="cp-list ap-list">${[["fire","Fire","close","Close-Range"],["thunder","Thunder","power","Power"],["dragon","Dragon","power","Power"],["water","Water","close","Close-Range"],["ice","Ice","pierce","Pierce"]].map(([e,n,c,cn],i)=>`<li class="cp-row ap-row" style="--el:${EL_INFO[e][1]}"><b class="cp-n">${i+1}</b><span class="cp-bow"><img src="img/el/${e}.webp" alt=""><span>Artian <strong style="color:${EL_INFO[e][1]}">${n}</strong></span></span><img class="ap-coat" src="img/coat/${c}.webp" alt="${cn} Coating" title="${cn} Coating"></li>`).join("")}</ol>
       <p class="cnote">If you’re done crafting these bows before <strong class="hi">HR&nbsp;100</strong> and want to get ahead, craft a second <strong style="color:#e87b6f">Fire</strong> and <strong style="color:#e3c55c">Thunder</strong> Artian bow, since in endgame it’s recommended to have two different coatings for those elements.</p>
-      <p>As you craft your Artian bows, you can also work toward optimizing your build to be ready for endgame fights.</p>
+      <p id="ee-builds">As you craft your Artian bows, you can also work toward optimizing your build to be ready for endgame fights.</p>
       ${buildSwitch("Early Endgame",["WIP"],[{label:"Constitution 3",ph:"Build coming soon (Constitution 3)"},{label:"Constitution 5",ph:"Build coming soon (Constitution 5)"}])}
+      <p class="cnote">You’ll likely be missing some <strong class="hi">decorations</strong> at first. Use the <strong class="hi">best ones you have</strong>, then swap in the <strong class="hi">recommended ones</strong> as you get them.</p>
     </div>
   `},
   endgame:{ group:"Builds", title:"Endgame", desc:"Gogma Artian bows and meta builds", html:()=>`
