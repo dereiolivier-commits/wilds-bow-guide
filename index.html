@@ -256,7 +256,7 @@ main{padding-block:2rem 4rem;padding-left:max(16px,env(safe-area-inset-left,0px)
 
 /* guides */
 .guide{display:block}
-.guide h2{font-size:1.3rem;margin:2rem 0 .6rem}
+.guide h2{font-size:1.3rem;margin:2rem 0 .6rem}.guide h2.icoh{display:flex;align-items:center;gap:.55rem}.guide h2.cat{margin-bottom:.9rem}.guide .subgrp{border-left:3px solid #3a3a36;padding-left:1.1rem;margin:0 0 1rem .15rem}.guide h3.subh{display:flex;align-items:center;gap:.5rem;font-size:1.08rem;margin:1.6rem 0 .45rem;color:var(--ink)}.guide h3.subh img{height:1.8rem;width:auto}@media (max-width:560px){.guide .subgrp{padding-left:.6rem;margin-left:0;border-left-width:2px}}.guide h2.icoh img{height:2.2rem;width:auto}
 .guide h3{font-size:1.08rem;margin:1.4rem 0 .4rem}
 .guide p{max-width:68ch}
 .guide ul{padding-left:1.2rem}
@@ -300,6 +300,7 @@ main{padding-block:2rem 4rem;padding-left:max(16px,env(safe-area-inset-left,0px)
 /* Progression: Low Rank chapters (Olivier's notes 2026-10-29): monster icon from the match-up chart, then its notes */
 .chap{margin:.4rem 0}.chap>summary{list-style:none;display:flex;align-items:center;gap:.6rem;padding:.7rem 0;font-size:1.15rem;font-weight:700;color:var(--cream);border-bottom:2px solid var(--edge)}.chap>summary::-webkit-details-marker{display:none}.chap>summary:hover{color:var(--amber)}.chap[open]>summary .chev{transform:rotate(45deg)}.chap[open]{margin-bottom:1.2rem}.guide .chap:last-child{margin-bottom:1.4rem}.guide p.lr-done{max-width:none}.lr-done{display:block;margin:1.6rem 0 1.4rem;color:var(--muted);font-size:.95rem;text-align:center}.chap .step p{color:var(--ink)}
 .chap>summary .sub{margin-left:auto;font-size:.82rem;font-weight:600;color:var(--muted)}
+.chap>summary .cn.hr{background:#ee7a3c;color:#22140c}
 .chap>summary .cn{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:#3aa3dc;color:#0f1a22;font-weight:800;font-size:.95rem;border:2px solid var(--edge)}
 .steps{list-style:none;margin:0;padding:0}
 .guide .step{display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:1rem;padding:.9rem 0;margin:0;border-top:1px solid var(--line)}
@@ -315,7 +316,9 @@ main{padding-block:2rem 4rem;padding-left:max(16px,env(safe-area-inset-left,0px)
 .step p{margin:.4rem 0 0;font-size:.95rem}
 .lr-con{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:800;color:#8fe0a8;border:2px solid #4c9a63;background:#1f2a22;border-radius:999px;padding:.05rem .6rem .05rem .3rem}.lr-con img{width:22px;height:22px}.lr-con .pips{gap:3px}.lr-con .pips i{width:13px;height:13px;border-width:2px;border-radius:3px}.lr-con .pips i.g{background:#33cc33;border-color:#121212}.lr-con b{color:#c9c6b4;font-weight:600}
 .lr-dmg{display:inline-block;font-size:.8rem;font-weight:800;color:#7fd19a;border:2px solid #4c9a63;background:#1f2a22;border-radius:999px;padding:0 .55rem}
-.sbuild{margin-top:.7rem;min-width:0}.sbuild .upgnote{font-size:.88rem;color:var(--muted);margin:.4rem 0 0}.inico{height:1.7em;width:auto;vertical-align:-.5em;margin:0 .3em 0 .1em}
+.sbuild{margin-top:.7rem;min-width:0}.sbuild .hrnote{margin:.8rem 0 0}
+.sbuild .upgnote{font-size:.88rem;color:var(--muted);margin:.4rem 0 0}.inico{height:1.7em;width:auto;vertical-align:-.5em;margin:0 .3em 0 .1em}
+.mtile.tmp img{filter:drop-shadow(0 0 1px #c070ff) drop-shadow(0 0 1px #c070ff) drop-shadow(0 0 2px #9b45ff)}
 .chap .todo{color:#f0c46a;font-weight:800;margin-left:.3rem}.mrow{display:flex;align-items:center;gap:1.2rem;margin:.2rem 0 .9rem;max-width:720px}.mrow:last-child{margin-bottom:0}.mrow .mtxt{flex:1;min-width:0}.mrow .mtxt p{margin:0 0 .6rem}.mrow .mtxt p:last-child{margin:0}.mrow .mmedia{flex:none;width:48%;max-width:340px;height:auto;margin:0;border-radius:10px;border:2px solid var(--edge)}.mrow.rev{flex-direction:row-reverse}@media (max-width:560px){.mrow,.mrow.rev{flex-direction:column;align-items:stretch;gap:.6rem}.mrow .mmedia{width:100%;max-width:none}}
 .mapfilter{display:flex;align-items:center;gap:1rem;margin-top:.7rem;max-width:640px}.mapfilter img{width:46%;max-width:280px;height:auto;border-radius:10px;border:1px solid var(--line,#333);flex:none}.mapfilter .mftxt{flex:1;min-width:0}.mapfilter .mftxt p{margin:0 0 .6rem}.mapfilter .mftxt p:last-child{margin:0}.dirnote img{width:50%;max-width:300px}p.mftxt{margin:0}
 .sbuild img.upg{display:block;width:100%;max-width:560px;height:auto}.sbuild .build{margin:0}
@@ -344,6 +347,9 @@ main{padding-block:2rem 4rem;padding-left:max(16px,env(safe-area-inset-left,0px)
 .mu-bar{display:flex;align-items:center;gap:.5rem;height:14px}
 .mu-bar b{display:block;height:100%;border-radius:4px;min-width:4px}
 .mu-bar em{font-style:normal;font-weight:700;font-size:.85rem;color:var(--cream);line-height:1}
+.tag.wiptag{display:inline-flex;align-items:center;gap:.3rem;color:#f0c46a;border:1px solid rgba(240,196,106,.45);background:rgba(240,196,106,.1);font-size:.66rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.15rem .5rem .15rem .35rem}.tag.wiptag svg{width:12px;height:12px}
+.guide .cnote{margin:.3rem 0 1rem;padding:.6rem .9rem;border-left:3px solid #e0a83a;background:rgba(0,0,0,.22);border-radius:0 8px 8px 0;color:var(--muted);font-size:.9rem;font-style:italic;max-width:560px}
+.guide ol.ap-list{padding:0;max-width:340px;margin:.6rem 0 1.2rem;gap:.4rem}.guide ol.ap-list li.ap-row{grid-template-columns:2rem 1fr auto;margin:0;padding:.4rem .7rem}.guide .ap-row .cp-bow{font-size:1rem}.guide .ap-row .ap-coat{width:28px;height:28px;display:block}
 .cp .cp-lede{margin:.7rem 1rem 0;color:var(--muted);font-size:.9rem}
 .cp-list{list-style:none;margin:.8rem 0 0;padding:0 .8rem .9rem;display:grid;gap:.45rem}
 .cp-row{display:grid;grid-template-columns:2rem 16rem 1fr auto;align-items:center;gap:.4rem .8rem;padding:.45rem .7rem;border-radius:10px;border:2px solid #121212;background:linear-gradient(90deg,color-mix(in srgb,var(--el) 16%,#262626),#262626 70%)}
@@ -480,7 +486,7 @@ dialog input:focus{outline:none}
 .clipnote{font-size:.82rem;color:var(--muted);margin:-.1rem 0 1rem}
 .clipnote a{color:var(--link)}
 .coat-in{white-space:nowrap}.coat-in img{width:1.5em;height:1.5em;vertical-align:-.4em;margin-right:.2em}.coat-ammo{display:block;width:100%;max-width:420px;border-radius:8px;border:3px solid #121212;margin:4px 0 14px}.coat-more{font-size:.75em;opacity:.8}
-.cframes{background:var(--card);border:3px solid var(--edge);border-radius:12px;padding:14px 16px;margin:6px 0 16px;max-width:620px}.cf-bar{display:flex;height:40px;border:3px solid var(--edge);border-radius:8px;overflow:hidden}.cf-bar span{flex:1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}.cf-a{background:#b5832a;color:#fff6e0}.cf-b{background:#f0cf86;color:#2a1f0c;border-left:3px solid var(--edge)}.cf-scale{display:grid;grid-template-columns:1fr 1fr;font-size:.72rem;color:var(--muted);text-align:center;margin-top:5px}
+.cfx{max-width:520px;margin:.7rem 0 1rem}.cfx-bar{position:relative;height:30px;border:3px solid var(--edge);border-radius:8px;background:linear-gradient(90deg,#6cc7a6 50%,#3f8f78 50%);}.cfx-cap{text-align:center;font-size:.85rem;font-weight:700;color:var(--muted);margin-bottom:5px}.cfx-cap b{color:var(--cream);font-size:1.05rem;font-weight:800}.cfx-bar::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:3px;margin-left:-1.5px;background:var(--edge)}.cfx-under{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;font-size:.82rem;font-weight:700;text-align:center;color:var(--muted)}.cfx-under i{display:block;height:4px;border-radius:2px;background:#8a877c;margin:0 2px 5px}.cfx-under i.p{background:#e0a83a}.cfx-under div:first-child{color:#f0c46a}.cframes{background:var(--card);border:3px solid var(--edge);border-radius:12px;padding:14px 16px;margin:6px 0 16px;max-width:620px}.cf-bar{display:flex;height:40px;border:3px solid var(--edge);border-radius:8px;overflow:hidden}.cf-bar span{flex:1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}.cf-a{background:#b5832a;color:#fff6e0}.cf-b{background:#f0cf86;color:#2a1f0c;border-left:3px solid var(--edge)}.cf-scale{display:grid;grid-template-columns:1fr 1fr;font-size:.72rem;color:var(--muted);text-align:center;margin-top:5px}
 .tico{width:1.6em;height:1.6em;vertical-align:middle;margin-right:.35em}.con{display:inline-flex;align-items:center;white-space:nowrap}.plus-items{display:inline-flex;align-items:center;flex-wrap:wrap;gap:.15em .3em}.plus-items .tico{margin-right:.15em}
 .lvl{font-weight:800;color:#f0c46a;white-space:nowrap}
 .tplus{font-weight:800;color:#f0c46a;font-size:1.3em;line-height:1;margin-left:.9em}
@@ -541,7 +547,7 @@ td.c1,th.c1{width:1%;white-space:nowrap;padding-right:1.6rem}
 .skills .fold>summary .chev{margin-right:0}.skills .fold:not([open]){box-shadow:0 3px 0 var(--shadow)}
 .secico{width:34px;height:34px;flex:none}details.sec{margin:.4rem 0}details.sec>summary{list-style:none;display:flex;align-items:center;gap:.6rem;padding:.6rem 0;border-bottom:2px solid var(--edge)}details.sec>summary::-webkit-details-marker{display:none}details.sec>summary h2{font-size:1.3rem}details.sec>summary:hover h2{color:var(--amber)}details.sec[open]>summary .chev{transform:rotate(45deg)}details.sec>.skills{margin-top:.8rem}
 .tetrad{display:block;width:100%;max-width:440px;height:auto}
-.ew{margin:.8rem 1rem 0;border:2px solid var(--edge);border-radius:10px;overflow:hidden;background:var(--card-deep)}
+.ew{margin:.8rem 1rem 0;border:2px solid var(--edge);border-radius:10px;overflow:hidden;background:var(--card-deep)}.cf-k{display:block;width:14px;height:11px;border-radius:3px;border:1.5px solid #121212}
 .ew-legend{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.1rem;padding:.5rem .8rem;font-size:.8rem;font-weight:600;border-bottom:2px solid var(--edge)}
 .ew-legend span{display:flex;align-items:center;gap:.35rem}.ew-legend em{margin-left:auto;font-style:normal;color:var(--muted);font-weight:500}
 .ew-base{display:block;width:22px;height:11px;border-radius:3px;border:1.5px solid #121212;background:linear-gradient(90deg,#8c836f 33%,#5a87b8 33% 66%,#4ca38a 66%)}
@@ -692,12 +698,13 @@ function buildCard(name, tag, notes, tint){
 const SETCOL = {"Mutual Hostility":"#d9b25a","Scorcher":"#ec5f5f","Burst Boost":"#a9dcff","Lord's Soul":"#d8c7a3","Black Eclipse":"#b58bd6","Thunderous Roar":"#6fb6f2","Inspiration":"#7fd19a"};
 // Low Rank progression steps, by chapter (Olivier's notes, /mnt/project-files/progression-sets/notes.md)
 // each step: the monster's match-up chart icon, then what it unlocks (Olivier 2026-10-29)
-const lrName = slug => slug.split("-").map(w=>w[0].toUpperCase()+w.slice(1)).join(" ");
+const lrName = slug => ({"yian-kut-ku":"Yian Kut-Ku"})[slug] || slug.split("-").map(w=>w[0].toUpperCase()+w.slice(1)).join(" ");
 // stamina gain instead of damage (Olivier): [points already had, points gained] out of 5; gained pips are green
 const lrCon = (had, gain) => `<span class="lr-con" title="Constitution ${had+gain}/5"><img src="img/stamina.webp" alt="">Constitution<span class="pips">${Array.from({length:5},(_,i)=>`<i class="${i<had?"":i<had+gain?"g":"e"}"></i>`).join("")}</span><b>Lv ${had+gain}</b></span>`;
-const lrStep = (mons, body, dmg, hr, build) => `<li class="step"><div class="mtiles">${[].concat(mons).map(m=>`<span class="mtile" style="${muTint(lrName(m))}"><img src="img/mu/${m}.webp" alt="" loading="lazy"><span>${lrName(m)}</span></span>`).join("")}</div><div class="stxt">
+const lrStep = (mons, body, dmg, hr, build) => `<li class="step"><div class="mtiles">${[].concat(mons).map(m=>`<span class="mtile${m.startsWith("tempered-")?" tmp":""}" style="${muTint(lrName(m.replace(/^tempered-/,"")))}"><img src="img/mu/${m.replace(/^tempered-/,"")}.webp" alt="" loading="lazy"><span>${lrName(m)}</span></span>`).join("")}</div><div class="stxt">
   <div class="when"><b class="aft">After hunting ${[].concat(mons).map(lrName).join(" and ")}</b>${hr?`<span class="hrb">${hr}</span>`:""}${dmg?(Array.isArray(dmg)?(dmg.length>2?`<span class="lr-dmg">+${dmg[0]}% damage</span>`+lrCon(dmg[1],dmg[2]):lrCon(...dmg)):`<span class="lr-dmg">+${dmg}% damage</span>`):""}</div>
   ${body}${build?`<div class="sbuild">${build}</div>`:""}</div></li>`;   // extras (build dropdown, upgrade graphic) stay in the text column, nothing under the icon (Olivier)
+const hrGroup = (n, from, to, sub, steps) => `<details class="chap" id="hr-${from}${to?"-"+to:""}"><summary><span class="chev" aria-hidden="true"></span><span class="cn hr">${n}</span>${to?`HR ${from} to ${to}`:`HR ${from}+`}<span class="sub">${sub}</span></summary><ol class="steps">${steps.join("")}</ol></details>`;
 const lrChapter = (n, sub, steps) => `<details class="chap" id="chapter-${n}"><summary><span class="chev" aria-hidden="true"></span><span class="cn">${n}</span>Chapter ${n}<span class="sub">${sub}</span></summary><ol class="steps">${steps.join("")}</ol></details>`;
 function buildImage(name, tag, img, alt, notes, tint){
   return `<details class="card build fold">
@@ -707,13 +714,13 @@ function buildImage(name, tag, img, alt, notes, tint){
   </details>`;
 }
 function buildSwitch(name, tag, variants, abnote){
-  const tags = [].concat(tag).map(t=>Array.isArray(t)?`<span class="tag settag" style="--c:${SETCOL[t[0]]||"var(--amber)"}">${t[0]}${t[1]!=null?" "+t[1]:""}</span>`:`<span class="tag">${t}</span>`).join("");
+  const tags = [].concat(tag).map(t=>t==="WIP"?`<span class="tag wiptag"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 15 14H1z" fill="#f0c46a"/><path d="M8 6v4" stroke="#2e2e2e" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="12" r="1" fill="#2e2e2e"/></svg>Under construction</span>`:Array.isArray(t)?`<span class="tag settag" style="--c:${SETCOL[t[0]]||"var(--amber)"}">${t[0]}${t[1]!=null?" "+t[1]:""}</span>`:`<span class="tag">${t}</span>`).join("");
   return `<details class="card build fold">
     <summary class="band"><span class="chev" aria-hidden="true"></span><span class="bname">${name}</span><span class="tags">${tags}</span></summary>
     <div class="vswitch" role="tablist" aria-label="${name} version">${variants.map((v,i)=>`<button type="button" role="tab" aria-selected="${i===0}" data-variant="${i}"${/god charm/i.test(v.label)?' class="god"':""}>${v.label}</button>`).join("")}</div>
     ${abnote?`<p class="abnote">${abnote}</p>`:""}
     ${variants.map((v,i)=>`<div class="variant"${i?" hidden":""}>
-      <button class="shot" data-zoom="img/${v.img}" aria-label="Open ${name} (${v.label}) full size"><img src="img/${v.img}" alt="${v.alt}" loading="lazy"></button>
+      ${v.ph?`<div class="cb-clipph" style="margin:.8rem 1rem 1rem;padding:0 1rem;text-align:center">${v.ph}</div>`:`<button class="shot" data-zoom="img/${v.img}" aria-label="Open ${name} (${v.label}) full size"><img src="img/${v.img}" alt="${v.alt}" loading="lazy"></button>`}
       ${v.notes?`<div class="notes">${v.notes}</div>`:""}
     </div>`).join("")}
   </details>`;
@@ -822,10 +829,9 @@ const VIEWS = {
 
     <h2 class="section-h">Builds</h2>
     <p class="section-sub">Armor and weapons for each stage of the game.</p>
-    <p class="smallnote">The progression builds are incomplete. They will be added over the next few days.</p>
     <ol class="path" aria-label="Builds">
-      <li class="card s-blue"><a href="#low-rank">${rank("#3aa3dc","HR 1-21")}<strong>Progression</strong><span>Story armor by chapter</span><i class="wip"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 15 14H1z" fill="#f0c46a"/><path d="M8 6v4" stroke="#2e2e2e" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="12" r="1" fill="#2e2e2e"/></svg>Under construction</i></a></li>
-      <li class="card s-orange"><a href="#high-rank">${rank("#ee7a3c","HR 21-100")}<strong>Early Endgame</strong><span>Easy pieces while climbing HR</span><i class="wip"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 15 14H1z" fill="#f0c46a"/><path d="M8 6v4" stroke="#2e2e2e" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="12" r="1" fill="#2e2e2e"/></svg>Under construction</i></a></li>
+      <li class="card s-blue"><a href="#low-rank">${rank("#3aa3dc","HR 1-40")}<strong>Progression</strong><span>Story armor by chapter</span></a></li>
+      <li class="card s-orange"><a href="#high-rank">${rank("#ee7a3c","HR 41-100")}<strong>Early Endgame</strong><span>Easy pieces while climbing HR</span><i class="wip"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 15 14H1z" fill="#f0c46a"/><path d="M8 6v4" stroke="#2e2e2e" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="12" r="1" fill="#2e2e2e"/></svg>Under construction</i></a></li>
       <li class="card s-red"><a href="#endgame">${rank("#dc3a2c","HR 100+")}<strong>Endgame</strong><span>Gogma Artian and meta sets</span></a></li>
     </ol>
 
@@ -870,7 +876,7 @@ const VIEWS = {
   `},
 
   "low-rank":{ group:"Builds", title:"Progression", desc:"Story armor pieces by chapter", html:()=>`
-    <div class="mu-ranks pagerank">${rank("#3aa3dc","HR 1-21")}</div>
+    <div class="mu-ranks pagerank">${rank("#3aa3dc","HR 1-40")}</div>
     <h1 class="page-h">Progression</h1>
     <p class="banner">Every build and upgrade listed below is <strong class="hi">optional</strong>. The story is quite easy, so feel free to upgrade as much or as little as you want.</p>
     <div class="guide">
@@ -891,31 +897,40 @@ const VIEWS = {
         lrStep("guardian-ebony-odogaron",`<p>You can gain a bit of extra damage by adding <strong class="hi">Burst Boost</strong> to your build.</p><p>This set loses a point of <strong class="hi">Constitution</strong>, but if you have a <strong class="hi">Constitution decoration</strong>, you can put that back on the build.</p><p>If you don’t want to lose any point of <strong class="hi">Constitution</strong>, you can skip that build.</p>`,8,"",`${buildImage("Burst Boost build",[["Scorcher",1],["Burst Boost",1]],"ebony_odogaron_build_cropped_transparent.webp","Burst Boost build after Guardian Ebony Odogaron: Hunter’s Bow III with G. Ebony Helm (Physique jewel), Rey Sandmail, G. Rathalos Vambraces, G. Ebony Coil, G. Rathalos Greaves and Fitness Charm I. Constitution 3, Burst 2, Weakness Exploit 2, Bleeding Resistance 1, Scorcher, Burst Boost, Wylk Burst.","","")}`)
       ])}
       <p class="lr-done"><span>Congratulations, you completed <strong class="hi">Low Rank</strong>.</span></p>
+      <h2 id="high-rank-progression">High Rank</h2>
+      <p class="banner">The goal in <strong class="hi">High Rank</strong> is to gradually increase your <strong class="hi">Hunter Rank cap</strong>. Try to passively farm for <strong class="hi">decorations</strong>, you’ll need them later.</p>
+      ${hrGroup(1,10,20,"",[
+        lrStep("yian-kut-ku",`<p>The first priority here is to find and farm some <strong class="hi">Rathalos</strong>. His armor is excellent at this stage of the game: it gives you a lot of <strong class="hi">Constitution</strong>, max <strong class="hi">Adrenaline Rush</strong> and <strong class="hi">Scorcher&nbsp;2</strong>, which got buffed in Title Update&nbsp;4. This is a solid <strong class="hi">11%</strong> estimated damage increase.</p><p>The second priority is to farm the materials to upgrade your bow as soon as you reach <strong class="hi">HR&nbsp;20</strong>, since you cannot upgrade it yet. You need 4 <strong class="hi">Great Stout Bone</strong> (Ajarakan, Blangonga, Doshaguma) and 2 <strong class="hi">Colossal Bone</strong>.</p>`,11,"",buildImage("HR 10 to 20 build",[["Scorcher",2]],"hr10_20_build_cropped_transparent.webp?v=5","HR 10 to 20 build: Hunter’s Bow III with G. Ebony Helm, Rathalos Mail α, Rathalos Vambraces β, Rathalos Coil β, Rathalos Greaves α and Fitness Charm II. Adrenaline Rush 5, Constitution 5, Evade Window 2, Burst 1, Scorcher 2.","","")+`<p class="hrnote"><strong class="hi">Note:</strong> at HR&nbsp;15 you also unlock the <a href="#stamina/evasion-mantle" style="white-space:nowrap"><img class="inico" src="img/evasion_mantle.webp" alt=""><strong class="hi">Evasion Mantle</strong></a>, the best mantle for Bow. Definitely use it.</p>`)
+      ])}
+      ${hrGroup(2,20,35,"",[
+        lrStep(["guardian-fulgur-anjanath","tempered-lala-barina"],`<p>The first priority here is to upgrade the <strong class="hi">Hunter’s Bow</strong> to level&nbsp;4 as soon as possible.</p>`,17,"",`<picture><source media="(max-width:560px)" srcset="img/hb4_upgrade_v.webp"><img class="upg" src="img/hb4_upgrade.webp" alt="Hunter’s Bow III (170 attack, 0% affinity, Focus 2, Attack Boost 1) upgrades to Hunter’s Bow IV (200 attack, 0% affinity, Focus 3, Attack Boost 1): +17% damage" loading="lazy"></picture><p class="hrnote">If you haven’t finished crafting the <strong class="hi">Rathalos</strong> armor, you can do so now.</p><p class="hrnote">Next, craft the <strong class="hi">G. Fulgur Anjanath</strong> helmet, which is very efficient with <strong class="hi">Agitator&nbsp;2</strong>. Also craft the <strong class="hi">Burst Charm</strong>, because one point of <strong class="hi">Burst</strong> is extremely efficient and front-loaded.</p><p class="hrnote">With this new bow and armor, you can expect a <strong class="hi">17%</strong> damage increase.</p>`+buildImage("HR 20 to 30 build",[["Scorcher",2]],"hr20_30_build_cropped_transparent.webp?v=3","HR 20 to 30 build: Hunter’s Bow IV with G. Fulgur Helm β, Rathalos Mail α, Rathalos Vambraces β, Rathalos Coil β, Rathalos Greaves α and Burst Charm I. Adrenaline Rush 5, Agitator 2, Burst 1, Constitution 3, Evade Window 2, Scorcher 2.","","")+`<p class="hrnote">This build only has <strong class="hi">Constitution&nbsp;3</strong>, so eat for <strong class="hi">Black Belt (Lo)</strong> here. If you don’t, you should have at least 2 <strong class="hi">Physique</strong> decorations by now to reach <strong class="hi">Constitution&nbsp;5</strong>.</p>`)
+      ])}
+      ${hrGroup(3,35,40,"",[
+        lrStep("gore-magala",`<p><strong class="hi">Seregios</strong> becomes available. Because of its skill <strong class="hi">Bladescale Loading</strong>, his bow is a clear upgrade over your current bow.</p>`,"12–15","",`<picture><source media="(max-width:560px)" srcset="img/shalya_upgrade_v.webp?v=2"><img class="upg" src="img/shalya_upgrade.webp?v=2" alt="Hunter’s Bow IV (200 attack, 0% affinity, Focus 3, Attack Boost 1) upgrades to Shalya Bow I (190 attack, 25% affinity, Bladescale Loading 1): about +12 to 15% damage, depending on Bladescale Loading uptime" loading="lazy"></picture><p class="hrnote">While the <strong class="hi">Gore Magala</strong> armor becomes available, due to a lack of decorations and overall stats, the fixed damage and efficiency from the <strong class="hi">Rathalos</strong> armor and <strong class="hi">Scorcher&nbsp;2</strong> is still the best overall pick at the moment.</p>`)
+      ])}
+      ${hrGroup(4,41,null,"",[
+        lrStep("arkveld",`<p>You unlock the <strong class="hi">tier 3 tempered investigations</strong>, which also unlock the upgrade to the <strong class="hi">Seregios</strong> bow.</p>`,8,"",`<picture><source media="(max-width:560px)" srcset="img/insurgent_upgrade_v.webp?v=2"><img class="upg" src="img/insurgent_upgrade.webp?v=2" alt="Shalya Bow I (190 attack, 25% affinity, Bladescale Loading 1) upgrades to Insurgent Bow (210 attack, 25% affinity, Bladescale Loading 1): about +8% damage" loading="lazy"></picture><p class="hrnote cnote">While the story is technically not over until <strong class="hi">HR&nbsp;50</strong>, these are the last significant gear upgrades you’ll get, so the progression guide ends here. Your next step is to look into <a href="#high-rank">early endgame builds</a>.</p>`)
+      ])}
     </div>
   `},
   "high-rank":{ group:"Builds", title:"Early Endgame", desc:"High rank progression pieces", html:()=>`
-    <div class="mu-ranks pagerank">${rank("#ee7a3c","HR 21-100")}</div>
+    <div class="mu-ranks pagerank">${rank("#ee7a3c","HR 41-100")}</div>
     <h1 class="page-h">Early Endgame</h1>
-    <p class="page-lede">Still not the time to min-max. Grab these and push toward endgame.</p>
     <div class="guide">
-      <h2>Early High Rank</h2>
-      <div class="card tablewrap"><table>
-        <thead><tr><th>HR</th><th>Monster</th><th>How to get it</th></tr></thead>
-        <tbody>
-          <tr><td>8</td><td>Yian Kut-Ku</td><td>Unlocks in Chapter 4: New Ecosystems. Farm it with the “Kut-Ku Gone Cuckoo” event quest.</td></tr>
-          <tr><td>10</td><td>Gypceros</td><td>Find it in the wild or join SOS hunts.</td></tr>
-        </tbody>
-      </table></div>
-      <p>${P("Which Kut-Ku and Gypceros pieces to craft")}</p>
-      <h2>Mid High Rank</h2>
-      <div class="card tablewrap"><table>
-        <thead><tr><th>HR</th><th>Craft</th></tr></thead>
-        <tbody>
-          <tr><td>9</td><td>Doshaguma Braces α</td></tr>
-          <tr><td>21</td><td>Guardian Rathalos Mail β, Guardian Rathalos Coil α, Guardian Rathalos Greaves β, Fitness Charm III</td></tr>
-        </tbody>
-      </table></div>
-      <p>Craft and upgrade the G. Doshaguma bow whenever possible.</p>
+      <p class="banner">The goal here is to get ready for <strong class="hi">Gogmazios</strong> and the other endgame monsters once you reach <strong class="hi">HR&nbsp;100</strong>. To do so, we will optimize our current build as well as prepare some equipment for the actual endgame.</p>
+      <p>You now have access to the highest tier of <span style="white-space:nowrap"><img class="inico" src="img/relic_device_red.webp" alt=""><strong class="hi">Artian weapons</strong></span>. Not only are they your best weapons now, but they’ll also be upgradable and a core part of your builds with <strong class="hi">Gogmazios</strong> bows.</p>
+      <p>Look out for these investigations that reward both <strong class="hi">Rarity&nbsp;8 Artian devices</strong> and <strong class="hi">decorations</strong>. You will need both for endgame builds.</p>
+      <img src="img/investigation_rewards.webp" alt="Investigation bonus rewards: decorations and Rarity 8 Artian devices" loading="lazy" style="display:block;width:100%;max-width:520px;height:auto;border-radius:10px;border:2px solid var(--edge);margin:.6rem 0 1rem">
+      <p>When crafting an Artian bow, it’s recommended to use <strong class="hi">3 attack devices</strong> of the same element.</p>
+      <p>Once crafted, you can roll for random <strong class="hi">reinforcements</strong>. For most bows, the best reinforcement is the following:</p>
+      <img class="upg" style="display:block;width:100%;height:auto;max-width:480px;margin:.6rem 0 1rem" src="img/artian_perfect_roll.webp?v=3" alt="Perfect roll Artian bow (any element): 220 attack, 5% affinity, 290 element, three empty level 3 slots, reinforced with Attack I x3 (+15) and Element I x2 (+60)" loading="lazy">
+      <p>Coatings are fixed per element on Artian bows, so use whatever your bow has for now. With <strong class="hi">Gogmazios</strong>, you’ll be able to choose them when upgrading.</p>
+      <p>Crafting all these bows is a big part of the endgame grind, so don’t get discouraged if it takes a while.</p>
+      <p>To save time, craft them in this order:</p>
+      <ol class="cp-list ap-list">${[["fire","Fire","close","Close-Range"],["thunder","Thunder","power","Power"],["dragon","Dragon","power","Power"],["water","Water","close","Close-Range"],["ice","Ice","pierce","Pierce"]].map(([e,n,c,cn],i)=>`<li class="cp-row ap-row" style="--el:${EL_INFO[e][1]}"><b class="cp-n">${i+1}</b><span class="cp-bow"><img src="img/el/${e}.webp" alt=""><span>Artian <strong style="color:${EL_INFO[e][1]}">${n}</strong></span></span><img class="ap-coat" src="img/coat/${c}.webp" alt="${cn} Coating" title="${cn} Coating"></li>`).join("")}</ol>
+      <p class="cnote">If you’re done crafting these bows before <strong class="hi">HR&nbsp;100</strong> and want to get ahead, craft a second <strong style="color:#e87b6f">Fire</strong> and <strong style="color:#e3c55c">Thunder</strong> Artian bow, since in endgame it’s recommended to have two different coatings for those elements.</p>
+      <p>As you craft your Artian bows, you can also work toward optimizing your build to be ready for endgame fights.</p>
+      ${buildSwitch("Early Endgame",["WIP"],[{label:"Constitution 3",ph:"Build coming soon (Constitution 3)"},{label:"Constitution 5",ph:"Build coming soon (Constitution 5)"}])}
     </div>
   `},
   endgame:{ group:"Builds", title:"Endgame", desc:"Gogma Artian bows and meta builds", html:()=>`
@@ -1117,10 +1132,12 @@ const VIEWS = {
 
     </article>
   `},
-  stamina:{ group:"Guides", icon:"stamina_combo", title:"Additional Information", desc:"Stamina cap, coatings and 40 FPS", html:()=>`
+  stamina:{ group:"Guides", icon:"stamina_combo", title:"Additional Information", desc:"Stamina cap, coatings, 40 FPS and Evasion Mantle", html:()=>`
     <article class="guide">
       <h1 class="page-h">Additional Information</h1>
       <p class="page-lede">Stamina is bow’s most important resource. Any of these six combinations caps your stamina reduction.</p>
+      <h2 id="stamina-management" class="cat">Stamina Management</h2>
+      <div class="subgrp">
       <div class="card t-tan tablewrap fitw"><table>
         <thead><tr><th class="c1">Constitution</th><th>Items needed</th></tr></thead>
         <tbody>
@@ -1134,7 +1151,19 @@ const VIEWS = {
       </table>
         <div class="pip-legend"><span><span class="pips"><i></i></span>Constitution level</span><span class="con"><span class="pips"><i class="e"></i></span>From items, counts as a level</span></div>
       </div>
-      <p>Constitution 5 is easy to slot with jewels on current sets, but use any row if you need your level 1 slots elsewhere.</p>
+      <p>Always aim for <strong class="hi">Constitution&nbsp;5</strong> or its equivalent. Most endgame builds fit all 5 points. If yours can’t, use one of the combinations above.</p>
+      <h3 id="stamina-dodge" class="subh"><img src="img/evade.webp" alt="">Discerning Dodge</h3>
+      <p><a href="#basics/discerning-dodge">Discerning Dodge</a> is the best way to regain stamina. However, the amount of stamina you get depends on your <strong class="hi">dodge timing</strong>.</p>
+      <div class="cfx"><div class="cfx-cap"><b>14</b> counter frames</div><div class="cfx-bar"></div><div class="cfx-under"><div><i class="p"></i>Perfect counter</div><div></div></div></div>
+      <p>Dodging in the <strong class="hi">first half</strong> of your counter frames is a <strong class="hi">perfect counter</strong>. It gives more Trick Arrow gauge and, most importantly, your <strong class="hi">full stamina bar</strong> instead of just a little. Always aim for the perfect counter.</p>
+      <h3 id="faster-stamina-recovery" class="subh"><img src="img/stamina.webp" alt="">Faster Stamina Recovery</h3>
+      <p>Many players don’t realize that <strong class="hi">standing still</strong> makes your stamina recover faster.</p>
+      <p>If your stamina is low after a combo and the monster is about to attack, don’t run around: stand still to regen faster, so you have enough stamina to counter.</p>
+      <video class="clip" src="vid/stamina_still_vs_moving.mp4" poster="vid/stamina_still_vs_moving_poster.jpg" autoplay muted loop playsinline aria-label="Stamina bar refilling from empty: slowly while moving (top), much faster while standing still (bottom)" style="max-width:520px;aspect-ratio:840/332;margin:.6rem 0 1rem;width:100%"></video>
+      <h3 id="stamina-surge" class="subh"><img src="img/stamina_surge_deco.webp" alt="">Stamina Surge</h3>
+      <p>Generally, <a href="#skills/stamina-surge">Stamina Surge</a> is not necessary, because you get enough stamina back from Discerning Dodge.</p>
+      <p>In <strong class="hi">multiplayer</strong>, you don’t get to counter as much since the monster’s aggro is shared with other hunters. There, Stamina Surge helps you regenerate stamina without countering.</p>
+      </div>
 
       <h2 id="coatings">Coatings</h2>
       <div class="coat-grid">
@@ -1150,6 +1179,9 @@ const VIEWS = {
       <h2 id="40-fps">40 FPS</h2>
       <p>As in many other Capcom games, a lot of things are tied to FPS. In Wilds, it’s usually pierce attacks, so for Bow this affects <strong class="c-pierce">Pierce Coatings</strong>.</p><p>If you lock your FPS at <strong class="hi">exactly 40</strong>, you increase the tick rate of Pierce Coatings, which increases their damage by <strong class="hi">around 20%</strong> (estimate). If you want to learn more, you can check out ${yt("https://youtu.be/kQcXS3EWRQA","this video")}.</p><p>Even without the FPS lock, Pierce Bow is extremely strong, so do not feel that you have to use this.</p>
       <p class="banner"><strong>Frame gen does not affect this</strong>, so you can play at 40 FPS with frame gen X2 or X3 to get smoother frames.</p>
+      <h2 id="evasion-mantle" class="icoh"><img src="img/evasion_mantle.webp" alt="">Evasion Mantle</h2>
+      <p>The <strong class="hi">Evasion Mantle</strong> is Bow’s best mantle. Not only does it max out your evasion while it’s active, but after a successful dodge you also get an additional <strong class="hi">20% base raw</strong> for <strong class="hi">10 seconds</strong>.</p>
+      <p>It’s a very strong mantle, not only for comfort but also for damage.</p>
     </article>
   `},
 
@@ -1192,6 +1224,7 @@ const VIEWS = {
       ${scard("Antivirus","empower","dk-lav",`<p>Cures Frenzy faster, +10% affinity when cured, stacking with Black Eclipse.</p>`)}
       ${scard("Counterstrike","convert_element","dk-red",`<div class="lvg l3"><span></span>${[1,2,3].map(n=>`<b>Lv ${n}</b>`).join("")}<span class="k">Raw</span>${[10,15,25].map(v=>`<em>+${v}</em>`).join("")}<span class="k">Duration</span>${[30,35,45].map(v=>`<em>${v}s</em>`).join("")}</div><p>A very efficient skill, even if you only activate it sometimes while getting hit accidentally.</p><p>It procs when getting hit by an attack that knocks you over. It also activates when getting hit through hyper armor.</p><p class="banner"><strong class="hi">Pro tip:</strong> Counterstrike can be activated when taking chip damage while countering a multi hit attack.</p><video class="clip" src="vid/counterstrike_chip.mp4?v=2" poster="vid/counterstrike_chip_poster.jpg?v=2" autoplay muted loop playsinline aria-label="Counterstrike clip: chip damage from Arkveld triggers Counterstrike"></video>`)}
       ${scard("Peak Performance","convert_element","dk-red",`<p>Increases attack when your health is full.</p><div class="lvg"><span></span>${[1,2,3,4,5].map(n=>`<b>Lv ${n}</b>`).join("")}<span class="k">Raw</span><em>+3</em><em>+6</em><em>+10</em><em>+15</em><em>+20</em></div>`)}
+      ${scard("Stamina Surge","stamina","t-tan",`<div class="lvg l3"><span></span>${[1,2,3].map(n=>`<b>Lv ${n}</b>`).join("")}<span class="k">Stamina regen</span>${[10,30,50].map(v=>`<em>+${v}%</em>`).join("")}</div><p>Generally not needed, because you get enough stamina back from <a href="#stamina/stamina-dodge">Discerning Dodge</a>.</p><p>In <strong class="hi">multiplayer</strong>, where you don’t get to counter as much, Stamina Surge can be useful.</p>`,"stamina-surge")}
       ${scard("Coalescence","empower","dk-indigo",`<p>Temporarily increases elemental attack power and status effects after recovering from blights or abnormal status.</p><div class="lvg l3"><span></span>${[1,2,3].map(n=>`<b>Lv ${n}</b>`).join("")}<span class="k">Element</span><em>x1.05</em><em>x1.1</em><em>x1.15</em><span class="k">Status</span><em>x1.05</em><em>x1.1</em><em>x1.15</em></div><p class="banner"><strong class="hi">Pro tip:</strong> Procs off of the Gore set bonus.</p>`)}
       ${scard("Evade Window","evade","dk-cyan",`${ewChart()}<p>Increases both dash i-frames and counter frames, though counter frames are less impacted. Mostly used to reduce or avoid chip damage when countering multi-hits. For more info, watch ${yt("https://youtu.be/WdmwCqzD62s","this video")}.</p>`,"evade-window")}
       ${scard("Convert Element","convert_element","t-red",`<p>Adds up to <strong class="hi">180 dragon</strong> element. Procs when you <strong class="hi">evade an elemental attack</strong> or <strong class="hi">take elemental damage</strong>. Lasts <strong class="hi">2 min</strong>, with a <strong class="hi">90 s</strong> cooldown.</p><div class="ce">
