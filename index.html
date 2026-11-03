@@ -63,6 +63,10 @@ h1,h2,h3{color:var(--cream);line-height:1.2;margin:0;text-wrap:balance;font-weig
 .iconbtn:hover{background:#383838}
 .kbd{color:var(--muted);font-weight:500;margin-left:.3rem}
 .menu-btn{display:none}
+/* YouTube subscribe button in the top bar (test, 2026-11-03) */
+.subbtn{display:inline-flex;align-items:center;align-self:stretch;gap:.45rem;background:#cc0022;border:2px solid var(--edge);color:#fff;border-radius:10px;padding:.4rem .8rem;font-size:.9rem;font-weight:700;text-decoration:none;white-space:nowrap;flex:none}
+.subbtn:hover{background:#e0102f;color:#fff}.subbtn svg{width:20px;height:14px;flex:none;display:block}
+@media (max-width:440px){.subbtn{padding:.35rem .55rem}.sublbl{display:none}.subbtn svg{width:28px;height:20px}}
 
 /* Advanced Combos table (from Olivier's Power and CRC Combos chart) */
 .cb-legend{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;margin:.4rem 0 1.2rem;font-size:.9rem;color:var(--ink)}
@@ -607,6 +611,7 @@ details.skill>.lvg{margin-top:.9rem}
     <span class="brand-t">Wilds Bow Guide</span>
   </a>
   <span class="spacer"></span>
+  <a class="subbtn" href="https://www.youtube.com/channel/UCj5rxzvXpiPASGNw4-z_BbA?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Subscribe to Tidus69 on YouTube"><svg viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#fff"/><path d="M11 5.5v9l8-4.5z" fill="#cc0022"/></svg><span class="sublbl">Subscribe</span></a>
   <button class="iconbtn" id="searchBtn" aria-label="Search"><svg class="sico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span class="slbl">Search</span><span class="kbd">⌘K</span></button>
 </header>
 
