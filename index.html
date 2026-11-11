@@ -104,6 +104,26 @@ h1,h2,h3{color:var(--cream);line-height:1.2;margin:0;text-wrap:balance;font-weig
 .cb-clipph{max-width:480px;aspect-ratio:16/9;margin:.4rem 0 .6rem;border:2px dashed #4a463c;border-radius:10px;display:grid;place-items:center;color:var(--muted);font-size:.85rem;font-style:italic;background:#1c1c1c}
 .guide .cb-card .cb-cnote{margin:0;padding:.65rem 1rem .7rem 1.6rem;font-size:.92rem;color:var(--ink);max-width:none;background:var(--card-deep);border-bottom:2px solid #161616}
 .guide .cb-tap{display:flex;align-items:center;gap:.5rem;color:var(--ink);font-size:.92rem;margin:.2rem 0 1.2rem}.cb-tap img{width:26px;height:26px;flex:none}
+.cbh-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1.4rem;padding:.9rem 1rem .4rem}
+.cbh-time{display:flex;align-items:center;gap:.6rem;font-weight:700;color:var(--muted);font-size:.9rem}
+.cbh-tw{display:flex;align-items:center;gap:.7rem;flex:0 1 380px;min-width:0}.cbh-time{flex:1;min-width:0}.cbh-time input[type=range]{flex:1;min-width:0;width:100%;accent-color:#f0c46a}
+.cbh-num{display:inline-flex;align-items:baseline;gap:2px;font-weight:800;font-size:1.35rem;color:var(--cream)}.cbh-num input{width:4.6em;box-sizing:border-box;font:inherit;color:inherit;background:#1c1c1c;border:2px solid #3a3a3a;border-radius:8px;padding:.05em .3em;text-align:right;font-variant-numeric:tabular-nums;-moz-appearance:textfield}.cbh-num input:focus{outline:none;border-color:#f0c46a}.cbh-num input::-webkit-inner-spin-button,.cbh-num input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.cbh-num small{font-size:.8rem;color:var(--muted)}
+.cbh-chk{display:inline-flex;align-items:center;gap:.45rem;font-weight:700;color:var(--cream);font-size:.92rem;cursor:pointer}
+.cbh-chk input{width:18px;height:18px;accent-color:#f0c46a}
+.cbh-out{padding:.4rem 1rem 1rem}
+.cbh-sum{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;align-items:baseline;margin:.2rem 0 .7rem;font-weight:700;color:var(--muted);font-size:.85rem}
+.cbh-sum b{font-size:1.25rem;font-weight:800;color:var(--cream);margin-right:.25rem;font-variant-numeric:tabular-nums}
+.cbh-sum b.mvs{color:#f0c46a}
+.cbh-chain{display:flex;flex-direction:column;gap:.45rem}
+.cbh-step{display:grid;grid-template-columns:28px minmax(0,1fr) auto;align-items:center;gap:.6rem;padding:.45rem .7rem;border-radius:10px;background:rgba(0,0,0,.2);border:1px solid #1a1a1a}
+.cbh-step.ramp{box-shadow:inset 3px 0 0 #6aa3e0}
+.cbh-n{font-weight:800;color:var(--muted);font-size:.85rem}
+.cbh-seq{display:flex;flex-wrap:wrap;align-items:center;gap:.3rem}.cbh-seq i{color:#f0c46a;font-style:normal;opacity:.8}
+.cbh-meta{font-size:.78rem;font-weight:700;color:var(--muted);text-align:right;white-space:nowrap}
+.cbh-coat{display:inline-flex;gap:2px;margin-left:.4rem;vertical-align:middle}.cbh-coat s{display:inline-block;width:5px;height:11px;border-radius:2px;background:#d8d890;text-decoration:none}.cbh-coat s.off{background:#4a4836}
+@media (max-width:560px){.cbh-step{grid-template-columns:22px minmax(0,1fr)}.cbh-meta{grid-column:2;text-align:left}}
+.cbh-idle{font-size:.85rem;color:var(--muted);margin:.5rem 0 0}
+.cbh-note{font-size:.85rem;color:var(--ink);margin:.7rem 0 0}
 .cb-wrap .v-pi{display:none}.cb-wrap.pierce .v-pi{display:revert}.cb-wrap.pierce .v-cr{display:none}
 .cb-bar b.v-pi{display:none}.cb-wrap.pierce .cb-bar b.v-pi{display:block}
 .vswitch.cb-mode{padding:0;margin:0 0 .6rem}
@@ -217,7 +237,7 @@ main{padding-block:2rem 4rem;padding-left:max(16px,env(safe-area-inset-left,0px)
 .skip{position:sticky;top:calc(env(safe-area-inset-top,0px) + 68px);z-index:4;align-self:flex-start;font-size:1rem;font-weight:700;padding:.6rem 1.15rem;border:2px solid #f0c46a;background:#2a2620;color:#f6d488;box-shadow:0 0 0 1px rgba(240,196,106,.35),0 0 14px rgba(240,196,106,.35),0 4px 10px rgba(0,0,0,.55)}
 .abnote{margin:.6rem 1rem 0;font-size:.88rem;font-style:italic;font-weight:600;color:#f0c46a}
 .skip:hover{background:#36302a;border-color:#ffd98a}
-#meta-builds,#ee-builds{scroll-margin-top:130px}.skip+.guide>.banner:first-child{margin-top:1.4rem}
+#meta-builds,#ee-builds,#combo-helper{scroll-margin-top:130px}.skip+.guide>.banner:first-child{margin-top:1.4rem}
 .backbtn{display:inline-flex;align-items:center;gap:.4rem;margin-bottom:1rem;width:fit-content;justify-self:start;align-self:start}
 .backbtn:hover{border-color:var(--amber)}
 .c-pierce{color:#7fb2f2;font-weight:700}.c-close{color:#fff;font-weight:700}.c-power{color:#ee6f69;font-weight:700}
@@ -806,6 +826,55 @@ const cbRow = ([t,seq,mv,emv,tmv,temv,hl,more]) => { const pi = more.pi; return 
 </summary><div class="cb-more">${more&&more.clip?`<video class="clip" src="vid/${more.clip}.mp4?v=4" poster="vid/${more.clip}_poster.jpg?v=4" muted loop playsinline preload="none" aria-label="${seq.join(" > ")} clip"></video>`:`<div class="cb-clipph">Clip coming soon</div>`}<p>${more&&more.note?more.note:`<span class="ph">Note coming soon</span>`}</p></div></details>`; };
 // play a combo's clip only while its row is open
 document.addEventListener("toggle", e => { const d = e.target; if(!d.classList || !d.classList.contains("cb-item")) return; const v = d.querySelector("video"); if(v){ if(d.open){ v.muted = true; v.play().catch(()=>{}); } else v.pause(); } }, true);
+// Combo helper (Olivier 2026-11-11): best chain of combos for a window. Times for the helper: ramp-ups from the reload
+// to the final dash (the reload refills coatings), other combos dash to dash. Every CS/PS/PV/TD uses 1 coating, dashes are free.
+const CBH_LOAD = 10;
+const CBH = [
+  {seq:["CS1","CS2","PS3","PV3"], f:223, cr:189.5, pi:295.7, c:4, ramp:1},
+  {seq:["CS1","Dash","CS2","PS3","PV3"], f:225, cr:189.5, pi:295.7, c:4, ramp:1},
+  {seq:["CS2","PS3","PV3"], f:209, cr:179.5, pi:282.5, c:3, ramp:1},
+  {seq:["Dash","CS3","PS3","PV3"], f:196, cr:193.5, pi:308.9, c:3},
+  {seq:["Dash","PS3","PV3"], f:182, cr:157.5, pi:249.5, c:2},
+  {seq:["Dash","CS3","PS3"], f:114, cr:99.0, pi:163.4, c:2},
+  {seq:["Dash","CS3"], f:60.5, cr:36.0, pi:59.4, c:1},
+  {seq:["Dash","CS3","PS3","PV3","TD"], f:337, cr:343.5, pi:566.3, c:4, td:1},
+  {seq:["Dash","CS3","PS3","TD"], f:259, cr:249.0, pi:420.8, c:3, td:1},
+];
+function cbhSolve(sec, td, ramp, m){
+  const T=Math.round(sec*120), K=CBH_LOAD+1, pool=CBH.filter(x=>td||!x.td).map(x=>({...x,h:Math.round(x.f*2)}));
+  const best=new Float64Array((T+1)*K).fill(-1), from=new Int32Array((T+1)*K).fill(-1), via=new Int8Array((T+1)*K);
+  best[ramp?0:CBH_LOAD]=0;
+  for(let t=0;t<=T;t++) for(let k=0;k<K;k++){ const v=best[t*K+k]; if(v<0) continue;
+    pool.forEach((x,i)=>{ if(!x.ramp && k<x.c) return; const t2=t+x.h; if(t2>T) return; const k2=x.ramp?CBH_LOAD-x.c:k-x.c, j=t2*K+k2, v2=v+x[m];
+      if(v2>best[j]+1e-9){best[j]=v2;from[j]=t*K+k;via[j]=i;} }); }
+  let bj=-1; for(let j=0;j<best.length;j++) if(best[j]>(bj<0?0:best[bj])+1e-9 || (bj>=0 && Math.abs(best[j]-best[bj])<1e-9 && j<bj)) bj=j;
+  const chain=[]; let j=bj; while(j>0 && from[j]>=0){ chain.unshift({...pool[via[j]],left:j%K}); j=from[j]; }
+  const used=chain.reduce((a,x)=>a+x.f,0)/60, mv=chain.reduce((a,x)=>a+x[m],0);
+  return {chain,used,mv,sec};
+}
+const cbhCoat = n => `<span class="cbh-coat" title="Coatings left">${Array.from({length:CBH_LOAD},(_,i)=>`<s${i<n?"":` class="off"`}></s>`).join("")}</span>`;
+function cbhOut(r){
+  if(!r.chain.length) return `<p class="cbh-idle">No combo fits in this window.</p>`;
+  return `<div class="cbh-sum"><span><b class="mvs">${(r.mv/r.sec).toFixed(1)}</b>MV/s</span><span><b>${r.mv.toFixed(1)}</b>total MV</span><span><b>${r.used.toFixed(2)}s</b>of ${r.sec.toFixed(2)}s used</span></div>
+  <div class="cbh-chain">${r.chain.map((x,i)=>`<div class="cbh-step${x.ramp?" ramp":""}"><span class="cbh-n">${i+1}</span><span class="cbh-seq">${x.ramp?`<span class="cbk dash">Reload</span><i>›</i>`:""}${x.seq.map(cbStep).join("")}</span><span class="cbh-meta">${(x.f/60).toFixed(2)}s${cbhCoat(x.left)}</span></div>`).join("")}</div>
+  ${r.used<r.sec-0.005?`<p class="cbh-idle">${(r.sec-r.used).toFixed(2)}s left over: too short for another combo.</p>`:""}`;
+}
+function cbhRender(box){
+  const sl=box.querySelector("[data-cbh=t]"), nu=box.querySelector("[data-cbh=n]"), src=box.dataset.src||"t";
+  let sec;
+  if(src==="n"){ sec=parseFloat(nu.value); if(!(sec>0)) return; sec=Math.min(sec,120); sl.value=Math.min(Math.max(sec,1),30); }
+  else { sec=+sl.value; nu.value=sec.toFixed(2); }
+  const td=box.querySelector("[data-cbh=td]").checked, ramp=box.querySelector("[data-cbh=ramp]").checked;
+  box.querySelector(".cbh-out.v-cr").innerHTML=cbhOut(cbhSolve(sec,td,ramp,"cr"));
+  box.querySelector(".cbh-out.v-pi").innerHTML=cbhOut(cbhSolve(sec,td,ramp,"pi"));
+}
+const cbHelper = () => { const d={t:10,td:true,ramp:true};
+  return `<section class="card cb-card cbh" id="combo-helper"><div class="band"><span>Combo helper</span></div>
+  <p class="cb-cnote">Enter the length of a damage window: the helper finds the <strong class="hi">combo chain with the most damage</strong> that fits in it.</p>
+  <div class="cbh-ctl"><span class="cbh-tw"><label class="cbh-time">Window <input type="range" min="1" max="30" step="0.5" value="${d.t}" data-cbh="t" aria-label="Window length slider"></label><span class="cbh-num"><input type="number" inputmode="decimal" min="0.5" max="120" step="0.01" value="${d.t.toFixed(2)}" data-cbh="n" aria-label="Window length in seconds"><small>s</small></span></span>
+  <label class="cbh-chk"><input type="checkbox" data-cbh="td" checked>Include Thousand Dragons</label>
+  <label class="cbh-chk"><input type="checkbox" data-cbh="ramp" checked>Include ramp up</label></div>
+  <div class="cbh-out v-cr">${cbhOut(cbhSolve(d.t,d.td,d.ramp,"cr"))}</div><div class="cbh-out v-pi">${cbhOut(cbhSolve(d.t,d.td,d.ramp,"pi"))}</div></section>`; };
 const cbTable = (title, rows, id, note) => `<section class="card cb-card" id="${id}"><div class="band"><span>${title}</span></div>${note?`<p class="cb-cnote">${note}<span class="cb-tapin"><img src="img/tap_combo.webp" alt="" width="18" height="18">Tap a combo to see it in action</span></p>`:""}${rows.length ? `<div class="cb-head"><span>Time</span><span>Combo</span><span>MV/s</span><span>eMV/s</span><span>MV</span><span>eMV</span></div>${rows.map(cbRow).join("")}` : `<div class="cb-empty">Coming soon.</div>`}</section>`;
 const card = (title, icon, tint, inner, id) => `<section class="card ${tint}"${id?` id="${id}"`:""}><div class="band">${icon?ico(icon):""}<span>${title}</span></div>${inner}</section>`;
 
@@ -1067,16 +1136,17 @@ const VIEWS = {
   combos:{ group:"Guides", icon:"combos", title:"Advanced Combos", desc:"Optimize your combos", html:()=>`
     <article class="guide">
       <h1 class="page-h">Advanced Combos</h1>
+      <button class="iconbtn skip" data-scroll="combo-helper">Try the combo helper <span aria-hidden="true">↓</span></button>
       <p>If you want a quick video overview of combo optimization, watch this video: ${yt("https://www.youtube.com/watch?v=LWDhcFlNvTs&t=174s","Bow combo optimization")}</p>
-      <p>In every damage window, use the <strong class="hi">longest combo that fits</strong>. If several fit, pick the one with the <strong class="hi">highest MV/s</strong> (motion value per second).</p>
       <p>Below are the most commonly used combos. For each one, the table shows its duration, total motion value (MV) and elemental motion value (eMV), and the resulting <strong class="hi">MV/s</strong> and <strong class="hi">eMV/s</strong>. A motion value is the base strength of an attack, before any outside factors.</p>
       <div class="cb-wrap">
-      <div class="vswitch cb-mode" role="tablist" aria-label="Coating type"><button type="button" role="tab" aria-selected="true" data-cbmode="cr"><img src="img/coat/close.webp" alt="">Close Range / Power</button><button type="button" role="tab" aria-selected="false" data-cbmode="pi" class="pi"><img src="img/coat/pierce.webp" alt="">Pierce</button></div>
       <p class="cb-modenote">The best combo choices are the <strong class="hi">same for every coating</strong>. Two things to keep in mind: <strong class="c-close">Close Range</strong> and <strong class="c-power">Power</strong> Coatings add a <strong class="hi">raw modifier</strong> that isn’t included in these numbers, and with <strong class="c-pierce">Pierce</strong>, Thousand Dragons combos deal <strong class="hi">much more elemental damage</strong>.</p>
       <div class="cb-legend"><span><b class="cbk">CS</b>Charged Shot</span><span><b class="cbk">PS</b>Power Shot</span><span><b class="cbk">PV</b>Power Volley</span><span><b class="cbk td">TD</b>Thousand Dragons</span></div>
+      <div class="vswitch cb-mode" role="tablist" aria-label="Coating type"><button type="button" role="tab" aria-selected="true" data-cbmode="cr"><img src="img/coat/close.webp" alt="">Close Range / Power</button><button type="button" role="tab" aria-selected="false" data-cbmode="pi" class="pi"><img src="img/coat/pierce.webp" alt="">Pierce</button></div>
       ${cbTable("Ramp up combo", CB_RAMP, "ramp-up", `The best way to ramp up is a <a href="#basics/discerning-dodge">Discerning Dodge</a> that counters an attack (see <a href="#basics">Bow Basics</a>). When that isn’t an option, you have to <strong class="hi">ramp up manually</strong>: that’s what these combos are for.`)}
       ${cbTable("Dash dance combos", CB_DD, "dash-dance", `The <a href="#basics/max-charge">dash dance</a> is the Bow’s <strong class="hi">bread and butter</strong> combo. It’s also very <strong class="hi">flexible</strong>: depending on the opening, you can adjust it to fit the window better.`)}
       ${cbTable("TD combos", CB_TD, "td-combos", `<a href="#focus-mode/thousand-dragons">Thousand Dragons</a> is best used as a <strong class="hi">combo extender</strong>. It can be difficult to use because it needs strict <strong class="hi">positioning, distance and timing</strong>, but when you work it in correctly, it gives you the <strong class="hi">highest DPS combos</strong>.`)}
+      ${cbHelper()}
       </div>
     </article>
   `},
@@ -1376,6 +1446,9 @@ main.addEventListener("click", e=>{ const t = e.target.closest("[data-variant]")
   box.querySelectorAll(".variant").forEach((v,i)=>v.hidden = i!==n); });
 
 // back arrow: previous page inside the site, else Home
+const cbhEv = e=>{ const b=e.target.closest("#combo-helper"), k=e.target.dataset.cbh; if(!b||!k) return; if(k==="t"||k==="n") b.dataset.src=k; cbhRender(b); };
+main.addEventListener("input", cbhEv); main.addEventListener("change", cbhEv);
+main.addEventListener("focusin", e=>{ if(e.target.matches && e.target.matches("#combo-helper [data-cbh=n]")) e.target.select(); });
 main.addEventListener("click", e=>{ const t = e.target.closest("[data-cbmode]"); if(!t) return; const w = t.closest(".cb-wrap");
   w.querySelectorAll("[data-cbmode]").forEach(x=>x.setAttribute("aria-selected", x===t)); w.classList.toggle("pierce", t.dataset.cbmode==="pi"); });
 main.addEventListener("click", e=>{ if(!e.target.closest(".backbtn")) return; if(navDepth>1) history.back(); else location.hash = "#home"; });
