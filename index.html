@@ -1146,6 +1146,7 @@ const VIEWS = {
       ${cbTable("Ramp up combo", CB_RAMP, "ramp-up", `The best way to ramp up is a <a href="#basics/discerning-dodge">Discerning Dodge</a> that counters an attack (see <a href="#basics">Bow Basics</a>). When that isn’t an option, you have to <strong class="hi">ramp up manually</strong>: that’s what these combos are for.`)}
       ${cbTable("Dash dance combos", CB_DD, "dash-dance", `The <a href="#basics/max-charge">dash dance</a> is the Bow’s <strong class="hi">bread and butter</strong> combo. It’s also very <strong class="hi">flexible</strong>: depending on the opening, you can adjust it to fit the window better.`)}
       ${cbTable("TD combos", CB_TD, "td-combos", `<a href="#focus-mode/thousand-dragons">Thousand Dragons</a> is best used as a <strong class="hi">combo extender</strong>. It can be difficult to use because it needs strict <strong class="hi">positioning, distance and timing</strong>, but when you work it in correctly, it gives you the <strong class="hi">highest DPS combos</strong>.`)}
+      <div class="vswitch cb-mode cb-mode2" role="tablist" aria-label="Coating type"><button type="button" role="tab" aria-selected="true" data-cbmode="cr"><img src="img/coat/close.webp" alt="">Close Range / Power</button><button type="button" role="tab" aria-selected="false" data-cbmode="pi" class="pi"><img src="img/coat/pierce.webp" alt="">Pierce</button></div>
       ${cbHelper()}
       </div>
     </article>
@@ -1450,7 +1451,7 @@ const cbhEv = e=>{ const b=e.target.closest("#combo-helper"), k=e.target.dataset
 main.addEventListener("input", cbhEv); main.addEventListener("change", cbhEv);
 main.addEventListener("focusin", e=>{ if(e.target.matches && e.target.matches("#combo-helper [data-cbh=n]")) e.target.select(); });
 main.addEventListener("click", e=>{ const t = e.target.closest("[data-cbmode]"); if(!t) return; const w = t.closest(".cb-wrap");
-  w.querySelectorAll("[data-cbmode]").forEach(x=>x.setAttribute("aria-selected", x===t)); w.classList.toggle("pierce", t.dataset.cbmode==="pi"); });
+  w.querySelectorAll("[data-cbmode]").forEach(x=>x.setAttribute("aria-selected", x.dataset.cbmode===t.dataset.cbmode)); w.classList.toggle("pierce", t.dataset.cbmode==="pi"); });
 main.addEventListener("click", e=>{ if(!e.target.closest(".backbtn")) return; if(navDepth>1) history.back(); else location.hash = "#home"; });
 
 // in-page jumps (the hash is used for page routing, so scroll instead of linking)
