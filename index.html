@@ -622,6 +622,70 @@ details.skill>.lvg{margin-top:.9rem}
 .fx-flow,.fx-2col{max-width:520px}
 @media (max-width:560px){.fx-2col{grid-template-columns:1fr 1fr}.fx-2col>.fx-arrow{display:none}}
 
+
+/* Compare your reinforcements (Endgame page) */
+.rc-worst{margin:0;padding:.5rem 1rem;border-top:2px solid #161616;max-width:none;font-size:.85rem;color:var(--muted)}.rc-worst b{color:#ee8f88;font-weight:700}.rc-worst span{display:block;margin-bottom:.15rem;font-size:.78rem;font-weight:700;color:var(--ink)}
+.rc{margin:1rem 0 .5rem}.rc>.band{margin:0}
+.rc{border-color:#8a6a24;box-shadow:0 5px 0 var(--shadow),0 0 0 1px rgba(224,168,58,.25),0 0 18px rgba(224,168,58,.18)}
+.rc[open]{border-color:var(--edge);box-shadow:0 5px 0 var(--shadow)}
+.rc-sum{list-style:none;cursor:pointer;background:linear-gradient(90deg,#3a3326,var(--card-deep))!important;color:var(--cream)}
+.rc-sum::-webkit-details-marker{display:none}
+.rc-sum:hover{color:#ffe7b0}
+.rc:not([open])>.rc-sum{border-bottom:0}
+.rc[open] .chev{transform:rotate(45deg)}
+.rc-try{margin-left:auto;font-style:normal;font-size:.85rem;font-weight:700;color:#f0c46a;display:flex;align-items:center;gap:.4rem;white-space:nowrap;flex:none}.rc-try img{width:22px;height:22px;display:block}
+.rc[open] .rc-try{display:none}
+
+.rc .rnote,.rc .rc-foot,.rc .rc-h{max-width:none}
+.rc-slots .rrow>.ric,.rc-slots .rrow>.rn{position:static;transform:none;left:auto;top:auto}
+.rc-slots .rrow>.ric{margin:0;align-self:stretch}
+.rc .rnote{margin:0;padding:.6rem 1rem;font-size:.92rem;color:var(--ink);background:var(--card-deep);border-bottom:2px solid #161616}
+.rc-body{display:grid;grid-template-columns:1fr;gap:0}
+@media (min-width:860px){.rc-body{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.rc-res{border-left:2px solid #161616}.rc-slots .rrow:last-of-type{border-bottom-left-radius:0}}
+.rc-h{margin:0;padding:.55rem 1rem .45rem;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rc-slots .rrow{width:100%;font:inherit;text-align:left;cursor:pointer;border:0;border-top:2px solid #161616;color:inherit;padding:0}
+.rc-slots .rrow:hover b{color:var(--cream)}
+.rc-slots .rrow.on{box-shadow:inset 0 0 0 2px var(--amber)}
+.rc-slots .rrow.none{background:repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0 8px,transparent 8px 16px)}
+.rc-slots .rrow.none b{color:var(--muted);font-weight:500}
+.rc-slots .rrow.none .ric{color:#6b675e;font-size:1.3rem;font-weight:700}
+.rc-slots .rrow em{padding-right:1rem}
+.rc-slots .rrow .rn{margin:0;color:#6b675e;font-size:.75rem;font-weight:700;padding-right:.6rem}
+.rc-slots .rrow{grid-template-columns:50px minmax(0,1fr) auto auto}
+.rc-pick{background:#1f1f1f;border-top:2px solid #161616;padding:.7rem .8rem .8rem}
+.rc-pick[hidden]{display:none}
+.rc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
+.rc-col{display:flex;flex-direction:column;gap:.35rem}
+.rc-col>span{display:flex;align-items:center;gap:.35rem;font-size:.8rem;font-weight:700;color:var(--cream)}
+.rc-col>span img{height:24px;width:auto;margin:-4px -2px}
+.rc-col.a>span{color:#ee8f88}.rc-col.f>span{color:#c9a2f0}.rc-col.e>span{color:#9cc0e8}
+.rc-opt{font:inherit;font-size:.85rem;font-weight:700;padding:.4rem .3rem;border-radius:8px;border:2px solid var(--edge);color:#eee;cursor:pointer;display:flex;justify-content:space-between;gap:.3rem;align-items:center}
+.rc-opt small{font-weight:600;color:rgba(255,255,255,.7);font-size:.75rem}
+.rc-col.a .rc-opt{background:linear-gradient(90deg,rgba(204,102,102,.45),rgba(204,102,102,.18))}
+.rc-col.f .rc-opt{background:linear-gradient(90deg,rgba(153,102,204,.45),rgba(153,102,204,.18))}
+.rc-col.e .rc-opt{background:linear-gradient(90deg,rgba(102,153,204,.45),rgba(102,153,204,.18))}
+.rc-opt.ex{color:#f0c46a}
+.rc-opt:hover:not(:disabled){border-color:#6a655a}
+.rc-opt[aria-pressed="true"]{border-color:var(--amber)}
+.rc-opt:disabled{opacity:.3;cursor:not-allowed}
+.rc-pact{display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-top:.6rem;flex-wrap:wrap}
+.rc-pact small{color:var(--muted);font-size:.78rem}
+.rc-btn{font:inherit;font-size:.8rem;font-weight:700;padding:.3rem .8rem;border-radius:999px;border:2px solid var(--edge);background:var(--card-deep);color:var(--muted);cursor:pointer}
+.rc-btn:hover{color:var(--cream)}
+.rc-res{display:flex;flex-direction:column}
+.rc-wait{margin:0;padding:.55rem 1rem;border-top:2px solid #161616;font-size:.85rem;color:var(--ink);max-width:none}
+.rc-row{border-top:2px solid #161616;padding:.65rem 1rem .75rem;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.15rem .8rem;align-items:center}
+.rc-row b{color:#dedebd;font-weight:600;font-size:.95rem}
+.rc-row em{font-style:normal;font-weight:700;font-size:1.05rem;font-variant-numeric:tabular-nums;color:#ee8f88;text-align:right}
+.rc-row em.ok{color:#f0c46a;text-shadow:0 0 6px rgba(240,196,106,.45)}
+.rc-row em.nil{color:var(--muted)}.rc-row em.mid{color:#e8c07a}.rc-row em.lo{color:#9fd38a}
+.rc-row small{grid-column:1/-1;color:var(--muted);font-size:.78rem;line-height:1.35}
+.rc-bar{grid-column:1/-1;height:8px;border-radius:4px;background:#1a1a1a;box-shadow:inset 0 0 0 1px #111;overflow:hidden;margin:.15rem 0 .1rem}
+.rc-bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#8c4a48,#d0706b);transition:width .25s}
+.rc-row.best .rc-bar i{background:linear-gradient(90deg,#9a7a2e,#f0c46a)}
+.rc-tools{display:flex;gap:.5rem;padding:.6rem 1rem .8rem;border-top:2px solid #161616;flex-wrap:wrap;margin-top:auto}
+.rc-foot{margin:0;padding:.55rem 1rem .7rem;font-size:.78rem;color:var(--muted);border-top:2px solid #161616;background:var(--card-deep)}
+@media (max-width:480px){.rc-grid{gap:.35rem}.rc-opt{font-size:.8rem;padding:.4rem .25rem}.rc-opt small{font-size:.68rem}}
 </style>
 
 <header class="top">
@@ -868,6 +932,61 @@ function cbhRender(box){
   box.querySelector(".cbh-out.v-cr").innerHTML=cbhOut(cbhSolve(sec,td,ramp,"cr"));
   box.querySelector(".cbh-out.v-pi").innerHTML=cbhOut(cbhSolve(sec,td,ramp,"pi"));
 }
+
+/* ---------- Compare your reinforcements (Endgame) ----------
+   RC_OPTS: the Artian reinforcements (Element III doesn't exist). Max 2 of the same one per bow, except level I which is unlimited (Olivier).
+   rcDamage(build, slots): average damage per arrow for that build with those 5 reinforcements. */
+const RC_OPTS = [
+  {k:"a1",c:"a",n:"Attack I",v:5,lv1:1},{k:"a2",c:"a",n:"Attack II",v:6},{k:"a3",c:"a",n:"Attack III",v:9},{k:"ax",c:"a",n:"Attack EX",v:12,ex:1},
+  {k:"f1",c:"f",n:"Affinity I",v:5,lv1:1},{k:"f2",c:"f",n:"Affinity II",v:6},{k:"f3",c:"f",n:"Affinity III",v:8},{k:"fx",c:"f",n:"Affinity EX",v:10,ex:1},
+  {k:"e1",c:"e",n:"Element I",v:30,lv1:1},{k:"e2",c:"e",n:"Element II",v:40},{k:"ex",c:"e",n:"Element EX",v:60,ex:1}];
+const RC_O = Object.fromEntries(RC_OPTS.map(o=>[o.k,o]));
+const RC_CAT = {a:{n:"Attack",i:"atk",u:""},f:{n:"Affinity",i:"aff",u:"%"},e:{n:"Element",i:"ele",u:""}};
+const RC_REC = ["ax","ax","a3","ex","ex"]; // one general recommendation (best average over 4 endgame builds x element hitzone 15/20)
+const RC_M = [{"w0":238,"d0":49.672,"inv":0.00296016,"W":{"205":45.94038,"210":46.50577,"211":46.61885,"214":46.95809,"215":47.07117,"216":47.18425,"217":47.29733,"219":47.52349,"220":47.63657,"221":47.74965,"222":47.86273,"223":47.97581,"224":48.08889,"225":48.20197,"226":48.31505,"227":48.42813,"228":48.5412,"229":48.65428,"230":48.76736,"231":48.88044,"232":48.99352,"233":49.1066,"234":49.21968,"235":49.33276,"236":49.44584,"237":49.55892,"238":49.672,"239":49.78508,"240":49.89816,"241":50.01124,"242":50.12432,"243":50.2374,"244":50.35048,"245":50.46356,"246":50.57664,"247":50.68972,"248":50.8028,"249":50.91587,"250":51.02896,"252":51.25511,"253":51.36819},"E":{"26":46.54387,"29":47.35009,"30":47.61883,"32":48.1563,"33":48.42504,"34":48.69378,"35":48.96252,"36":49.21424,"37":49.44312,"38":49.672,"39":49.90088,"40":50.12976,"41":50.35864,"42":50.58752,"43":50.8164,"44":51.03679,"45":51.25453,"46":51.47228,"47":51.69002,"48":51.90776,"49":52.1255},"A":{"0":49.672,"5":50.09698,"6":50.18198,"8":50.35197,"10":50.52197,"11":50.60696,"12":50.69196,"13":50.77696,"14":50.86195,"15":50.94695,"16":51.03195,"17":51.11694,"18":51.20194,"19":51.28694,"20":51.37193,"21":51.45693,"22":51.54193,"23":51.62692,"24":51.71192,"25":51.79692,"26":51.88191,"27":51.96691,"28":52.05191,"29":52.1369,"30":52.2219,"31":52.3069,"32":52.39189,"33":52.47689,"34":52.56188,"35":52.64688,"36":52.73188,"37":52.81688,"38":52.90187,"39":52.98687,"40":53.07187,"41":53.15686,"42":53.24186}},{"w0":238,"d0":53.13068,"inv":0.00296015,"W":{"205":49.39905,"210":49.96445,"211":50.07753,"214":50.41677,"215":50.52985,"216":50.64293,"217":50.75601,"219":50.98217,"220":51.09525,"221":51.20833,"222":51.3214,"223":51.43448,"224":51.54756,"225":51.66064,"226":51.77372,"227":51.8868,"228":51.99988,"229":52.11296,"230":52.22604,"231":52.33912,"232":52.4522,"233":52.56528,"234":52.67836,"235":52.79144,"236":52.90452,"237":53.0176,"238":53.13068,"239":53.24376,"240":53.35684,"241":53.46992,"242":53.583,"243":53.69608,"244":53.80915,"245":53.92223,"246":54.03531,"247":54.14839,"248":54.26147,"249":54.37455,"250":54.48763,"252":54.71379,"253":54.82687},"E":{"26":48.95984,"29":50.03479,"30":50.39311,"32":51.10975,"33":51.46806,"34":51.82638,"35":52.1847,"36":52.52033,"37":52.8255,"38":53.13068,"39":53.43585,"40":53.74103,"41":54.0462,"42":54.35137,"43":54.65655,"44":54.9504,"45":55.24072,"46":55.53105,"47":55.82137,"48":56.11169,"49":56.40201},"A":{"0":53.13068,"5":53.55566,"6":53.64066,"8":53.81065,"10":53.98064,"11":54.06564,"12":54.15064,"13":54.23563,"14":54.32063,"15":54.40563,"16":54.49062,"17":54.57562,"18":54.66062,"19":54.74561,"20":54.83061,"21":54.91561,"22":55.0006,"23":55.0856,"24":55.1706,"25":55.25559,"26":55.34059,"27":55.42559,"28":55.51058,"29":55.59558,"30":55.68058,"31":55.76557,"32":55.85057,"33":55.93557,"34":56.02056,"35":56.10556,"36":56.19056,"37":56.27555,"38":56.36055,"39":56.44555,"40":56.53054,"41":56.61554,"42":56.70054}},{"w0":238,"d0":50.42667,"inv":0.00303204,"W":{"205":46.30732,"210":46.93147,"211":47.0563,"214":47.43078,"215":47.55561,"216":47.68044,"217":47.80527,"219":48.05492,"220":48.17975,"221":48.30458,"222":48.42941,"223":48.55424,"224":48.67907,"225":48.8039,"226":48.92872,"227":49.05355,"228":49.17838,"229":49.30321,"230":49.42804,"231":49.55287,"232":49.6777,"233":49.80252,"234":49.92735,"235":50.05218,"236":50.17701,"237":50.30184,"238":50.42667,"239":50.5515,"240":50.67632,"241":50.80115,"242":50.92598,"243":51.05081,"244":51.17564,"245":51.30047,"246":51.4253,"247":51.55013,"248":51.67495,"249":51.79978,"250":51.92461,"252":52.17427,"253":52.2991},"E":{"26":48.30847,"29":48.83802,"30":49.01454,"32":49.36757,"33":49.54409,"34":49.7206,"35":49.89712,"36":50.07364,"37":50.25015,"38":50.42667,"39":50.60318,"40":50.7797,"41":50.95622,"42":51.13273,"43":51.30925,"44":51.48577,"45":51.66228,"46":51.8388,"47":52.01532,"48":52.19183,"49":52.36835},"A":{"0":50.42667,"5":50.99096,"6":51.10381,"8":51.32953,"10":51.55525,"11":51.6681,"12":51.78096,"13":51.89382,"14":52.00668,"15":52.11954,"16":52.23239,"17":52.34525,"18":52.45811,"19":52.57097,"20":52.68383,"21":52.79668,"22":52.90954,"23":53.0224,"24":53.13526,"25":53.24812,"26":53.36098,"27":53.47383,"28":53.58669,"29":53.6052,"30":53.6237,"31":53.64221,"32":53.66071,"33":53.67922,"34":53.69772,"35":53.71623,"36":53.73473,"37":53.73473,"38":53.73473,"39":53.73473,"40":53.73473,"41":53.73473,"42":53.73473}},{"w0":238,"d0":53.14673,"inv":0.00303202,"W":{"205":49.02738,"210":49.65153,"211":49.77636,"214":50.15084,"215":50.27567,"216":50.4005,"217":50.52533,"219":50.77498,"220":50.89981,"221":51.02464,"222":51.14947,"223":51.2743,"224":51.39913,"225":51.52396,"226":51.64878,"227":51.77361,"228":51.89844,"229":52.02327,"230":52.1481,"231":52.27293,"232":52.39775,"233":52.52258,"234":52.64741,"235":52.77224,"236":52.89707,"237":53.0219,"238":53.14673,"239":53.27155,"240":53.39638,"241":53.52121,"242":53.64604,"243":53.77087,"244":53.8957,"245":54.02053,"246":54.14536,"247":54.27018,"248":54.39501,"249":54.51984,"250":54.64467,"252":54.89433,"253":55.01915},"E":{"26":50.32246,"29":51.02853,"30":51.26389,"32":51.7346,"33":51.96995,"34":52.20531,"35":52.44066,"36":52.67602,"37":52.91137,"38":53.14673,"39":53.38208,"40":53.61744,"41":53.85279,"42":54.08815,"43":54.3235,"44":54.55886,"45":54.79421,"46":55.02957,"47":55.26492,"48":55.50028,"49":55.73563},"A":{"0":53.14673,"5":53.71102,"6":53.82388,"8":54.04959,"10":54.27531,"11":54.38816,"12":54.50102,"13":54.61388,"14":54.72674,"15":54.8396,"16":54.95245,"17":55.06531,"18":55.17817,"19":55.29103,"20":55.40389,"21":55.51674,"22":55.6296,"23":55.74246,"24":55.85532,"25":55.96818,"26":56.08103,"27":56.19389,"28":56.30675,"29":56.32525,"30":56.34376,"31":56.36227,"32":56.38077,"33":56.39928,"34":56.41778,"35":56.43629,"36":56.45479,"37":56.45479,"38":56.45479,"39":56.45479,"40":56.45479,"41":56.45479,"42":56.45479}},{"w0":238,"d0":50.49953,"inv":0.00302097,"W":{"205":46.50699,"210":47.11192,"211":47.23291,"214":47.59587,"215":47.71685,"216":47.83784,"217":47.95882,"219":48.20079,"220":48.32178,"221":48.44277,"222":48.56375,"223":48.68474,"224":48.80573,"225":48.92671,"226":49.0477,"227":49.16868,"228":49.28967,"229":49.41066,"230":49.53164,"231":49.65263,"232":49.77361,"233":49.8946,"234":50.01559,"235":50.13657,"236":50.25756,"237":50.37855,"238":50.49953,"239":50.62052,"240":50.7415,"241":50.86249,"242":50.98348,"243":51.10446,"244":51.22545,"245":51.34643,"246":51.46742,"247":51.58841,"248":51.70939,"249":51.83038,"250":51.95137,"252":52.19334,"253":52.31432},"E":{"26":48.20636,"29":48.79547,"30":48.98481,"32":49.36349,"33":49.55283,"34":49.74217,"35":49.93151,"36":50.12085,"37":50.31019,"38":50.49953,"39":50.68887,"40":50.87821,"41":51.06755,"42":51.25689,"43":51.44623,"44":51.63557,"45":51.82491,"46":52.01425,"47":52.20359,"48":52.39293,"49":52.58227},"A":{"0":50.49953,"5":51.11585,"6":51.23911,"8":51.48564,"10":51.73216,"11":51.85542,"12":51.97869,"13":52.10195,"14":52.22521,"15":52.34848,"16":52.47174,"17":52.595,"18":52.71826,"19":52.84153,"20":52.96479,"21":53.08805,"22":53.21131,"23":53.33458,"24":53.45784,"25":53.5811,"26":53.70437,"27":53.82763,"28":53.95089,"29":54.07415,"30":54.19742,"31":54.32068,"32":54.44394,"33":54.56721,"34":54.69047,"35":54.81373,"36":54.937,"37":55.06026,"38":55.18352,"39":55.30678,"40":55.43005,"41":55.55331,"42":55.67657}},{"w0":238,"d0":53.61791,"inv":0.00302096,"W":{"205":49.62537,"210":50.2303,"211":50.35129,"214":50.71424,"215":50.83523,"216":50.95622,"217":51.0772,"219":51.31918,"220":51.44016,"221":51.56115,"222":51.68213,"223":51.80312,"224":51.92411,"225":52.04509,"226":52.16608,"227":52.28706,"228":52.40805,"229":52.52904,"230":52.65002,"231":52.77101,"232":52.892,"233":53.01298,"234":53.13397,"235":53.25495,"236":53.37594,"237":53.49692,"238":53.61791,"239":53.7389,"240":53.85988,"241":53.98087,"242":54.10186,"243":54.22284,"244":54.34383,"245":54.46482,"246":54.5858,"247":54.70679,"248":54.82777,"249":54.94876,"250":55.06974,"252":55.31172,"253":55.4327},"E":{"26":50.56036,"29":51.34583,"30":51.59828,"32":52.10319,"33":52.35564,"34":52.6081,"35":52.86055,"36":53.113,"37":53.36546,"38":53.61791,"39":53.87036,"40":54.12282,"41":54.37527,"42":54.62773,"43":54.88018,"44":55.13263,"45":55.38509,"46":55.63754,"47":55.88999,"48":56.14245,"49":56.3949},"A":{"0":53.61791,"5":54.23423,"6":54.35749,"8":54.60401,"10":54.85054,"11":54.9738,"12":55.09707,"13":55.22033,"14":55.34359,"15":55.46686,"16":55.59012,"17":55.71338,"18":55.83664,"19":55.95991,"20":56.08317,"21":56.20643,"22":56.3297,"23":56.45296,"24":56.57622,"25":56.69948,"26":56.82275,"27":56.94601,"28":57.06927,"29":57.19253,"30":57.3158,"31":57.43906,"32":57.56232,"33":57.68559,"34":57.80885,"35":57.93211,"36":58.05537,"37":58.17864,"38":58.3019,"39":58.42516,"40":58.54843,"41":58.67169,"42":58.79495}},{"w0":238,"d0":51.22435,"inv":0.00313194,"W":{"205":46.88712,"210":47.54427,"211":47.67571,"214":48.07,"215":48.20143,"216":48.33286,"217":48.46429,"219":48.72716,"220":48.85859,"221":48.99002,"222":49.12145,"223":49.25288,"224":49.38431,"225":49.51574,"226":49.64717,"227":49.77861,"228":49.91004,"229":50.04147,"230":50.1729,"231":50.30433,"232":50.43576,"233":50.56719,"234":50.69862,"235":50.83006,"236":50.96149,"237":51.09292,"238":51.22435,"239":51.35578,"240":51.48721,"241":51.61864,"242":51.75007,"243":51.8815,"244":52.01294,"245":52.14437,"246":52.2758,"247":52.40723,"248":52.53866,"249":52.67009,"250":52.80152,"252":53.06439,"253":53.19582},"E":{"26":49.10615,"29":49.6357,"30":49.81222,"32":50.16525,"33":50.34177,"34":50.51828,"35":50.6948,"36":50.87132,"37":51.04783,"38":51.22435,"39":51.40087,"40":51.57738,"41":51.7539,"42":51.93042,"43":52.10693,"44":52.28345,"45":52.45996,"46":52.63648,"47":52.813,"48":52.98951,"49":53.16603},"A":{"0":51.22435,"5":51.81888,"6":51.93779,"8":52.1756,"10":52.41341,"11":52.53232,"12":52.65122,"13":52.77013,"14":52.88903,"15":53.00794,"16":53.12685,"17":53.14634,"18":53.16584,"19":53.18533,"20":53.20483,"21":53.22432,"22":53.24382,"23":53.26331,"24":53.28281,"25":53.28281,"26":53.28281,"27":53.28281,"28":53.28281,"29":53.28281,"30":53.28281,"31":53.28281,"32":53.28281,"33":53.28281,"34":53.28281,"35":53.28281,"36":53.28281,"37":53.28281,"38":53.28281,"39":53.28281,"40":53.28281,"41":53.28281,"42":53.28281}},{"w0":238,"d0":53.94441,"inv":0.00313191,"W":{"205":49.60718,"210":50.26434,"211":50.39577,"214":50.79006,"215":50.92149,"216":51.05292,"217":51.18435,"219":51.44722,"220":51.57865,"221":51.71008,"222":51.84151,"223":51.97294,"224":52.10437,"225":52.2358,"226":52.36723,"227":52.49867,"228":52.6301,"229":52.76153,"230":52.89296,"231":53.02439,"232":53.15582,"233":53.28725,"234":53.41868,"235":53.55011,"236":53.68155,"237":53.81298,"238":53.94441,"239":54.07584,"240":54.20727,"241":54.3387,"242":54.47013,"243":54.60157,"244":54.733,"245":54.86443,"246":54.99586,"247":55.12729,"248":55.25872,"249":55.39015,"250":55.52158,"252":55.78445,"253":55.91588},"E":{"26":51.12015,"29":51.82621,"30":52.06157,"32":52.53228,"33":52.76763,"34":53.00299,"35":53.23834,"36":53.4737,"37":53.70905,"38":53.94441,"39":54.17976,"40":54.41512,"41":54.65047,"42":54.88583,"43":55.12118,"44":55.35654,"45":55.5919,"46":55.82725,"47":56.06261,"48":56.29796,"49":56.53332},"A":{"0":53.94441,"5":54.53894,"6":54.65785,"8":54.89566,"10":55.13347,"11":55.25238,"12":55.37128,"13":55.49019,"14":55.60909,"15":55.728,"16":55.84691,"17":55.8664,"18":55.8859,"19":55.90539,"20":55.92489,"21":55.94438,"22":55.96388,"23":55.98338,"24":56.00287,"25":56.00287,"26":56.00287,"27":56.00287,"28":56.00287,"29":56.00287,"30":56.00287,"31":56.00287,"32":56.00287,"33":56.00287,"34":56.00287,"35":56.00287,"36":56.00287,"37":56.00287,"38":56.00287,"39":56.00287,"40":56.00287,"41":56.00287,"42":56.00287}}];
+/* Numbers from Olivier's Damage Prime v2 sheet (2026-11-11 snapshot, Pierce, average per arrow with element cap).
+   Exact model fitted to the sheet: avg = W[raw] + E[ele] + A[aff] - 2*d0 + inv*(A[aff]-d0)*(raw-w0).
+   raw = Artian weapon raw (205 + attack reinforcements), ele = weapon element (26 + element reinforcements, sheet units), aff = affinity % from reinforcements. */
+function rcTot(sl){ const t={a:0,f:0,e:0}; sl.forEach(k=>{ if(k) t[RC_O[k].c]+=RC_O[k].v; }); return t; }
+function rcDamage(b, sl){ /* b = scenario index in RC_M */ const t=rcTot(sl), m=RC_M[b], W=205+t.a, E=26+t.e/10, A=m.A[t.f];
+  return m.W[W] + m.E[E] + A - 2*m.d0 + m.inv*(A-m.d0)*(W-m.w0); }
+let rcState = { slots:[null,null,null,null,null], open:-1 };
+function rcCount(sl, k, skip){ return sl.reduce((n,x,i)=>n+(i!==skip&&x===k?1:0),0); }
+const rcIco = k => { const o=RC_O[k]; return `img/reinf/r_${RC_CAT[o.c].i}${o.ex?"_ex":""}.webp`; };
+const rcVal = o => o.c==="f" ? `+${o.v}%` : `+${o.v}`;
+function rcSlotsHTML(){ const st=rcState;
+  return st.slots.map((k,i)=>{ const o=k&&RC_O[k];
+    return o ? `<button type="button" class="rrow ${o.c}${st.open===i?" on":""}" data-rc-slot="${i}" aria-expanded="${st.open===i}"><span class="ric"><img src="${rcIco(k)}" alt=""></span><b${o.ex?' class="max"':""}>${o.n}</b><em${o.ex?' class="max"':""}>${rcVal(o)}</em><span class="rn">${i+1}</span></button>`
+             : `<button type="button" class="rrow none${st.open===i?" on":""}" data-rc-slot="${i}" aria-expanded="${st.open===i}"><span class="ric">+</span><b>Choose reinforcement</b><em></em><span class="rn">${i+1}</span></button>`;
+  }).join("") + rcPickHTML(); }
+function rcPickHTML(){ const st=rcState, i=st.open; if(i<0) return `<div class="rc-pick" hidden></div>`;
+  const col = c => `<div class="rc-col ${c}"><span><img src="img/reinf/r_${RC_CAT[c].i}.webp" alt="">${RC_CAT[c].n}</span>${RC_OPTS.filter(o=>o.c===c).map(o=>{ const full=!o.lv1&&rcCount(st.slots,o.k,i)>=2;
+    return `<button type="button" class="rc-opt${o.ex?" ex":""}" data-rc-opt="${o.k}" aria-pressed="${st.slots[i]===o.k}"${full?' disabled title="You can only have 2 of the same reinforcement"':""}>${o.n.replace(/^\S+ /,"")}<small>${rcVal(o)}</small></button>`; }).join("")}</div>`;
+  return `<div class="rc-pick" role="group" aria-label="Reinforcement ${i+1}"><div class="rc-grid">${col("a")}${col("f")}${col("e")}</div><div class="rc-pact"><small>Max 2 of the same reinforcement (level I has no limit).</small><button type="button" class="rc-btn" data-rc-opt="">Empty slot</button></div></div>`; }
+const RC_SC_B = ["Gogmazios 4P","Gogmazios 4P","Gore Magala","Gore Magala","Gogmazios 4P","Gogmazios 4P","Gore Magala","Gore Magala"]; // RC_M order: Gog Craftable 15/20, Gore Craftable 15/20, Gog God 15/20, Gore God 15/20
+function rcGaps(sl){ return RC_M.map((_,i)=>(rcDamage(i,sl)/rcDamage(i,RC_REC)-1)*100); }
+function rcGap(sl){ const g=rcGaps(sl); return g.reduce((t,x)=>t+x,0)/g.length; }
+function rcResHTML(){ const sl=rcState.slots, n=sl.filter(Boolean).length;
+  if(n<5) return `<p class="rc-wait">${n?`${n} of 5 picked. `:""}Pick all 5 reinforcements to see the result.</p><div class="rc-row"><b>Your bow</b><em class="nil">&mdash;</em><div class="rc-bar"><i style="width:0"></i></div></div>`;
+  const r=Math.round(rcGap(sl)*10)/10, best=r>=0, w=best?100:Math.max(4,100+r*10); // bar: 100% = recommended, each 1% lost = 10% of the bar
+  const cls=best?"ok":r>-1?"lo":r>-3?"mid":"";
+  const txt=best?(r>0?`+${r.toFixed(1)}%`:"Recommended"):`${r.toFixed(1).replace("-","&minus;")}%`;
+  const g=rcGaps(sl), wi=g.indexOf(Math.min(...g)), wr=Math.round(g[wi]*10)/10;
+  const worst = wr<=-0.1 && wr<r ? `<p class="rc-worst"><span>Which build suffers the most</span>${RC_SC_B[wi]}: up to <b>${wr.toFixed(1).replace("-","&minus;")}%</b></p>` : "";
+  return `<div class="rc-row${best?" best":""}"><b>Your bow</b><em class="${cls}">${txt}</em><div class="rc-bar"><i style="width:${w}%"></i></div><small>Average damage across the endgame builds.</small></div>${worst}`; }
+function rcIdealTxt(id){ const c={}; id.forEach(k=>c[k]=(c[k]||0)+1); return Object.entries(c).map(([k,n])=>`${RC_O[k].n}${n>1?" &times;"+n:""}`).join(", "); }
+const rcTool = () => `<details class="card rc" id="compare-reinforcements"><summary class="band rc-sum"><span class="chev" aria-hidden="true"></span><span>Compare your reinforcements</span><i class="rc-try"><img src="img/tap_combo.webp" alt="" width="22" height="22">Click here</i></summary>
+  <div class="rc-body"><div class="rc-slots"><p class="rc-h">Your bow</p><div data-rc="slots">${rcSlotsHTML()}</div></div>
+  <div class="rc-res"><p class="rc-h">Damage vs recommended</p><div data-rc="res">${rcResHTML()}</div>
+  <div class="rc-tools"><button type="button" class="rc-btn" data-rc-fill="rec">Fill with recommended</button><button type="button" class="rc-btn" data-rc-fill="clear">Clear all</button></div></div></div></details>`;
+function rcRefresh(box){ box.querySelector('[data-rc="slots"]').innerHTML=rcSlotsHTML(); box.querySelector('[data-rc="res"]').innerHTML=rcResHTML(); }
+document.addEventListener("click", e=>{ const box=e.target.closest(".rc"); if(!box) return; const st=rcState;
+  const s=e.target.closest("[data-rc-slot]"), o=e.target.closest("[data-rc-opt]"), f=e.target.closest("[data-rc-fill]");
+  if(s){ const i=+s.dataset.rcSlot; st.open = st.open===i ? -1 : i; }
+  else if(o){ if(o.disabled) return; const i=st.open; st.slots[i]=o.dataset.rcOpt||null; const nx=st.slots.findIndex((x,j)=>j>i&&!x); st.open = nx>=0 ? nx : -1; }
+  else if(f){ st.slots = f.dataset.rcFill==="clear" ? [null,null,null,null,null] : RC_REC.slice(); st.open=-1; }
+  else return;
+  rcRefresh(box); });
 const cbHelper = () => { const d={t:10,td:true,ramp:true};
   return `<section class="card cb-card cbh" id="combo-helper"><div class="band"><span>Combo helper</span></div>
   <p class="cb-cnote">Enter the length of a damage window: the helper finds the <strong class="hi">combo chain with the most damage</strong> that fits in it.</p>
@@ -1023,11 +1142,11 @@ const VIEWS = {
       <img class="figure" style="max-width:528px" src="img/tarred_devices.webp" alt="Tarred Device tradeoffs. Attack Focus, Close Range Coatings: +10 Raw, -15% Aff. Affinity Focus, Power Coatings: +10% Aff, -10 Raw, -20 Ele. Element Focus, Pierce Coatings: +30 Ele, -5% Aff." loading="lazy">
 
       <h2>Ideal reinforcements</h2>
-      <p class="banner">These ideal reinforcements are a guideline. Try to get as close as possible, but small variations are OK.</p>
-      <p>The ideal reinforcements depend on the build and the charm, but generally:</p>
-      <div class="reinf"><section class="card"><h3 class="band">Craftable charms</h3><p class="rnote">For most builds and matchups, the <strong class="hi">Overall Best</strong> reinforcements are as follows:</p><div class="rrow a x2"><div class="ric"><img src="img/reinf/r_atk_ex.webp" alt=""></div><b class="max">Attack EX</b><span>×2</span><em class="max">+12</em></div><div class="rrow a"><div class="ric"><img src="img/reinf/r_atk.webp" alt=""></div><b>Attack III</b><span></span><em>+9</em></div><div class="rrow e x2"><div class="ric"><img src="img/reinf/r_ele_ex.webp" alt=""></div><b class="max">Element EX</b><span>×2</span><em class="max">+60</em></div></section><section class="card"><h3 class="band">God charms</h3><p class="rnote">The additional point in <strong class="k-jewel">Critical Boost</strong>, along with the higher <strong class="k-aff">affinity</strong> from the addition of <strong class="k-jewel">Critical Eye III</strong>, makes the <strong class="k-aff">Affinity EX</strong> reinforcement superior to <strong class="k-atk">Attack III</strong>.</p><div class="rrow a x2"><div class="ric"><img src="img/reinf/r_atk_ex.webp" alt=""></div><b class="max">Attack EX</b><span>×2</span><em class="max">+12</em></div><div class="rrow f"><div class="ric"><img src="img/reinf/r_aff_ex.webp" alt=""></div><b class="max">Affinity EX</b><span></span><em class="max">+10%</em></div><div class="rrow e x2"><div class="ric"><img src="img/reinf/r_ele_ex.webp" alt=""></div><b class="max">Element EX</b><span>×2</span><em class="max">+60</em></div></section></div>
+      <p class="banner">These ideal reinforcements are a guideline. Try to get as close as possible, but small variations are OK.<br>These are the general recommendations. If a build needs specific reinforcements, it will be specified in the <a href="#meta-builds" data-scroll="meta-builds" onclick="event.preventDefault()">builds below</a>, e.g. the <strong class="hi">Anti-AT Arkveld</strong> build.</p>
+      ${rcTool()}
+      <div class="reinf one"><section class="card"><h3 class="band">Recommended reinforcements</h3><p class="rnote">Depending on the build and the matchup, there might be some slight variations, but this roll is within about <strong class="hi">0.5%</strong> of the best one for every endgame build and matchups.</p><div class="rrow a x2"><div class="ric"><img src="img/reinf/r_atk_ex.webp" alt=""></div><b class="max">Attack EX</b><span>×2</span><em class="max">+12</em></div><div class="rrow a"><div class="ric"><img src="img/reinf/r_atk.webp" alt=""></div><b>Attack III</b><span></span><em>+9</em></div><div class="rrow e x2"><div class="ric"><img src="img/reinf/r_ele_ex.webp" alt=""></div><b class="max">Element EX</b><span>×2</span><em class="max">+60</em></div></section></div>
       <p class="banner">For <strong class="hi">Gogmazios 4P</strong> builds specifically, make sure to have two <strong class="hi">Element EX</strong>. Otherwise, you will hit the element cap and some of your element skills will be wasted.</p>
-      <div class="reinf"><section class="card"><h3 class="band">Anti-AT Arkveld builds</h3><p class="rnote">While element is decent on his wings, this is still largely a <strong class="k-raw">Raw Matchup</strong>, so element is a low priority for the reinforcements.</p><div class="rrow a x2"><div class="ric"><img src="img/reinf/r_atk_ex.webp" alt=""></div><b class="max">Attack EX</b><span>×2</span><em class="max">+12</em></div><div class="rrow a x2"><div class="ric"><img src="img/reinf/r_atk.webp" alt=""></div><b>Attack III</b><span>×2</span><em>+9</em></div><div class="rrow f"><div class="ric"><img src="img/reinf/r_aff_ex.webp" alt=""></div><b class="max">Affinity EX</b><span></span><em class="max">+10%</em></div></section></div>
+
 
       <h2>RNG charms</h2>
       <p>RNG charms are a small damage upgrade, usually around 2%, give or take. They can also be quite comfortable thanks to the extra armor decoration slots, which make it easy to fit more <strong class="hi">Constitution</strong>.</p>
